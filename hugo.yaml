@@ -36,8 +36,8 @@ params:
       Welcome to my blog. Here you'll find my thoughts and articles about technology and programming.
 
   socialIcons:
-    - name: github
-      url: "https://github.com/s-ai-unix"
+    - name: email
+      url: "mailto:isunix1989@gmail.com"
 
 menu:
   main:

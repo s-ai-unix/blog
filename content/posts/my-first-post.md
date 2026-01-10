@@ -1,7 +1,7 @@
 ---
 date: '2026-01-10T20:10:20+08:00'
 draft: false
-title: '我的第一篇���章'
+title: 'My First Blog'
 tags: ['hello', 'first']
 ---
 
