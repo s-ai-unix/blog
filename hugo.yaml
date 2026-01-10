@@ -8,6 +8,9 @@ params:
   description: "我的个人博客"
   author: "s-ai-unix"
 
+  # 启用评论功能
+  comments: true
+
   defaultTheme: auto
   ShowShareButtons: true
   ShareButtons: ["twitter", "linkedin", "facebook"]
