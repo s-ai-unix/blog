@@ -16,7 +16,7 @@ cover:
   caption: "Photo by Unsplash"
 ---
 
-Shell脚本是系统管理和自动化任务的利器。本文将带你从基础到高级，全面掌握Shell脚本��程的最佳实践。
+Shell脚本是系统管理和自动化任务的利器。本文将带你从基础到高级，全面掌握Shell脚本编程的最佳实践。
 
 ## Shell基础
 
