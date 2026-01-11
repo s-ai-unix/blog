@@ -72,25 +72,25 @@ Gradient Boosting是一种迭代算法,每次迭代都训练一个新的弱学�
 
 ### 数学表达
 
-给定损失函数$L(y, F(x))$,Gradient Boosting的优化目标是:
+给定损失函数\(L(y, F(x))\),Gradient Boosting的优化目标是:
 
-$$F\_m(x) = F\_{m-1}(x) + \gamma\_m \cdot h\_m(x)$$
+\[F_m(x) = F_{m-1}(x) + \gamma_m \cdot h_m(x)\[\]
 
 其中:
-- $F\_{m-1}(x)$是之前的模型
-- $h\_m(x)$是新训练的基学习器
-- $\gamma\_m$是学习率
+- \(F_{m-1}(x)\)是之前的模型
+- \(h_m(x)\)是新训练的基学习器
+- \(\gamma_m\)是学习率
 
 ### 常用损失函数
 
 **回归问题**:
-- 均方误差(MSE): $L(y, F) = (y - F)^2$
-- 绝对误差(MAE): $L(y, F) = |y - F|$
+- 均方误差(MSE): \(L(y, F) = (y - F)^2\)
+- 绝对误差(MAE): \(L(y, F) = |y - F|\)
 - Huber损失:对异常值更鲁棒
 
 **分类问题**:
-- 对数损失(Log Loss): $L(y, p) = -y \cdot \log(p) - (1-y) \cdot \log(1-p)$
-- 指数损失(Exponential Loss): $L(y, F) = \exp(-yF)$
+- 对数损失(Log Loss): \(L(y, p) = -y \cdot \log(p) - (1-y) \cdot \log(1-p)\)
+- 指数损失(Exponential Loss): \(L(y, F) = \exp(-yF)\)
 
 ## 主流实现框架
 
