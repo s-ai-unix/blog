@@ -16,7 +16,7 @@ Currently focusing on intelligent automotive systems, I bridge the gap between d
 
 ### Expertise
 
-- **Data Analytics**: Full-stack data analytical tasks from ETL pipelines to actionable insights
+- **Data Analytics & Machine Learning**: Full-stack data analytical tasks from ETL pipelines to actionable insights
 - **Product Management**: Translating data into product features and user experiences
 - **Software Engineering**: Building tools and platforms with Perl, Python, and Shell
 - **Statistical Analysis**: Applying statistical methods to solve real-world problems
@@ -24,8 +24,6 @@ Currently focusing on intelligent automotive systems, I bridge the gap between d
 ## Background
 
 ### Professional Journey
-
-- **iFlytek** - Product Manager, Intelligent Automotive (2024)
 - **Geely Auto** - Principal Engineer, Smart Cockpit (2023-2024)
 - **OPPO** - Senior Data Analyst (2022-2023)
 - **Huami** - Senior Data Analyst (2016-2021) - Xiaomi ecosystem
@@ -40,7 +38,7 @@ Currently focusing on intelligent automotive systems, I bridge the gap between d
 
 **Languages & Tools**: Python, SQL, Shell, Perl, Spark, PySpark, Tableau, Superset
 
-**Domains**: Data Warehousing, Statistical Analysis, Machine Learning, Data Visualization, Product Analytics
+**Domains**: Data Warehousing, Statistical Analysis, **Machine Learning & AI**, Data Visualization, Product Analytics, **Automotive**
 
 ## When Not Coding
 
