@@ -6,7 +6,7 @@ description: "详细解析机器学习项目的完整工作流程,从问题定�
 categories: ["机器学习", "项目管理"]
 tags: ["机器学习", "工作流程", "数据科学"]
 cover:
-    image: "/images/machine-learning-workflow.jpg"
+    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     alt: "机器学习项目流程图"
     caption: "机器学习项目是一个系统工程,需要严谨的流程和方法"
 ---

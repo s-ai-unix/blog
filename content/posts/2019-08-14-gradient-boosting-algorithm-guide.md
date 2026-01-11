@@ -6,7 +6,7 @@ description: "全面解析Gradient Boosting算法原理,涵盖XGBoost、LightGBM
 categories: ["机器学习", "算法"]
 tags: ["Gradient Boosting", "XGBoost", "LightGBM", "机器学习"]
 cover:
-    image: "/images/gradient-boosting-algorithm.jpg"
+    image: "https://images.unsplash.com/photo-1509228468518-180dd4864904?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     alt: "Gradient Boosting算法流程"
     caption: "Gradient Boosting是集成学习中的重要算法"
 ---
@@ -74,13 +74,13 @@ Gradient Boosting是一种迭代算法,每次迭代都训练一个新的弱学�
 给定损失函数L(y, F(x)),Gradient Boosting的优化目标是:
 
 ```
-F_m(x) = F_{m-1}(x) + γ_m * h_m(x)
+Fₘ(x) = Fₘ₋₁(x) + γₘ * hₘ(x)
 ```
 
 其中:
-- F_{m-1}(x)是之前的模型
-- h_m(x)是新训练的基学习器
-- γ_m是学习率
+- Fₘ₋₁(x)是之前的模型
+- hₘ(x)是新训练的基学习器
+- γₘ是学习率
 
 ### 常用损失函数
 

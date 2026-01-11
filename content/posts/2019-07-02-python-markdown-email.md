@@ -1,12 +1,12 @@
 ---
-title: "Python���送Markdown格式邮件实战"
+title: "Python发送Markdown格式邮件实战"
 date: 2019-07-02T15:19:06+08:00
 draft: false
 description: "详细介绍如何使用Python发送Markdown格式的邮件,提升邮件可读性"
 categories: ["Python", "实用技巧"]
 tags: ["Python", "邮件", "Markdown"]
 cover:
-    image: "/images/python-markdown-email.jpg"
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     alt: "Python发送Markdown邮件"
     caption: "用Markdown格式发送邮件,让邮件更专业、更美观"
 ---

@@ -6,7 +6,7 @@ description: "深入解析循环神经网络(RNN)及其变体LSTM和GRU的原理
 categories: ["深度学习", "神经网络"]
 tags: ["RNN", "LSTM", "GRU", "深度学习", "序列模型"]
 cover:
-    image: "/images/rnn-lstm-gru-architecture.jpg"
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     alt: "RNN、LSTM和GRU网络结构"
     caption: "从RNN到LSTM再到GRU,序列建模的演进之路"
 ---
@@ -30,15 +30,15 @@ RNN是一种具有记忆功能的神经网络,它能够处理序列数据,如:
 RNN的核心思想是在隐藏层之间引入循环连接,使得网络能够记住之前的信息。
 
 ```
-h_t = f(W_h * h_{t-1} + W_x * x_t + b)
+hₜ = f(Wₕ * hₜ₋₁ + Wₓ * xₜ + b)
 ```
 
 其中:
-- h_t:时刻t的隐藏状态
-- h_{t-1}:时刻t-1的隐藏状态
-- x_t:时刻t的输入
-- W_h, W_x:权重矩阵
-- b:偏置
+- hₜ: 时刻t的隐藏状态
+- hₜ₋₁: ���刻t-1的隐藏状态
+- xₜ: 时刻t的输入
+- Wₕ, Wₓ: 权重矩阵
+- b: 偏置
 
 ### RNN的优势
 
@@ -91,7 +91,7 @@ LSTM(Long Short-Term Memory)由Hochreiter和Schmidhuber在1997年提出,专门�
 决定从细胞状态中丢弃哪些信息:
 
 ```
-f_t = σ(W_f · [h_{t-1}, x_t] + b_f)
+fₜ = σ(Wf · [hₜ₋₁, xₜ] + bf)
 ```
 
 其中σ是sigmoid函数,输出值在[0,1]之间,0代表完全遗忘,1代表完全保留。
@@ -101,14 +101,14 @@ f_t = σ(W_f · [h_{t-1}, x_t] + b_f)
 决定哪些新信息将被存储到细胞状态中:
 
 ```
-i_t = σ(W_i · [h_{t-1}, x_t] + b_i)
-C̃_t = tanh(W_C · [h_{t-1}, x_t] + b_C)
+iₜ = σ(Wi · [hₜ₋₁, xₜ] + bi)
+C̃ₜ = tanh(WC · [hₜ₋₁, xₜ] + bC)
 ```
 
 #### 3. 更新细胞状态
 
 ```
-C_t = f_t * C_{t-1} + i_t * C̃_t
+Cₜ = fₜ * Cₜ₋₁ + iₜ * C̃ₜ
 ```
 
 这一步完成了对旧状态的遗忘和新信息的添加。
@@ -118,8 +118,8 @@ C_t = f_t * C_{t-1} + i_t * C̃_t
 决定输出什么信息:
 
 ```
-o_t = σ(W_o · [h_{t-1}, x_t] + b_o)
-h_t = o_t * tanh(C_t)
+oₜ = σ(Wo · [hₜ₋₁, xₜ] + bo)
+hₜ = oₜ * tanh(Cₜ)
 ```
 
 ### LSTM如何解决梯度消失
@@ -159,7 +159,7 @@ GRU将LSTM的三个门简化为两个:
 决定保留多少旧的隐藏状态:
 
 ```
-z_t = σ(W_z · [h_{t-1}, x_t] + b_z)
+zₜ = σ(Wz · [hₜ₋₁, xₜ] + bz)
 ```
 
 #### 2. 重置门
@@ -167,19 +167,19 @@ z_t = σ(W_z · [h_{t-1}, x_t] + b_z)
 决定如何将新的输入与之前的记忆结合:
 
 ```
-r_t = σ(W_r · [h_{t-1}, x_t] + b_r)
+rₜ = σ(Wr · [hₜ₋₁, xₜ] + br)
 ```
 
 #### 3. 候选隐藏状态
 
 ```
-h̃_t = tanh(W_h · [r_t * h_{t-1}, x_t] + b_h)
+h̃ₜ = tanh(Wh · [rₜ * hₜ₋₁, xₜ] + bh)
 ```
 
 #### 4. 最终隐藏状态
 
 ```
-h_t = (1 - z_t) * h_{t-1} + z_t * h̃_t
+hₜ = (1 - zₜ) * hₜ₋₁ + zₜ * h̃ₜ
 ```
 
 ### GRU vs LSTM
