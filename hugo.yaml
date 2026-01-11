@@ -66,9 +66,9 @@ params:
     shouldSort: true
     location: 0
     distance: 1000
-    threshold: 0.4
-    minMatchCharLength: 0
-    keys: ["title", "permalink", "summary", "content"]
+    threshold: 0.1  # 降低阈值，提高匹配精度（0.0 = 精确匹配，1.0 = 匹配所有）
+    minMatchCharLength: 2  # 至少输入 2 个字符才开始搜索
+    keys: ["title", "summary", "content"]  # 只搜索标题、摘要和内容，不搜索 URL
 
 menu:
   main:
