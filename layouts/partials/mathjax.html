@@ -1,76 +1,83 @@
 {{ if or .Params.mathjax .Site.Params.mathjax }}
 <script>
-window.MathJax = {
-  tex: {
-    inlineMath: [['$', '$']],
-    displayMath: [['$$', '$$']],
-    processEscapes: true
-  },
-  options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-    includeHtmlTags: ['span', 'div', 'p', 'li']
-  },
-  startup: {
-    pageReady: () => {
-      return MathJax.startup.defaultPageReady().then(() => {
-        console.log('MathJax formulas rendered successfully');
-      });
-    }
-  }
-};
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-<script>
-// Fix formulas broken by Goldmark markdown processor
+// 修复 Goldmark 导致的双重转义问题，然后加载 MathJax
 (function() {
   'use strict';
 
-  function fixMathFormulas() {
-    // Fix underscore issues: $h_<em>t</em>$ -> $h_t$
-    document.querySelectorAll('p, li, td, div').forEach(el => {
-      let html = el.innerHTML;
+  // 在页面加载前修复双重转义
+  function fixDoubleEscapes() {
+    var elements = document.querySelectorAll('p, li, td, div, span, h1, h2, h3, h4, h5, h6');
+    elements.forEach(function(el) {
+      var html = el.innerHTML;
+      var fixed = false;
 
-      // Fix inline math: $x_<em>t</em>$ -> $x_t$
-      html = html.replace(
-        /\$([^$]*?)<em>([^<]+?)<\/em>([^$]*?)\$/g,
-        (match, before, sub, after) => {
-          // Skip if looks like currency
-          if (/^[\d.,]+$/.test((before + sub + after).replace(/[.,]/g, ''))) {
-            return match;
+      // 修复下划线问题: $h_<em>t</em>$ -> $h_t$
+      if (html.indexOf('<em>') !== -1) {
+        var newHtml = html.replace(
+          /\$([^$]*?)<em>([^<]+?)<\/em>([^$]*?)\$/g,
+          function(match, before, sub, after) {
+            if (/^[\d.,]+$/.test((before + sub + after).replace(/[.,]/g, ''))) {
+              return match; // 跳过货币
+            }
+            return '$' + before + '_' + sub + after + '$';
           }
-          return '$' + before + '_' + sub + after + '$';
+        );
+        newHtml = newHtml.replace(
+          /\$\$([^$]*?)<em>([^<]+?)<\/em>([^$]*?)\$\$/g,
+          function(match, before, sub, after) {
+            return '$$' + before + '_' + sub + after + '$$';
+          }
+        );
+        if (newHtml !== html) {
+          html = newHtml;
+          fixed = true;
         }
-      );
+      }
 
-      // Fix display math: $$x_<em>t</em>$$ -> $$x_t$$
-      html = html.replace(
-        /\$\$([^$]*?)<em>([^<]+?)<\/em>([^$]*?)\$\$/g,
-        (match, before, sub, after) => {
-          return '$$' + before + '_' + sub + after + '$$';
+      // 修复双重转义: \\bar{X} -> \bar{X}
+      // 在 HTML 源代码中，\\ 表示两个反斜杠字符
+      if (html.indexOf('\\\\') !== -1) {
+        var newHtml = html.replace(/\\\\([a-zA-Z@{}|_])/g, function(match, char) {
+          return '\\' + char;
+        });
+        if (newHtml !== html) {
+          html = newHtml;
+          fixed = true;
         }
-      );
+      }
 
-      if (html !== el.innerHTML) {
+      if (fixed) {
         el.innerHTML = html;
       }
     });
+  }
 
-    // Re-render with MathJax
-    if (window.MathJax && MathJax.typesetPromise) {
-      MathJax.typesetPromise().then(() => {
-        console.log('Fixed and rendered math formulas');
-      });
+  // 配置 MathJax
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$']],
+      displayMath: [['$$', '$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      tags: 'ams'
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+      includeHtmlTags: ['span', 'div', 'p', 'li', 'td', 'th', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+      processHtml: true
+    },
+    startup: {
+      pageReady: function() {
+        // 在渲染前修复公式
+        fixDoubleEscapes();
+        return MathJax.startup.defaultPageReady().then(function() {
+          console.log('MathJax formulas rendered successfully');
+        });
+      }
     }
-  }
-
-  // Run fix after page loads
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', fixMathFormulas);
-  } else {
-    setTimeout(fixMathFormulas, 100);
-  }
+  };
 })();
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 {{ end }}

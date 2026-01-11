@@ -10,8 +10,20 @@ markup:
       attribute:
         block: true
         title: true
+      # 包裹代码块不会意外处理数学公式
+      wrapStandAloneParagraphWithin: p
     renderer:
       unsafe: true
+      # 硬换行不被转换为 <br>
+      hardwraps: false
+      # 不转义反斜杠（用于 LaTeX 公式）
+  highlight:
+    # 避免代码高亮干扰数学公式
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    style: monokai
+    tabWidth: 2
 
 ignoreLogs: ['warning-goldmark-raw-html']
 
