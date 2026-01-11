@@ -9,6 +9,7 @@ cover:
     image: "https://images.unsplash.com/photo-1509228468518-180dd4864904?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     alt: "高等数理统计学"
     caption: "数理统计学的精髓在于理论与实践的完美结合"
+mathjax: true
 ---
 
 ## 前言
@@ -96,9 +97,9 @@ cover:
 
 **常见统计量**:
 
-- **样本均值**: X̄ = (1/n)ΣXᵢ
-- **样本方差**: S² = (1/(n-1))Σ(Xᵢ - X̄)²
-- **样本矩**: mₖ = (1/n)ΣXᵢᵏ
+- **样本均值**: $\bar{X} = \frac{1}{n}\sum_{i=1}^{n}X_i$
+- **样本方差**: $S^2 = \frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})^2$
+- **样本矩**: $m_k = \frac{1}{n}\sum_{i=1}^{n}X_i^k$
 
 **性质**:
 - 样本均值是总体均值的无偏估计
@@ -112,10 +113,10 @@ cover:
 **重要抽样分布**:
 
 **正态分布相关**:
-- 标准正态分布: Z = (X̄ - μ)/(σ/√n) ~ N(0,1)
-- 卡方分布: χ² = Σ((Xᵢ - μ)/σ)²
-- t分布: T = (X̄ - μ)/(S/√n)
-- F分布: F = (S₁²/σ₁²)/(S₂²/σ₂²)
+- 标准正态分布: $Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(0,1)$
+- 卡方分布: $\chi^2 = \sum_{i=1}^{n}\left(\frac{X_i - \mu}{\sigma}\right)^2$
+- t分布: $T = \frac{\bar{X} - \mu}{S/\sqrt{n}}$
+- F分布: $F = \frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}$
 
 **应用示例**:
 
@@ -146,36 +147,34 @@ print(f"p值: {p_value:.4f}")
 **矩估计**:用样本矩估计总体矩
 
 **极大似然估计**(MLE):
-```
-θ̂ = argmax L(θ; x₁, ..., xₙ)
-```
+$$\hat{\theta} = \arg\max_{\theta} L(\theta; x_1, \ldots, x_n)$$
 
 **评价标准**:
-- **无偏性**: E(θ̂) = θ
-- **有效性**: Var(θ̂₁) < Var(θ̂₂)
-- **一致性**: θ̂ → θ (依概率)
+- **无偏性**: $E(\hat{\theta}) = \theta$
+- **有效性**: $\text{Var}(\hat{\theta}_1) < \text{Var}(\hat{\theta}_2)$
+- **一致性**: $\hat{\theta} \xrightarrow{P} \theta$ (依概率)
 
 #### 区间估计
 
-置信区间的形式: [θ̂ - δ, θ̂ + δ]
+置信区间的形式: $[\hat{\theta} - \delta, \hat{\theta} + \delta]$
 
 **常见置信区间**:
-- 均值的置信区间: X̄ ± t<sub>α/2</sub> * S/√n
-- 方差的置信区间: [(n-1)S²/χ²<sub>α/2</sub>, (n-1)S²/χ²<sub>1-α/2</sub>]
+- 均值的置信区间: $\bar{X} \pm t_{\alpha/2} \cdot \frac{S}{\sqrt{n}}$
+- 方差的置信区间: $\left[\frac{(n-1)S^2}{\chi^2_{\alpha/2}}, \frac{(n-1)S^2}{\chi^2_{1-\alpha/2}}\right]$
 
 ### 4. 假设检验
 
 **基本步骤**:
 
-1. 建立假设: H₀ vs H₁
+1. 建立假设: $H_0$ vs $H_1$
 2. 选择检验统计量
 3. 确定拒绝域
 4. 计算统计量值
 5. 做出决策
 
 **两类错误**:
-- 第一类错误(α): 拒真
-- 第二类错误(β): 取伪
+- 第一类错误($\alpha$): 拒真
+- 第二类错误($\beta$): 取伪
 
 **示例**:
 
@@ -201,20 +200,14 @@ else:
 
 **单因素方差分析**:
 
-```
-H₀: μ₁ = μ₂ = ... = μₖ
-H₁: 至少有两个不相等
-```
+$$H_0: \mu_1 = \mu_2 = \cdots = \mu_k$$
+$$H_1: \text{至少有两个不相等}$$
 
 **平方和分解**:
-```
-SST = SSA + SSE
-```
+$$SST = SSA + SSE$$
 
 **F统计量**:
-```
-F = (SSA/(k-1)) / (SSE/(n-k))
-```
+$$F = \frac{SSA/(k-1)}{SSE/(n-k)}$$
 
 ```python
 # 单因素方差分析
@@ -231,18 +224,14 @@ print(f"p值: {p_value:.4f}")
 ### 6. 回归分析
 
 **一元线性回归**:
-```
-y = β₀ + β₁x + ε
-```
+$$y = \beta_0 + \beta_1 x + \varepsilon$$
 
 **参数估计**:
-```
-β̂₁ = Σ(xᵢ - x̄)(yᵢ - ȳ) / Σ(xᵢ - x̄)²
-β̂₀ = ȳ - β̂₁x̄
-```
+$$\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n}(x_i - \bar{x})^2}$$
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$$
 
 **模型评价**:
-- 决定系数: R² = SSR/SST
+- 决定系数: $R^2 = \frac{SSR}{SST}$
 - 残差分析
 
 ```python

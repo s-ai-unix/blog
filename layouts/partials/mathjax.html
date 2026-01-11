@@ -1,0 +1,74 @@
+{{ if or .Params.mathjax (and .Site.Params.mathjax .Params.mathjax) }}
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    tags: 'ams',
+    tagSide: 'right',
+    tagIndent: '.8em',
+    packages: {
+      '[+]': [
+        'base',
+        'ams',
+        'newcommand',
+        'mathtools',
+        'textmacros',
+        'unicode'
+      ]
+    },
+    macros: {
+      // 自定义宏，方便输入常用数学符号
+      R: "{\\mathbb{R}}",
+      N: "{\\mathbb{N}}",
+      Z: "{\\mathbb{Z}}",
+      Q: "{\\mathbb{Q}}",
+      C: "{\\mathbb{C}}",
+      vec: ["\\mathbf{#1}", 1],
+      norm: ["\\left\\lVert#1\\right\\rVert", 1],
+      abs: ["\\left|#1\\right|", 1],
+      bm: ["\\boldsymbol{#1}", 1]
+    }
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  startup: {
+    pageReady: () => {
+      return MathJax.startup.defaultPageReady().then(() => {
+        console.log('MathJax initial typesetting complete');
+      });
+    }
+  },
+  svg: {
+    fontCache: 'global',
+    scale: 1,
+    minScale: 0.5,
+    mtextInheritFont: false,
+    merrorInheritFont: true,
+    mathmlSpacing: false,
+    skipAttributes: {},
+    exFactor: 0.5,
+    displayAlign: 'center',
+    displayIndent: '0'
+  },
+  chtml: {
+    scale: 1,
+    minScale: 0.5,
+    mtextInheritFont: false,
+    merrorInheritFont: true,
+    mathmlSpacing: false,
+    skipAttributes: {},
+    exFactor: 0.5,
+    displayAlign: 'center',
+    displayIndent: '0'
+  }
+};
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+{{ end }}

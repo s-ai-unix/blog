@@ -19,6 +19,9 @@ params:
   # 启用评论功能
   comments: true
 
+  # 启用 MathJax 数学公式渲染
+  mathjax: true
+
   defaultTheme: auto
   ShowShareButtons: true
   ShareButtons: ["twitter", "linkedin", "facebook"]
