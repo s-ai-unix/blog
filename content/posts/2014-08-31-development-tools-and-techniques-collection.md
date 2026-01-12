@@ -11,7 +11,7 @@ tags:
   - 算法
 description: "汇集JavaScript、Python等多语言开发技巧，涵盖数组操作、数据结构实现、算法实践等实用技能。"
 cover:
-  image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+  image: "/images/covers/1587620962725-abab7fe55159.jpg"
   alt: "开发工具与编程"
   caption: "开发工具与编程技巧：效率的艺术"
 ---

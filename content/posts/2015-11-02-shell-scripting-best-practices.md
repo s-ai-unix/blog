@@ -11,7 +11,7 @@ tags:
   - 文本处理
 description: "深入学习Shell脚本编程，从基础语法到高级技巧，掌握命令行自动化的核心技能。"
 cover:
-  image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+  image: "/images/covers/1550751827-4bd374c3f58b.jpg"
   alt: "终端命令行"
   caption: "Shell脚本编程：自动化的艺术"
 ---

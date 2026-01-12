@@ -13,7 +13,7 @@ comments: true
 mathjax: true
 description: "摘录陈希孺教授《高等数理统计学》前言中关于学习方法的宝贵建议，强调做习题对掌握数理统计学技巧的重要性。"
 cover:
-  image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+  image: "/images/covers/1635070041078-e363dbe005cb.jpg"
   alt: "数学之美"
   caption: "高等数理统计学：理论与实践的交汇"
 ---

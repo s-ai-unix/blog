@@ -11,7 +11,7 @@ tags:
   - 命令行
 description: "深入掌握sed、awk和grep这三个强大的文本处理工具，通过实战示例学习如何在命令行下高效处理文本数据。"
 cover:
-  image: "https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+  image: "/images/covers/1555421689-491a97ff2040.jpg"
   alt: "文本处理命令行"
   caption: "sed、awk、grep：命令行文本三剑客"
 ---

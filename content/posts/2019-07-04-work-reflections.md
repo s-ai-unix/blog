@@ -6,7 +6,7 @@ description: "回顾三年的数据分析工作历程,分享职业转型的思�
 categories: ["职业发展", "数据分析"]
 tags: ["职业思考", "数据科学", "机器学习"]
 cover:
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    image: "/images/covers/1454165804606-c3d57bc86b40.jpg"
     alt: "职业发展路径"
     caption: "持续学习是职业发展的核心驱动力"
 ---
