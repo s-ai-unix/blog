@@ -12,8 +12,8 @@ tags:
 description: "全面掌握Python数据分析核心工具，从NumPy数组操作到Pandas数据处理，再到Matplotlib和Seaborn可视化，构建完整的数据分析技能体系。"
 cover:
   image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-  alt: "数据可视化抽象艺术"
-  caption: "Photo by Markus Winkler on Unsplash"
+  alt: "Python数据分析"
+  caption: "Python数据分析：NumPy、Pandas与可视化"
 ---
 
 Python数据分析生态系统包含了多个强大的库，它们各自承担不同的职责。本文将整合NumPy、Pandas、Matplotlib和Seaborn的核心功能，提供一份完整的数据分析实战指南。

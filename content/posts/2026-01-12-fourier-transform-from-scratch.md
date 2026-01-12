@@ -6,9 +6,9 @@ description: "从零开始详细推导傅里叶级数和傅里叶变换，包括
 categories: ["数学", "信号处理"]
 tags: ["傅里叶变换", "傅里叶级数", "信号处理", "频谱分析", "FFT", "数字信号处理"]
 cover:
-    image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-    alt: "傅里叶变换"
-    caption: "频谱的艺术想象"
+    image: "https://images.unsplash.com/photo-1509228627129-669005e74585?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    alt: "傅里叶变换频谱"
+    caption: "傅里叶变换：时域与频域的桥梁"
 ---
 
 ## 引言：分解的艺术

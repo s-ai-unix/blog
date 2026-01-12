@@ -12,9 +12,9 @@ tags:
   - 时区配置
 description: "Linux系统管理员必备速查手册，涵盖Node.js安装、时区配置、内存监控等常用操作技巧与问题排查方法。"
 cover:
-  image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-  alt: "Linux服务器终端界面"
-  caption: "Photo by FLY:D on Unsplash"
+  image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+  alt: "Linux系统管理"
+  caption: "Linux系统管理：命令与实践手册"
 ---
 
 在日常的系统管理工作中，我们经常需要处理各种常见的配置和监控任务。本文整理了Linux系统管理中最常用的操作命令，包括软件安装、时区配置和资源监控，帮助你快速定位和解决问题。

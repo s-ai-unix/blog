@@ -10,9 +10,9 @@ tags: ["Hadoop", "Presto", "HUE", "Zeppelin", "EMR"]
 
 # 封面图片配置
 cover:
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-    alt: "Hadoop Ecosystem Deployment"
-    caption: "Hadoop生态系统架构图"
+    image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    alt: "大数据处理"
+    caption: "Hadoop生态系统：分布式计算的基石"
     relative: false
     hidden: false
 ---

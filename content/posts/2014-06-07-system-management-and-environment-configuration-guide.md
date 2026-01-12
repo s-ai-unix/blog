@@ -12,9 +12,9 @@ tags:
   - Web服务
 description: "从Apache、PHP配置到MySQL、CGI配置，全面掌握Web服务器环境的搭建与管理技巧。"
 cover:
-  image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-  alt: "技术架构抽象艺术"
-  caption: "Photo by Alex Knight on Unsplash"
+  image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+  alt: "服务器机房"
+  caption: "系统管理：从服务器到云端的运维实践"
 ---
 
 搭建和管理Web服务器环境是开发者的必备技能。本文将介绍从基础环境搭建到高级配置的完整流程，帮助你在本地和生产环境中快速部署可靠的服务。

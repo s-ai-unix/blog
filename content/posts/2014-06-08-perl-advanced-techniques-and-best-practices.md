@@ -9,9 +9,9 @@ tags:
   - 面向对象
 description: "深入探讨Perl的高级特性，包括模块使用、引用、面向对象编程和最佳实践。"
 cover:
-  image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-  alt: "编程逻辑抽象艺术"
-  caption: "Photo by Markus Spiske on Unsplash"
+  image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+  alt: "编程代码"
+  caption: "Perl进阶：模块、引用与面向对象编程"
 ---
 
 Perl不仅拥有强大的基础功能，还提供了丰富的高级特性。本文将介绍模块系统、引用、面向对象编程以及各种进阶技巧。

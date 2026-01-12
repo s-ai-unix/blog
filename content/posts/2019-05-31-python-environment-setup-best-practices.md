@@ -10,9 +10,9 @@ tags:
   - 开发工具
 description: "全面掌握Python开发环境配置技巧，包括pipenv虚拟环境管理、国内镜像源配置、warning信息控制等实用技巧，提升Python开发效率。"
 cover:
-  image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-  alt: "Python代码与开发环境"
-  caption: "Photo by Fleur Eln on Unsplash"
+  image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+  alt: "Python开发环境"
+  caption: "Python环境配置：虚拟环境与包管理"
 ---
 
 Python开发环境的合理配置是项目成功的基础。本文将整合虚拟环境管理、包安装优化和运行时配置三个关键主题，帮助你构建高效、规范的Python开发环境。

@@ -6,9 +6,9 @@ description: "从零开始详细推导麦克斯韦方程组，包括向量微积
 categories: ["物理学", "电磁学"]
 tags: ["麦克斯韦方程", "电磁学", "法拉第定律", "安培定律", "高斯定律", "电磁波"]
 cover:
-    image: "https://images.unsplash.com/photo-1473177104440-ffee2f3755d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-    alt: "电磁场"
-    caption: "电磁场的艺术想象"
+    image: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    alt: "麦克斯韦方程"
+    caption: "麦克斯韦方程：电磁统一的完美方程组"
 ---
 
 ## 引言：电与磁的统一

@@ -6,9 +6,9 @@ description: "从零开始详细推导广义相对论，包括张量分析、测
 categories: ["物理学", "数学"]
 tags: ["广义相对论", "微分几何", "爱因斯坦", "引力", "黎曼几何"]
 cover:
-    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    image: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     alt: "广义相对论"
-    caption: "时空弯曲的艺术想象"
+    caption: "广义相对论：时空的弯曲与引力"
 ---
 
 ## 引言：为什么我们需要新理论？

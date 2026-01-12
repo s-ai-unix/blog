@@ -6,9 +6,9 @@ description: "分享R语言在数据分析中的实用技巧和最佳实践"
 categories: ["R语言", "数据分析"]
 tags: ["R语言", "数据分析", "统计"]
 cover:
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-    alt: "R语言数据分析"
-    caption: "R语言是数据科学领域的重要工具"
+    image: "https://images.unsplash.com/photo-1592609931095-54a2168ae893?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    alt: "R语言统计分析"
+    caption: "R语言：统计分析的艺术"
 ---
 
 ## 前言
