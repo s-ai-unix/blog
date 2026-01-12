@@ -29,7 +29,7 @@ ignoreLogs: ['warning-goldmark-raw-html']
 
 params:
   env: production
-  description: "我的个人博客"
+  description: "s-ai-unix 的个人技术博客，分享数学、深度学习、机器人学等领域的知识和思考"
   author: "s-ai-unix"
 
   # 启用评论功能
@@ -40,7 +40,7 @@ params:
 
   defaultTheme: auto
   ShowShareButtons: true
-  ShareButtons: ["twitter", "linkedin", "facebook"]
+  ShareButtons: ["twitter", "linkedin", "facebook", "reddit", "pinterest"]
   ShowReadingTime: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
@@ -49,30 +49,60 @@ params:
   ShowToc: true
   TocOpen: true
 
+  # 草稿页面提示
+  ShowDraftPageLabel: true
+
+  # 文章封面图片优化
+  cover:
+    responsiveImages: true
+    linkFullImages: true
+
+  # RSS 订阅优化
+  rss:
+    fullContent: true
+
+  # Edit Link - 让读者可以直接编辑文章
+  editPost:
+    URL: "https://github.com/s-ai-unix/blog/tree/main/content"
+    Text: "✏️ 编辑此页"
+    appendFilePath: true
+
+  # Profile Mode - 更酷的个人首页
   profileMode:
-    enabled: false
-    title: "Hi there \U0001F44B"
-    subtitle: "Welcome to my blog"
-    imageUrl: ""
-    imageTitle: ""
-    imageWidth: 120
-    imageHeight: 120
+    enabled: true
+    title: "s-ai-unix"
+    subtitle: "🚀 技术博主 | 📐 数学爱好者 | 🤖 机器人学研究者 | 💻 开发者"
+    imageUrl: "https://avatars.githubusercontent.com/u/12345678?v=4"
+    imageTitle: "s-ai-unix"
+    imageWidth: 140
+    imageHeight: 140
     buttons:
-      - name: Posts
-        url: posts
-      - name: Tags
-        url: tags
+      - name: "📚 文章"
+        url: "/posts"
+      - name: "🏷️ 标签"
+        url: "/tags"
+      - name: "📁 归档"
+        url: "/archives"
+      - name: "👤 关于"
+        url: "/about"
 
   homeInfoParams:
-    Title: "Hi there \U0001F44B"
+    Title: "🚀 欢迎来到我的技术博客"
     Content: >
-      Welcome to my blog. Here you'll find my thoughts and articles about technology and programming.
+      这里记录了我在学习数学、深度学习、机器人学等领域的探索和思考。<br><br>
+      希望通过分享能帮助到同样对技术充满热情的你。<br><br>
+      📧 联系方式: [isunix1989@gmail.com](mailto:isunix1989@gmail.com)<br>
+      💻 GitHub: [@s-ai-unix](https://github.com/s-ai-unix)
 
   socialIcons:
     - name: email
       url: "mailto:isunix1989@gmail.com"
     - name: github
       url: "https://github.com/s-ai-unix"
+    - name: twitter
+      url: "https://twitter.com/s_ai_unix"
+    - name: linkedin
+      url: "https://linkedin.com/in/s-ai-unix"
 
   # Giscus 评论系统配置
   giscus:
@@ -94,31 +124,35 @@ params:
     isCaseSensitive: false
     shouldSort: true
     location: 0
-    distance: 1000
-    threshold: 0.1  # 降低阈值，提高匹配精度（0.0 = 精确匹配，1.0 = 匹配所有）
-    minMatchCharLength: 2  # 至少输入 2 个字符才开始搜索
-    keys: ["title", "summary", "content"]  # 只搜索标题、摘要和内容，不搜索 URL
+    distance: 100
+    threshold: 0.3
+    minMatchCharLength: 2
+    keys: ["title", "summary", "content", "tags"]  # 标题、摘要、内容、标签
 
 menu:
   main:
     - identifier: home
-      name: Home
+      name: 🏠 首页
       url: /
       weight: 10
     - identifier: posts
-      name: Posts
+      name: 📚 文章
       url: /posts/
       weight: 20
+    - identifier: archives
+      name: 📁 归档
+      url: /archives/
+      weight: 25
     - identifier: tags
-      name: Tags
+      name: 🏷️ 标签
       url: /tags/
       weight: 30
     - identifier: search
-      name: Search
+      name: 🔍 搜索
       url: /search/
       weight: 40
     - identifier: about
-      name: About
+      name: 👤 关于
       url: /about/
       weight: 50
 
