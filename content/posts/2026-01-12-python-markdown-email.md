@@ -1,6 +1,6 @@
 ---
 title: "Python发送Markdown格式邮件实战"
-date: 2019-07-02T15:19:06+08:00
+date: 2026-01-12T21:00:00+08:00
 draft: false
 description: "详细介绍如何使用Python发送Markdown格式的邮件,提升邮件可读性"
 categories: ["Python", "实用技巧"]
@@ -79,7 +79,7 @@ email = """
 ```python
 def greet(name):
     return f"Hello, {name}!"
-```text
+```
 
 如有问题,请随时联系。
 """
@@ -248,7 +248,7 @@ markdown_text = """
 ```python
 import pandas as pd
 data = pd.read_csv('sales.csv')
-print(data.describe```text
+print(data.describe())
 ```
 """
 
@@ -443,7 +443,7 @@ def generate_report_email():
 ```python
 import matplotlib.pyplot as plt
 df.plot(x='date', y='users')
-plt```textow()
+plt.show()
 ```
 
 ## 详细数据
@@ -487,13 +487,13 @@ def send_error_alert(error_info):
 ## 错误详情
 
 ```
-{error_info['error```textssage']}
+{error_info['error_message']}
 ```
 
 ## 堆栈跟踪
 
 ```python
-{error_inf```texttraceback']}
+{error_info['traceback']}
 ```
 
 ## 影响范围
@@ -641,7 +641,7 @@ tasks = [
 generate_weekly_report(tasks)
 ```
 
-## 最```text
+## 最佳实践
 
 ### 1. 邮件模板管理
 
