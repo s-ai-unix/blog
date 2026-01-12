@@ -72,6 +72,10 @@ params:
 
   homeInfoParams:
     Title: "🚀 欢迎来到我的技术博客"
+    imageUrl: "https://api.dicebear.com/7.x/micah/svg?seed=s-ai-unix&backgroundColor=b6e3f4,c0aede,d1d4f9"
+    imageTitle: "s-ai-unix"
+    imageWidth: 120
+    imageHeight: 120
     Content: >
       这里记录了我在学习数学、深度学习、机器人学等领域的探索和思考。<br><br>
       希望通过分享能帮助到同样对技术充满热情的你。<br><br>
