@@ -71,12 +71,12 @@ VScode Remote Development是VScode的一个扩展功能,允许你:
 
 在本地VScode中安装"Remote - SSH"扩展:
 
-```
+```text
 1. 打开VScode
 2. 点击左侧扩展图标 (Ctrl+Shift+X)
 3. 搜索 "Remote - SSH"
 4. 点击安装
-```
+```text
 
 ### 3. 配置SSH
 
@@ -91,7 +91,7 @@ ssh-copy-id user@remote-host
 
 # 或者手动复制
 cat ~/.ssh/id_rsa.pub | ssh user@remote-host "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
-```
+```text
 
 **配置SSH主机**:
 
@@ -105,26 +105,26 @@ Host remote-server
     User your-username
     IdentityFile ~/.ssh/id_rsa
     Port 22
-```
+```text
 
 ### 4. 连接到远程服务器
 
 **方法1:使用命令面板**
 
-```
+```text
 1. 按F1或Ctrl+Shift+P打开命令面板
 2. 输入 "Remote-SSH: Connect to Host"
 3. 选择要连接的主机
 4. 新窗口打开,连接到远程服务器
-```
+```text
 
 **方法2:使用侧边栏**
 
-```
+```text
 1. 点击左侧远程资源管理器图标
 2. 选择要连接的主机
 3. 点击连接
-```
+```text
 
 ## 常用功能
 
@@ -142,7 +142,7 @@ File -> Open Folder
 
 # 编辑文件
 # 直接在编辑器中编辑,自动保存到远程服务器
-```
+```text
 
 ### 2. 终端操作
 
@@ -161,7 +161,7 @@ python script.py
 
 # 运行Jupyter notebook
 jupyter notebook
-```
+```text
 
 ### 3. 调试功能
 
@@ -181,16 +181,16 @@ jupyter notebook
         }
     ]
 }
-```
+```text
 
 **使用调试器**:
 
-```
+```text
 1. 在代码行号左侧点击设置断点
 2. 按F5开始调试
 3. 查看变量、调用栈等
 4. 使用调试控制台执行代码
-```
+```text
 
 ### 4. 扩展安装
 
@@ -203,7 +203,7 @@ jupyter notebook
 # 查看已安装的扩展
 Extensions -> Show Local Extensions (过滤)
 Extensions -> Show Remote Extensions
-```
+```text
 
 ## 实战案例
 
@@ -215,22 +215,21 @@ Extensions -> Show Remote Extensions
 
 1. **连接到远程服务器**
 
-```
+```text
 Remote-SSH: Connect to Host -> remote-server
-```
+```text
 
-2. **打开项目文件夹**
-
+2. **打开项目文件夹```text
 ```
 File -> Open Folder -> /home/user/project
-```
+```text
 
-3. **配置Python解释器**
+3. **配置Pytho```text器**
 
-```
+```bash
 Ctrl + Shift + P -> Python: Select Interpreter
 选择远程服务器上的Python环境
-```
+```text
 
 4. **编写代码**
 
@@ -247,7 +246,7 @@ def process_data(filename):
 if __name__ == '__main__':
     result = process_data('data.csv')
     print(result)
-```
+```text
 
 5. **运行和调试**
 
@@ -257,7 +256,7 @@ python main.py
 
 # 或使用调试器
 # 设置断点,按F5运行
-```
+```text
 
 ### 案例2:远程Jupyter Notebook
 
@@ -269,20 +268,20 @@ python main.py
 
 ```bash
 jupyter notebook --no-browser --port=8888
-```
+```text
 
 2. **设置端口转发**
 
 ```bash
 # 在本地机器上运行
 ssh -N -f -L localhost:8888:localhost:8888 user@remote-server
-```
+```text
 
-3. **在本地浏览器访问**
+3. **```text浏览器访问**
 
 ```
 http://localhost:8888
-```
+```text
 
 ### 案例3:远程Docker开发
 
@@ -292,13 +291,13 @@ http://localhost:8888
 
 1. **使用Remote - Containers扩展**
 
-2. **连接到远程容器**
-
-```
-Remote-Containers: Attach to Running Container
-```
-
-3. **在容器中开发**
+ ```text
+ **连接到远程容器**
+ 
+ Remote-Containers: Attach to Running Container
+ ```
+ 
+ 3. **在容器中开发**
 
 ```dockerfile
 # Dockerfile
@@ -310,7 +309,7 @@ RUN pip install -r requirements.txt
 
 COPY . .
 CMD ["python", "main.py"]
-```
+```text
 
 ## 高级技巧
 
@@ -334,7 +333,7 @@ Host aws-server
     HostName ec2-xx-xx-xx-xx.compute.amazonaws.com
     User ubuntu
     IdentityFile ~/.ssh/aws_key.pem
-```
+```text
 
 ### 2. 端口转发
 
@@ -347,7 +346,7 @@ python -m http.server 8000
 # 在本地VScode中
 # 端口会自动提示转发
 # 或手动配置:Forward a Port
-```
+```text
 
 ### 3. 同步本地和远程设置
 
@@ -359,7 +358,7 @@ python -m http.server 8000
     "remote.SSH.showLoginTerminal": true,
     "python.pythonPath": "/usr/bin/python3"
 }
-```
+```text
 
 ### 4. 使用Git
 
@@ -371,7 +370,7 @@ git init
 git add .
 git commit -m "Initial commit"
 git push origin main
-```
+```text
 
 ## 常见问题
 
@@ -390,7 +389,7 @@ cat ~/.ssh/config
 
 # 使用verbose模式调试
 ssh -vvv user@remote-host
-```
+```text
 
 ### 2. 扩展不工作
 
@@ -414,7 +413,7 @@ chmod +x script.sh
 
 # 修改文件所有者
 sudo chown user:group file
-```
+```text
 
 ### 4. 性能问题
 
@@ -437,28 +436,28 @@ ssh-keygen -t rsa -f ~/.ssh/project_key
 # 使用ssh-agent管理密钥
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/project_key
-```
+```text
 
 ### 2. 环境配置
 
 使用`.vscode`文件夹管理项目配置:
 
-```
+```text
 .vscode/
 ├── settings.json       # 项目设置
 ├── launch.json        # 调试配置
 ├── tasks.json         # 任务配置
 └── extensions.json     # 推荐扩展
-```
+```text
 
 ### 3. 版本控制
 
-```
+```text
 # 使用.gitignore忽略本地配置
 .vscode/
 *.pyc
 __py__/
-```
+```text
 
 ### 4. 文档化
 
@@ -473,7 +472,7 @@ __py__/
 1. 安装依赖: pip install -r requirements.txt
 2. 配置环境: cp .env.example .env
 3. 运行服务: python main.py
-```
+```text
 
 ## 参考资源
 

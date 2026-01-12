@@ -40,7 +40,7 @@ Apache Spark是当前最流行的大数据处理框架之一，以其高效、�
 
 在Mac上搭建本地PySpark环境时，可能会遇到主机名解析问题：
 
-```
+```text
 Caused by: java.net.UnknownHostException: master: nodename nor servname provided, or not known
 ```
 

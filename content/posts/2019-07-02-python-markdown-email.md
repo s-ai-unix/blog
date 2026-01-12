@@ -79,7 +79,7 @@ email = """
 ```python
 def greet(name):
     return f"Hello, {name}!"
-```
+```text
 
 如有问题,请随时联系。
 """
@@ -248,7 +248,7 @@ markdown_text = """
 ```python
 import pandas as pd
 data = pd.read_csv('sales.csv')
-print(data.describe())
+print(data.describe```text
 ```
 """
 
@@ -443,7 +443,7 @@ def generate_report_email():
 ```python
 import matplotlib.pyplot as plt
 df.plot(x='date', y='users')
-plt.show()
+plt```textow()
 ```
 
 ## 详细数据
@@ -487,13 +487,13 @@ def send_error_alert(error_info):
 ## 错误详情
 
 ```
-{error_info['error_message']}
+{error_info['error```textssage']}
 ```
 
 ## 堆栈跟踪
 
 ```python
-{error_info['traceback']}
+{error_inf```texttraceback']}
 ```
 
 ## 影响范围
@@ -641,7 +641,7 @@ tasks = [
 generate_weekly_report(tasks)
 ```
 
-## 最佳实践
+## 最```text
 
 ### 1. 邮件模板管理
 

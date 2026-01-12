@@ -626,7 +626,7 @@ print_tree($rootname);
 ```
 
 **输出**：
-```
+```text
 grandchild1
 child1
 grandchild2

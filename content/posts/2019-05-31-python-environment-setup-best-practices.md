@@ -316,7 +316,7 @@ echo "项目 $PROJECT_NAME 初始化完成！"
 
 创建一个标准的Python项目模板结构：
 
-```
+```text
 myproject/
 ├── .env                    # 环境变量配置
 ├── .gitignore             # Git忽略文件
