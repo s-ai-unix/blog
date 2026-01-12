@@ -57,11 +57,7 @@ $$\mathbf{A} \cdot \mathbf{B} = A_x B_x + A_y B_y + A_z B_z = |\mathbf{A}| |\mat
 
 **叉积**（向量积）：
 
-$$\mathbf{A} \times \mathbf{B} = \begin{vmatrix}
-\mathbf{i} & \mathbf{j} & \mathbf{k} \\
-A_x & A_y & A_z \\
-B_x & B_y & B_z
-\end{vmatrix} = (A_y B_z - A_z B_y, A_z B_x - A_x B_z, A_x B_y - A_y B_x)$$
+$$\mathbf{A} \times \mathbf{B} = \begin{pmatrix} A_y B_z - A_z B_y \\ A_z B_x - A_x B_z \\ A_x B_y - A_y B_x \end{pmatrix} = (A_y B_z - A_z B_y, A_z B_x - A_x B_z, A_x B_y - A_y B_x)$$
 
 ### 1.3 梯度：标量场的变化率
 

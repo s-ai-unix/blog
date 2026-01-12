@@ -59,7 +59,17 @@
       displayMath: [['$$', '$$']],
       processEscapes: true,
       processEnvironments: true,
-      tags: 'ams'
+      tags: 'ams',
+      packages: {'[+]': ['ams', 'configmacros', 'newcommand']}
+    },
+    loader: {
+      load: ['[tex]/ams', '[tex]/configmacros', '[tex]/newcommand']
+    },
+    macros: {
+      // 定义特殊积分符号
+      '\\oiint': '\\displaystyle\\iint\\!\\!\\!\\oint',
+      '\\oiiint': '\\displaystyle\\iiint\\!\\!\\!\\oint',
+      '\\slashpartial': '{\\partial\\!\\!/}'
     },
     options: {
       skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],

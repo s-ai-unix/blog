@@ -59,32 +59,16 @@ params:
 
   # RSS 订阅优化
   rss:
-    fullContent: true
-
-  # Edit Link - 让读者可以直接编辑文章
-  editPost:
-    URL: "https://github.com/s-ai-unix/blog/tree/main/content"
-    Text: "✏️ 编辑此页"
-    appendFilePath: true
+    fullContent: true  
 
   # Profile Mode - 更酷的个人首页
   profileMode:
     enabled: true
     title: "s-ai-unix"
     subtitle: "🚀 技术博主 | 📐 数学爱好者 | 🤖 机器人学研究者 | 💻 开发者"
-    imageUrl: "https://avatars.githubusercontent.com/u/12345678?v=4"
     imageTitle: "s-ai-unix"
     imageWidth: 140
     imageHeight: 140
-    buttons:
-      - name: "📚 文章"
-        url: "/posts"
-      - name: "🏷️ 标签"
-        url: "/tags"
-      - name: "📁 归档"
-        url: "/archives"
-      - name: "👤 关于"
-        url: "/about"
 
   homeInfoParams:
     Title: "🚀 欢迎来到我的技术博客"
