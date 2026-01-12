@@ -46,6 +46,8 @@ params:
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowWordCount: true
+  ShowToc: true
+  TocOpen: true
 
   profileMode:
     enabled: false

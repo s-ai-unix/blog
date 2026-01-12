@@ -26,11 +26,10 @@ Currently focusing on intelligent automotive systems, I bridge the gap between d
 ## Background
 
 ### Professional Journey
-- **iflytek** - Product Manager, Intelligent Cockpit (2024-2024)
 - **Geely Auto** - Principal Product Manager, Intelligent Cockpit (2023-2024)
-- **OPPO** - Principal Data Analytical Engineer (2022-2023)
+- **OPPO** - Staff Data Analytical Engineer (2022-2023)
 - **Huami** - Senior Data Analytical Engineer (2016-2021) - Xiaomi ecosystem
-- **Cisco** - Senior Anti-Spam Engineer (2012-2016)
+- **Sonata/Cisco** - Senior Anti-Spam Engineer (2012-2016)
 
 ### Education
 

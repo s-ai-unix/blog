@@ -1,1 +1,6 @@
 {{- partial "mathjax.html" . -}}
+
+<!-- TOC 自动高亮和滚动跟随脚本 -->
+{{- if (.Param "ShowToc") }}
+<script src="{{ "js/toc.js" | relURL }}"></script>
+{{- end }}
