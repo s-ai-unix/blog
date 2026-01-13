@@ -70,8 +70,7 @@ else
     OLD_PAGE_COUNT=0
 fi
 
-# 构建 Hugo 站点
-hugo --minify
+hugo -F --minify
 
 if [ $? -ne 0 ]; then
     echo "❌ Hugo 构建失败"

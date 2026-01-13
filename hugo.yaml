@@ -3,6 +3,9 @@ languageCode: zh-cn
 title: s-ai-unix's Blog
 theme: PaperMod
 
+build:
+  future: true
+
 # 配置 Goldmark 处理数学公式
 markup:
   goldmark:
