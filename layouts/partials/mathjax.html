@@ -52,7 +52,7 @@
     });
   }
 
-  // 配置 MathJax
+  // 配置 MathJax（在fixDoubleEscapes函数之后定义）
   window.MathJax = {
     tex: {
       inlineMath: [['$', '$']],
@@ -62,9 +62,9 @@
       tags: 'ams',
       macros: {
         // 定义特殊积分符号
-        // 注意：JavaScript字符串中需要双反斜杠来表示一个反斜杠
-        oiint: '{\\\\mathop{\\\\oint\\\\!\\\\oint}}',
-        oiiint: '{\\\\mathop{\\\\oint\\\\!\\\\oint\\\\!\\\\oint}}',
+        // 使用双反斜杠：\\\\ 在JS字符串中表示 \\，MathJax将其解析为 \
+        oiint: '{\\\\mathop{\\\\oint\\\\kern-3pt\\\\oint}}',
+        oiiint: '{\\\\mathop{\\\\oint\\\\kern-3pt\\\\oint\\\\kern-3pt\\\\oint}}',
         slashpartial: '{\\\\partial\\\\!\\\\!/}'
       }
     },
