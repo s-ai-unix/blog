@@ -16,9 +16,8 @@ markup:
       unsafe: true
       # 硬换行不被转换为 <br>
       hardwraps: false
-      # 不转义反斜杠（用于 LaTeX 公式）
+  # 代码高亮配置（避免干扰数学公式）
   highlight:
-    # 避免代码高亮干扰数学公式
     codeFences: true
     guessSyntax: true
     lineNos: false
@@ -59,7 +58,7 @@ params:
 
   # RSS 订阅优化
   rss:
-    fullContent: true  
+    fullContent: true
 
   # Profile Mode - 更酷的个人首页
   profileMode:
@@ -88,7 +87,7 @@ params:
       url: "mailto:isunix1989@gmail.com"
     - name: github
       url: "https://github.com/s-ai-unix"
-    
+
   # Giscus 评论系统配置
   giscus:
     repo: "s-ai-unix/blog"
