@@ -463,10 +463,10 @@ $$
 1-NN 的渐近错误率是：
 
 $$
-R_{\mathrm{1{-}NN}} = 2 \sum_{x} P(x) P(y=\hat{y}^*|x) (1 - P(y=\hat{y}^*|x))
+R_{\mathrm{1{-}NN}} = 2 \sum_{x} P(x) P(y=\hat{y}^{\ast}|x) (1 - P(y=\hat{y}^{\ast}|x))
 $$
 
-其中 $\hat{y}^*$ 是贝叶斯最优预测。
+其中 $\hat{y}^{\ast}$ 是贝叶斯最优预测。
 
 可以证明：$R^* \leq R_{\mathrm{1{-}NN}} \leq 2R^*$。因此，1-NN 的错误率最多是贝叶斯最优的两倍。
 
