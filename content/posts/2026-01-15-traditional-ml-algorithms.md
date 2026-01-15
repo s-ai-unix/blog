@@ -244,28 +244,27 @@ $$
 
 **第六步：计算梯度**
 
-我们需要计算 $\frac{\partial \ell}{\partial \mathbf{w}}$。首先计算 $\frac{\partial p(\mathbf{x})}{\partial \mathbf{w}}$：
+我们需要计算 $\frac{\partial \ell}{\partial w}$。首先计算 $\frac{\partial p(x)}{\partial w}$：
 
 $$
 \begin{aligned}
-p(\mathbf{x}) &= \frac{1}{1 + e^{-\mathbf{w}^T \mathbf{x}}} \\
-\frac{\partial p(\mathbf{x})}{\partial \mathbf{w}} &= \frac{\partial}{\partial \mathbf{w}} \left( \frac{1}{1 + e^{-\mathbf{w}^T \mathbf{x}}} \right) \\
-&= -\frac{1}{(1 + e^{-\mathbf{w}^T \mathbf{x}})^2} \cdot \frac{\partial}{\partial \mathbf{w}} (1 + e^{-\mathbf{w}^T \mathbf{x}}) \\
-&= -\frac{1}{(1 + e^{-\mathbf{w}^T \mathbf{x}})^2} \cdot e^{-\mathbf{w}^T \mathbf{x}} \cdot (-\mathbf{x}) \\
-&= \frac{e^{-\mathbf{w}^T \mathbf{x}}}{(1 + e^{-\mathbf{w}^T \mathbf{x}})^2} \mathbf{x}
+p(x) &= \frac{1}{1 + e^{-w^T x}} \\
+\frac{\partial p(x)}{\partial w} &= -\frac{1}{(1 + e^{-w^T x})^2} \cdot \frac{\partial}{\partial w} (1 + e^{-w^T x}) \\
+&= -\frac{1}{(1 + e^{-w^T x})^2} \cdot e^{-w^T x} \cdot (-x) \\
+&= \frac{e^{-w^T x}}{(1 + e^{-w^T x})^2} x
 \end{aligned}
 $$
 
 注意到：
 
 $$
-p(\mathbf{x})(1 - p(\mathbf{x})) = \frac{1}{1 + e^{-\mathbf{w}^T \mathbf{x}}} \cdot \frac{e^{-\mathbf{w}^T \mathbf{x}}}{1 + e^{-\mathbf{w}^T \mathbf{x}}} = \frac{e^{-\mathbf{w}^T \mathbf{x}}}{(1 + e^{-\mathbf{w}^T \mathbf{x}})^2}
+p(x)(1 - p(x)) = \frac{1}{1 + e^{-w^T x}} \cdot \frac{e^{-w^T x}}{1 + e^{-w^T x}} = \frac{e^{-w^T x}}{(1 + e^{-w^T x})^2}
 $$
 
 因此：
 
 $$
-\frac{\partial p(\mathbf{x})}{\partial \mathbf{w}} = p(\mathbf{x})(1 - p(\mathbf{x})) \mathbf{x}
+\frac{\partial p(x)}{\partial w} = p(x)(1 - p(x)) x
 $$
 
 这是一个非常优雅的结论！
@@ -273,14 +272,7 @@ $$
 **第七步：计算对数似然的梯度**
 
 $$
-\begin{aligned}
-\frac{\partial \ell}{\partial \mathbf{w}} &= \sum_{i=1}^{n} \left[ y_i \frac{\partial \log p(\mathbf{x}_i)}{\partial \mathbf{w}} + (1 - y_i) \frac{\partial \log(1 - p(\mathbf{x}_i))}{\partial \mathbf{w}} \right] \\
-&= \sum_{i=1}^{n} \left[ \frac{y_i}{p(\mathbf{x}_i)} \frac{\partial p(\mathbf{x}_i)}{\partial \mathbf{w}} + \frac{1 - y_i}{1 - p(\mathbf{x}_i)} \frac{\partial (1 - p(\mathbf{x}_i))}{\partial \mathbf{w}} \right] \\
-&= \sum_{i=1}^{n} \left[ \frac{y_i}{p(\mathbf{x}_i)} p(\mathbf{x}_i)(1 - p(\mathbf{x}_i)) \mathbf{x}_i + \frac{1 - y_i}{1 - p(\mathbf{x}_i)} (-p(\mathbf{x}_i)(1 - p(\mathbf{x}_i))) \mathbf{x}_i \right] \\
-&= \sum_{i=1}^{n} \left[ y_i (1 - p(\mathbf{x}_i)) \mathbf{x}_i - (1 - y_i) p(\mathbf{x}_i) \mathbf{x}_i \right] \\
-&= \sum_{i=1}^{n} \left[ y_i \mathbf{x}_i - y_i p(\mathbf{x}_i) \mathbf{x}_i - p(\mathbf{x}_i) \mathbf{x}_i + y_i p(\mathbf{x}_i) \mathbf{x}_i \right] \\
-&= \sum_{i=1}^{n} (y_i - p(\mathbf{x}_i)) \mathbf{x}_i
-\end{aligned}
+\frac{\partial \ell}{\partial w} = \sum_{i=1}^{n} (y_i - p(x_i)) x_i
 $$
 
 这就是逻辑回归的梯度公式！
@@ -290,7 +282,7 @@ $$
 由于我们要最大化对数似然，使用梯度上升：
 
 $$
-\mathbf{w}_{t+1} = \mathbf{w}_t + \eta \nabla_{\mathbf{w}} \ell(\mathbf{w}_t) = \mathbf{w}_t + \eta \sum_{i=1}^{n} (y_i - p_t(\mathbf{x}_i)) \mathbf{x}_i
+w_{t+1} = w_t + \eta \sum_{i=1}^{n} (y_i - p_t(x_i)) x_i
 $$
 
 其中 $\eta$ 是学习率。
@@ -465,13 +457,13 @@ $$
 贝叶斯最优分类器的错误率是：
 
 $$
-R^* = 1 - \sum_{\mathbf{x}} P(\mathbf{x}) \max_c P(y=c|\mathbf{x})
+R^* = 1 - \sum_{x} P(x) \max_c P(y=c|x)
 $$
 
 1-NN 的渐近错误率是：
 
 $$
-R_{\text{1-NN}} = 2 \sum_{\mathbf{x}} P(\mathbf{x}) P(y=\hat{y}^*|\mathbf{x}) (1 - P(y=\hat{y}^*|\mathbf{x}))
+R_{\text{1-NN}} = 2 \sum_{x} P(x) P(y=\hat{y}^*|x) (1 - P(y=\hat{y}^*|x))
 $$
 
 其中 $\hat{y}^*$ 是贝叶斯最优预测。
@@ -724,14 +716,10 @@ $$
 \frac{\partial \mathcal{L}}{\partial b} = -\sum_{i=1}^{n} \alpha_i y_i = 0 \Rightarrow \sum_{i=1}^{n} \alpha_i y_i = 0
 $$
 
-将 $\mathbf{w}$ 和约束代入：
+将 $w$ 和约束代入：
 
 $$
-\begin{aligned}
-\mathcal{L}(\alpha) &= \frac{1}{2} \left\|\sum_{i=1}^{n} \alpha_i y_i \mathbf{x}_i\right\|^2 - \sum_{i=1}^{n} \alpha_i y_i \left(\sum_{j=1}^{n} \alpha_j y_j \mathbf{x}_j\right)^T \mathbf{x}_i + \sum_{i=1}^{n} \alpha_i \\
-&= \frac{1}{2} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_i \alpha_j y_i y_j \mathbf{x}_i^T \mathbf{x}_j - \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_i \alpha_j y_i y_j \mathbf{x}_j^T \mathbf{x}_i + \sum_{i=1}^{n} \alpha_i \\
-&= -\frac{1}{2} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_i \alpha_j y_i y_j \mathbf{x}_i^T \mathbf{x}_j + \sum_{i=1}^{n} \alpha_i
-\end{aligned}
+\mathcal{L}(\alpha) = \frac{1}{2} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_i \alpha_j y_i y_j x_i^T x_j - \sum_{i=1}^{n} \alpha_i
 $$
 
 对偶问题是：
@@ -795,7 +783,7 @@ $$
 预测为：
 
 $$
-f(\mathbf{x}) = \text{sign}\left(\sum_{i=1}^{n} \alpha_i y_i K(\mathbf{x}_i, \mathbf{x}) + b\right)
+\ell(w) = \log \mathcal{L}(w) = \sum_{i=1}^{n} \left[ y_i \log p(x_i) + (1 - y_i) \log(1 - p(x_i)) \right]
 $$
 
 **常用的核函数**：
