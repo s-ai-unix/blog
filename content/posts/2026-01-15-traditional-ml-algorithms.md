@@ -783,7 +783,7 @@ $$
 预测为：
 
 $$
-\ell(w) = \log \mathcal{L}(w) = \sum_{i=1}^{n} \left[ y_i \log p(x_i) + (1 - y_i) \log(1 - p(x_i)) \right]
+f(\mathbf{x}) = \text{sign}\left(\sum_{i=1}^{n} \alpha_i y_i K(\mathbf{x}_i, \mathbf{x}) + b\right)
 $$
 
 **常用的核函数**：
