@@ -6,7 +6,7 @@ description: "深入探讨汽车行业威胁分析与风险评估（TARA）的�
 categories: ["汽车工程", "网络安全"]
 tags: ["TARA", "ISO/SAE 21434", "汽车网络安全", "威胁建模", "风险评估"]
 cover:
-    image: "images/covers/tara-analysis.jpg"
+    image: "images/covers/automotive-risk-analysis.jpg"
     alt: "汽车网络安全威胁分析概念图"
     caption: "智能网联汽车安全的核心方法论"
 ---
