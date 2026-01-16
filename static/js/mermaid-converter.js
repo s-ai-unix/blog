@@ -19,6 +19,17 @@ document.addEventListener('DOMContentLoaded', function() {
       mermaidDiv.className = 'mermaid';
       mermaidDiv.textContent = code;
 
+      // 创建白色包装器，用于覆盖父元素的黑色背景
+      const wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-wrapper';
+      wrapper.style.background = '#ffffff';
+      wrapper.style.padding = '2rem 1rem';
+      wrapper.style.margin = '2rem auto';
+      wrapper.style.borderRadius = '8px';
+      wrapper.style.maxWidth = '95%';
+      wrapper.style.boxShadow = '0 2px 12px rgba(0,0,0,0.08)';
+      wrapper.appendChild(mermaidDiv);
+
       // 找到最外层的容器（.highlight 或 .chroma）
       let container = block.parentElement;
       while (container && !container.classList.contains('highlight') && !container.classList.contains('chroma')) {
@@ -27,10 +38,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // 如果找到了容器，替换整个容器；否则只替换 pre
       if (container && (container.classList.contains('highlight') || container.classList.contains('chroma'))) {
-        container.replaceWith(mermaidDiv);
+        container.replaceWith(wrapper);
       } else {
         const pre = block.parentElement;
-        pre.replaceWith(mermaidDiv);
+        pre.replaceWith(wrapper);
       }
     }
   });
