@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
       wrapper.className = 'mermaid-wrapper';
       wrapper.style.background = '#ffffff';
       wrapper.style.padding = '2rem 1rem';
-      wrapper.style.margin = '2rem auto';
+      wrapper.style.margin = '2rem 0';
+      wrapper.style.width = '100%';
       wrapper.style.borderRadius = '8px';
-      wrapper.style.maxWidth = '95%';
       wrapper.style.boxShadow = '0 2px 12px rgba(0,0,0,0.08)';
       wrapper.appendChild(mermaidDiv);
 
