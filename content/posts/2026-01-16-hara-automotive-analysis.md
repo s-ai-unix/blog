@@ -73,15 +73,15 @@ graph TB
     ASIL --> CC[ASIL C 高要求]
     ASIL --> D[ASIL D 最高要求]
 
-    style S fill:#ffcdd2
-    style E fill:#ffe0b2
-    style C fill:#fff9c4
-    style ASIL fill:#ffccbc
-    style R fill:#e0e0e0
-    style A fill:#c8e6c9
-    style B fill:#81c784
-    style CC fill:#4caf50
-    style D fill:#2e7d32,color:#fff
+    style S fill:#ef9a9a
+    style E fill:#ffcc80
+    style C fill:#fff59d
+    style ASIL fill:#ce93d8
+    style R fill:#f5f5f5
+    style A fill:#a5d6a7
+    style B fill:#66bb6a
+    style CC fill:#43a047
+    style D fill:#43a047
 ```
 
 ## HARA 的发展历程
@@ -124,11 +124,11 @@ flowchart TD
 
     style Start fill:#e3f2fd
     style Step1 fill:#e1f5fe
-    style Step2 fill:#fff9c4
-    style Step3 fill:#fff9c4
-    style Step4 fill:#ffccbc
-    style Step5 fill:#c8e6c9
-    style Step6 fill:#c8e6c9
+    style Step2 fill:#fff59d
+    style Step3 fill:#fff59d
+    style Step4 fill:#ce93d8
+    style Step5 fill:#a5d6a7
+    style Step6 fill:#a5d6a7
     style End fill:#a5d6a7
 ```
 
@@ -337,10 +337,10 @@ graph TB
     end
 
     style Item fill:#e1f5fe
-    style Hazard fill:#fff9c4
-    style Event fill:#ffccbc
-    style ASILD fill:#d32f2f,color:#fff
-    style Goal fill:#c8e6c9
+    style Hazard fill:#fff59d
+    style Event fill:#ce93d8
+    style ASILD fill:#ef5350
+    style Goal fill:#a5d6a7
 ```
 
 **项目定义**：

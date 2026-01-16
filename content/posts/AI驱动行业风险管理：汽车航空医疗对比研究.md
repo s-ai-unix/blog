@@ -33,7 +33,7 @@ graph TB
     end
 
     style Auto fill:#e1f5fe
-    style Aero fill:#fff9c4
+    style Aero fill:#fff59d
     style Medi fill:#f3e5f5
 ```
 
@@ -154,7 +154,7 @@ graph LR
     end
 
     style AutoStds fill:#e1f5fe
-    style AeroStds fill:#fff9c4
+    style AeroStds fill:#fff59d
     style MediStds fill:#f3e5f5
 ```
 | **AI专用标准** | ISO/PAS 8800:2024, ISO/TS 5083:2025 | ED-324/ARP6983, NPA 2025-07 | FDA PCCP指南, STARD-AI |

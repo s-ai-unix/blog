@@ -51,9 +51,9 @@ flowchart TD
 
     style Start fill:#e3f2fd
     style P1 fill:#e1f5fe
-    style P2 fill:#fff9c4
-    style P3 fill:#ffccbc
-    style P4 fill:#c8e6c9
+    style P2 fill:#fff59d
+    style P3 fill:#ce93d8
+    style P4 fill:#a5d6a7
     style End fill:#a5d6a7
 ```
 
@@ -90,9 +90,9 @@ graph LR
     Asset --> D
     Asset --> E
 
-    style S fill:#ffcdd2
-    style T fill:#ffe0b2
-    style R fill:#fff9c4
+    style S fill:#ef9a9a
+    style T fill:#ffcc80
+    style R fill:#fff59d
     style I fill:#e1bee7
     style D fill:#c5cae9
     style E fill:#b2dfdb
@@ -167,10 +167,10 @@ graph TB
     end
 
     style Assets fill:#e1f5fe
-    style Threat fill:#fff9c4
-    style Risk fill:#ffccbc
-    style Level fill:#d32f2f,color:#fff
-    style Control fill:#c8e6c9
+    style Threat fill:#fff59d
+    style Risk fill:#ce93d8
+    style Level fill:#ef5350
+    style Control fill:#a5d6a7
 ```某合资汽车制造商在其最新一代IVI系统开发中，采用了完整的TARA分析流程，以下详细呈现其实践经验。
 
 **资产识别与分类**

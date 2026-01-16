@@ -79,11 +79,11 @@ graph LR
 
     RPN -->|1-1000分| RISK[风险等级评估]
 
-    style S fill:#ffcdd2
-    style O fill:#ffcdd2
-    style D fill:#ffcdd2
-    style RPN fill:#ffccbc
-    style RISK fill:#fff9c4
+    style S fill:#ef9a9a
+    style O fill:#ef9a9a
+    style D fill:#ef9a9a
+    style RPN fill:#ce93d8
+    style RISK fill:#fff59d
 ```
 
 RPN的取值范围为1-1000分。RPN越高，表示该失效模式的风险越大，需要优先采取措施降低风险。需要特别强调的是，RPN仅用于优先级排序，三个维度的权重并非总是相等，在特定行业或应用场景下，组织可能需要根据自身经验调整评估标准。
@@ -110,13 +110,13 @@ flowchart TD
     style A fill:#e1f5fe
     style B fill:#e1f5fe
     style C fill:#e1f5fe
-    style D fill:#fff9c4
-    style E fill:#fff9c4
-    style F fill:#ffccbc
-    style G fill:#c8e6c9
-    style H fill:#c8e6c9
-    style I fill:#c8e6c9
-    style J fill:#c8e6c9
+    style D fill:#fff59d
+    style E fill:#fff59d
+    style F fill:#ce93d8
+    style G fill:#a5d6a7
+    style H fill:#a5d6a7
+    style I fill:#a5d6a7
+    style J fill:#a5d6a7
 ```
 
 **第一步：规划与准备。** 这一阶段的核心任务是明确分析的范围、边界和团队组成。范围定义需要回答"分析什么"和"不分析什么"这两个基本问题，通常通过系统边界图来表达。团队组成应涵盖设计、工艺、质量、制造等多学科专家，确保知识的全面覆盖。一个典型的FMEA团队包括：1名项目经理（负责协调和资源保障）、2-3名设计工程师（负责技术方案和设计决策）、1名工艺工程师（负责制造可行性分析）、1名测试工程师（负责检测能力评估）、1名质量工程师（负责标准和规范把控）。
@@ -235,7 +235,7 @@ graph TD
     OR3 --> A3[增压器故障]
     OR3 --> A4[EGR阀卡滞]
 
-    style Top fill:#d32f2f,color:#fff
+    style Top fill:#ef5350
     style OR1 fill:#ff9800
     style OR2 fill:#ff9800
     style OR3 fill:#ff9800
@@ -304,9 +304,9 @@ graph TB
     end
 
     style Controller fill:#e1f5fe
-    style Actuator fill:#c8e6c9
-    style Sensor fill:#fff9c4
-    style Process fill:#ffccbc
+    style Actuator fill:#a5d6a7
+    style Sensor fill:#fff59d
+    style Process fill:#ce93d8
     style Human fill:#f3e5f5
 ```
 
@@ -377,24 +377,29 @@ ISO 26262:2018标准定义了完整的ASIL等级确定矩阵。以下是标准�
 graph LR
     subgraph ASIL等级金字塔
         D[ASIL D<br>最高安全等级]
-        C[ASIL C<br>高安全要求]
+        CC[ASIL C<br>高安全要求]
         B[ASIL B<br>中等安全要求]
         A[ASIL A<br>较低安全要求]
         QM[QM<br>质量管理]
 
-        D --> C --> B --> A --> QM
+        D --> CC --> B --> A --> QM
     end
 
     S[严重度 S<br>S0-S3] --> ASIL[ASIL等级确定]
     E[暴露度 E<br>E0-E4] --> ASIL
-    C2[可控度 C<br>C0-C3] --> ASIL
+    Cont[可控度 C<br>C0-C3] --> ASIL
     ASIL --> RESULT[安全目标与需求]
 
-    style D fill:#d32f2f,color:#fff
-    style C fill:#f57c00,color:#fff
-    style B fill:#1976d2,color:#fff
-    style A fill:#388e3c,color:#fff
-    style QM fill:#757575,color:#fff
+    style D fill:#ef5350
+    style CC fill:#ffa726
+    style B fill:#42a5f5
+    style A fill:#66bb6a
+    style QM fill:#bdbdbd
+    style S fill:#90caf9
+    style E fill:#ffcc80
+    style Cont fill:#a5d6a7
+    style ASIL fill:#ce93d8
+    style RESULT fill:#66bb6a
 ```
 
 从上表可以看出：危害的严重程度越高、暴露概率越高、可控性越低，所需的ASIL等级就越高。ASIL D是最高安全等级，适用于可能导致生命威胁且暴露概率和可控度都较高的危害事件，如制动系统失效、转向系统失效等。ASIL A是最低的安全等级要求，通常适用于可能导致轻微伤害且可控性较高的危害事件。
@@ -416,11 +421,11 @@ flowchart TD
 
     style A fill:#e1f5fe
     style B fill:#e1f5fe
-    style C fill:#fff9c4
-    style D fill:#fff9c4
-    style E fill:#ffccbc
-    style F fill:#c8e6c9
-    style G fill:#c8e6c9
+    style C fill:#fff59d
+    style D fill:#fff59d
+    style E fill:#ce93d8
+    style F fill:#a5d6a7
+    style G fill:#a5d6a7
 ```
 
 **第一步：功能定义。** HARA的起点是对被分析项目的**功能**进行清晰、完整的定义。功能定义应包括：项目的主要功能和辅助功能、项目的正常运行条件和边界条件、项目的接口（与驾驶员、与其他系统、与环境的交互）。功能定义应足够详细，以便后续识别危害场景，但不需要深入到具体的设计实现。
@@ -512,13 +517,13 @@ flowchart TD
     G --> H[第八步: 持续监控与更新<br>漏洞管理与响应]
 
     style A fill:#e1f5fe
-    style B fill:#fff9c4
-    style C fill:#fff9c4
-    style D fill:#ffccbc
+    style B fill:#fff59d
+    style C fill:#fff59d
+    style D fill:#ce93d8
     style E fill:#f3e5f5
-    style F fill:#c8e6c9
-    style G fill:#c8e6c9
-    style H fill:#c8e6c9
+    style F fill:#a5d6a7
+    style G fill:#a5d6a7
+    style H fill:#a5d6a7
 ```
 
 **第一步：资产识别。** 资产识别的目标是建立被分析项目的资产清单。资产分类包括：数据资产（个人隐私数据、安全关键配置数据、诊断数据）、功能资产（安全关键功能、诊断功能、通信功能）、接口资产（外部通信接口、内部网络接口、诊断接口）。每项资产需要明确其安全属性要求：机密性（防止未授权访问）、完整性（防止未授权篡改）、可用性（防止未授权拒绝）。
