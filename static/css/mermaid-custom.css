@@ -8,11 +8,24 @@
   border-radius: 8px !important;
   max-width: 95% !important;
   overflow-x: auto !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+
+/* 确保父元素也没有黑色背景 */
+.mermaid,
+.mermaid > *,
+.mermaid svg,
+.mermaid svg > * {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
 }
 
 /* 去掉所有可能的黑色背景和边框 */
-.mermaid svg {
+.mermaid pre,
+.mermaid code {
   background: transparent !important;
+  border: none !important;
+  color: inherit !important;
 }
 
 /* subgraph 背景透明 */
