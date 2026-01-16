@@ -7,30 +7,42 @@
   border: none !important;
   border-radius: 8px !important;
   max-width: 95% !important;
-  overflow-x: auto !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+  overflow: visible !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
 }
 
-/* 确保父元素也没有黑色背景 */
+/* 确保所有可能继承黑色背景的元素都被覆盖 */
 .mermaid,
+.mermaid:before,
+.mermaid:after,
 .mermaid > *,
+.mermaid > * > *,
 .mermaid svg,
-.mermaid svg > * {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
+.mermaid svg > *,
+.mermaid g,
+.mermaid g > * {
+  background-color: transparent !important;
+  background: transparent !important;
 }
 
-/* 去掉所有可能的黑色背景和边框 */
+/* 专门覆盖主题的代码块样式 */
+.highlight > .mermaid,
+.chroma > .mermaid,
+pre.mermaid,
+code.mermaid,
 .mermaid pre,
 .mermaid code {
-  background: transparent !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
   border: none !important;
   color: inherit !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-/* subgraph 背景透明 */
+/* subgraph 背景设置 */
 .mermaid .cluster rect {
-  fill: #ffffff !important;
+  fill: #fafafa !important;
   stroke: #e0e0e0 !important;
   stroke-width: 1px !important;
 }
@@ -39,4 +51,5 @@
 .mermaid svg {
   display: block !important;
   margin: 0 auto !important;
+  background: transparent !important;
 }

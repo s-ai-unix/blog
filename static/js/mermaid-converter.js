@@ -5,9 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   codeBlocks.forEach((block) => {
     const code = block.textContent.trim();
+    const languageClass = block.className.match(/language-(\w+)/);
+    const language = languageClass ? languageClass[1] : '';
 
-    // 检查是否是mermaid代码
-    if (code.startsWith('flowchart') || code.startsWith('graph') || code.startsWith('gitgraph')) {
+    // 检查是否是mermaid代码（通过语言标记或内容）
+    if (language === 'mermaid' ||
+        code.startsWith('flowchart') ||
+        code.startsWith('graph') ||
+        code.startsWith('gitgraph')) {
       // 创建mermaid div
       const mermaidDiv = document.createElement('div');
       mermaidDiv.className = 'mermaid';
