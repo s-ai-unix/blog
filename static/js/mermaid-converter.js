@@ -13,14 +13,25 @@ document.addEventListener('DOMContentLoaded', function() {
         code.startsWith('flowchart') ||
         code.startsWith('graph') ||
         code.startsWith('gitgraph')) {
+
       // 创建mermaid div
       const mermaidDiv = document.createElement('div');
       mermaidDiv.className = 'mermaid';
       mermaidDiv.textContent = code;
 
-      // 替换原代码块
-      const pre = block.parentElement;
-      pre.replaceWith(mermaidDiv);
+      // 找到最外层的容器（.highlight 或 .chroma）
+      let container = block.parentElement;
+      while (container && !container.classList.contains('highlight') && !container.classList.contains('chroma')) {
+        container = container.parentElement;
+      }
+
+      // 如果找到了容器，替换整个容器；否则只替换 pre
+      if (container && (container.classList.contains('highlight') || container.classList.contains('chroma'))) {
+        container.replaceWith(mermaidDiv);
+      } else {
+        const pre = block.parentElement;
+        pre.replaceWith(mermaidDiv);
+      }
     }
   });
 });
