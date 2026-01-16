@@ -38,7 +38,7 @@ TARA分析的核心价值在于将模糊的"网络安全问题"转化为可量�
 
 从系统工程角度而言，TARA分析体现了"安全左移"的先进理念。在产品概念阶段早期开展TARA分析，能够在架构设计阶段就嵌入安全考量，避免后期返工带来的巨大成本。同时，TARA分析也为安全测试提供了明确的测试目标和验收标准，形成了从风险识别到安全验证的完整闭环。
 
-## 第二章 TARA分析方法论体系���解
+## 第二章 TARA分析方法论体系详解
 
 
 ```mermaid
@@ -76,14 +76,12 @@ TARA分析的第一步是明确分析范围和识别保护对象，这一阶段�
 
 ```mermaid
 graph LR
-    subgraph STRIDE威胁模型
-        S[Spoofing<br>伪装攻击]:::s
-        T[Tampering<br>篡改攻击]:::t
-        R[Repudiation<br>抵赖攻击]:::r
-        I[Information Disclosure<br>信息泄露]:::i
-        D[Denial of Service<br>拒绝服务]:::d
-        E[Elevation of Privilege<br>权限提升]:::e
-    end
+    S[Spoofing<br>伪装攻击]
+    T[Tampering<br>篡改攻击]
+    R[Repudiation<br>抵赖攻击]
+    I[Information Disclosure<br>信息泄露]
+    D[Denial of Service<br>拒绝服务]
+    E[Elevation of Privilege<br>权限提升]
 
     Asset[汽车资产] --> S
     Asset --> T
@@ -92,12 +90,12 @@ graph LR
     Asset --> D
     Asset --> E
 
-    classDef s fill:#ffcdd2,stroke:#c62828
-    classDef t fill:#ffe0b2,stroke:#ef6c00
-    classDef r fill:#fff9c4,stroke:#f9a825
-    classDef i fill:#e1bee7,stroke:#8e24aa
-    classDef d fill:#c5cae9,stroke:#5e35b1
-    classDef e fill:#b2dfdb,stroke:#00897b
+    style S fill:#ffcdd2
+    style T fill:#ffe0b2
+    style R fill:#fff9c4
+    style I fill:#e1bee7
+    style D fill:#c5cae9
+    style E fill:#b2dfdb
 ```
 
 **STRIDE**（Spoofing、Tampering、Repudiation、Information Disclosure、Denial of Service、Elevation of Privilege）方法由微软提出，广泛应用于软件安全领域。在汽车行业应用中，STRIDE方法能够系统化地识别各类资产面临的威胁类型。例如，对于车载网关控制器，STRIDE分析可能识别出以下威胁：伪装攻击（Spoofing）——攻击者伪造ECU身份发送欺诈性消息；篡改攻击（Tampering）——攻击者修改CAN总线报文内容；信息泄露（Information Disclosure）——攻击者通过诊断接口读取敏感车辆状态信息。

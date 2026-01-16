@@ -13,7 +13,7 @@
 ```mermaid
 graph TB
     subgraph 汽车行业风险分类
-        Auto[汽车AI风���] --> Auto1[功能安全<br>ISO 26262<br>系统性故障]
+        Auto[汽车AI风险] --> Auto1[功能安全<br>ISO 26262<br>系统性故障]
         Auto --> Auto2[SOTIF<br>ISO 21448<br>功能不足]
         Auto --> Auto3[网络安全<br>ISO/SAE 21434<br>恶意攻击]
     end
@@ -32,9 +32,9 @@ graph TB
         Medi --> Medi3[数据隐私<br>HIPAA合规]
     end
 
-    style Auto fill:#e1f5fe,stroke:#0277bd
-    style Aero fill:#fff9c4,stroke:#f9a825
-    style Medi fill:#f3e5f5,stroke:#7b1fa2
+    style Auto fill:#e1f5fe
+    style Aero fill:#fff9c4
+    style Medi fill:#f3e5f5
 ```
 
 ### 1.1 汽车行业风险分类体系
@@ -153,9 +153,9 @@ graph LR
         MediStds --> STARDAI[STARD-AI<br>诊断报告]
     end
 
-    style AutoStds fill:#e1f5fe,stroke:#0277bd
-    style AeroStds fill:#fff9c4,stroke:#f9a825
-    style MediStds fill:#f3e5f5,stroke:#7b1fa2
+    style AutoStds fill:#e1f5fe
+    style AeroStds fill:#fff9c4
+    style MediStds fill:#f3e5f5
 ```
 | **AI专用标准** | ISO/PAS 8800:2024, ISO/TS 5083:2025 | ED-324/ARP6983, NPA 2025-07 | FDA PCCP指南, STARD-AI |
 | **监管机构** | ISO, UN WP.29, 各国NCAP | FAA, EASA, 各国民航局 | FDA, EMA, 各國衛生主管機關 |
@@ -368,23 +368,6 @@ graph LR
 **第四，监管框架正在快速演进**。2024-2026年是三大行业AI监管的关键期，多项重要标准将发布实施；国际协调和标准统一是行业共同诉求；监管创新（如PCCP框架）正在为其他行业提供参考。
 
 ### 7.2 未来发展趋势
-
-```mermaid
-timeline
-    title 三大行业AI风险管理发展时间线
-    2024-2025 : 汽车行业 : ISO/PAS 8800发布<br>EU AI Act分阶段实施
-              : 航空工业 : ED-324草案发布<br>FAA/EASA路线图发布
-              : 医疗行业 : FDA PCCP指南定稿<br>STARD-AI发布
-    2025-2026 : 汽车行业 : 统一框架应用<br>可解释性工具成熟
-              : 航空工业 : ED-324正式发布<br>D级AI系统运营
-              : 医疗行业 : EU AI Act医疗适用<br>PCCP框架扩展
-    2026-2030 : 汽车行业 : L4/L5规模化部署<br>持续TARA实践
-              : 航空工业 : 1-2级AI认证成熟<br>首个2级团队AI
-              : 医疗行业 : AI临床整合深化<br>诊断准确率提升
-    2030-2035 : 汽车行业 : 全自动驾驶普及<br>安全左移全面实现
-              : 航空工业 : 3级高级自动化<br>首个A级安全关键AI
-              : 医疗行业 : AI成为标准诊疗工具<br>人机协作模式成熟
-```
 
 **技术趋势**方面，基于推理的AI模型（如VLA）将更好地处理边缘情况；生成式AI将更广泛地用于合成数据创建和测试；自动化风险评估工具将变得更加成熟和普及；持续学习和自适应系统的监管框架将逐步完善。
 

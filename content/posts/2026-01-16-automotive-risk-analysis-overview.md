@@ -376,27 +376,25 @@ ISO 26262:2018标准定义了完整的ASIL等级确定矩阵。以下是标准�
 ```mermaid
 graph LR
     subgraph ASIL等级金字塔
-        D[ASIL D<br>最高安全等级]:::danger
-        C[ASIL C<br>高安全要求]:::warning
-        B[ASIL B<br>中等安全要求]:::info
-        A[ASIL A<br>较低安全要求]:::safe
-        QM[QM<br>质量管理]:::qm
+        D[ASIL D<br>最高安全等级]
+        C[ASIL C<br>高安全要求]
+        B[ASIL B<br>中等安全要求]
+        A[ASIL A<br>较低安全要求]
+        QM[QM<br>质量管理]
 
         D --> C --> B --> A --> QM
     end
 
     S[严重度 S<br>S0-S3] --> ASIL[ASIL等级确定]
     E[暴露度 E<br>E0-E4] --> ASIL
-    C[可控度 C<br>C0-C3] --> ASIL
+    C2[可控度 C<br>C0-C3] --> ASIL
     ASIL --> RESULT[安全目标与需求]
 
-    classDef danger fill:#d32f2f,color:#fff,stroke:#b71c1c,stroke-width:3px
-    classDef warning fill:#f57c00,color:#fff,stroke:#e65100,stroke-width:2px
-    classDef info fill:#1976d2,color:#fff,stroke:#0d47a1,stroke-width:2px
-    classDef safe fill:#388e3c,color:#fff,stroke:#1b5e20,stroke-width:2px
-    classDef qm fill:#757575,color:#fff,stroke:#424242,stroke-width:2px
-
-    class D,C,B,A,QM,S,E,C,ASIL,RESULT default
+    style D fill:#d32f2f,color:#fff
+    style C fill:#f57c00,color:#fff
+    style B fill:#1976d2,color:#fff
+    style A fill:#388e3c,color:#fff
+    style QM fill:#757575,color:#fff
 ```
 
 从上表可以看出：危害的严重程度越高、暴露概率越高、可控性越低，所需的ASIL等级就越高。ASIL D是最高安全等级，适用于可能导致生命威胁且暴露概率和可控度都较高的危害事件，如制动系统失效、转向系统失效等。ASIL A是最低的安全等级要求，通常适用于可能导致轻微伤害且可控性较高的危害事件。

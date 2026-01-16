@@ -57,30 +57,31 @@ $$ \text{ASIL} = f(S, E, C) $$
 
 ```mermaid
 graph TB
-    subgraph ASIL三维评估模型
-        S[严重度 Severity<br>S0: 无伤害<br>S1: 轻微伤害<br>S2: 严重伤害<br>S3: 致命伤害]:::s
-        E[暴露率 Exposure<br>E0: 极低概率<br>E1: 低概率<br>E2: 中等概率<br>E3: 高概率<br>E4: 极高概率]:::e
-        C[可控性 Controllability<br>C0: 完全可控<br>C1: 易于控制<br>C2: 正常可控<br>C3: 难以控制]:::c
+    subgraph ASIL��维评估模型
+        S[严重度 Severity<br>S0: 无伤害<br>S1: 轻微伤害<br>S2: 严重伤害<br>S3: 致命伤害]
+        E[暴露率 Exposure<br>E0: 极低概率<br>E1: 低概率<br>E2: 中等概率<br>E3: 高概率<br>E4: 极高概率]
+        C[可控性 Controllability<br>C0: 完全可控<br>C1: 易于控制<br>C2: 正常可控<br>C3: 难以控制]
 
         S --> ASIL[ASIL等级确定]
         E --> ASIL
         C --> ASIL
     end
 
-    ASIL --> R[QM 质量管理]:::qm
-    ASIL --> A[ASIL A 较低要求]:::a
-    ASIL --> B[ASIL B 中等要求]:::b
-    ASIL --> CC[ASIL C 高要求]:::cc
-    ASIL --> D[ASIL D 最高要求]:::d
+    ASIL --> R[QM 质量管理]
+    ASIL --> A[ASIL A 较低要求]
+    ASIL --> B[ASIL B 中等要求]
+    ASIL --> CC[ASIL C 高要求]
+    ASIL --> D[ASIL D 最高要求]
 
-    classDef s fill:#ffcdd2,stroke:#c62828,stroke-width:2px
-    classDef e fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px
-    classDef c fill:#fff9c4,stroke:#f9a825,stroke-width:2px
-    classDef qm fill:#e0e0e0,stroke:#616161,stroke-width:1px
-    classDef a fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
-    classDef b fill:#81c784,stroke:#1b5e20,stroke-width:2px
-    classDef cc fill:#4caf50,stroke:#1b5e20,stroke-width:2px
-    classDef d fill:#2e7d32,stroke:#1b5e20,stroke-width:3px,color:#fff
+    style S fill:#ffcdd2
+    style E fill:#ffe0b2
+    style C fill:#fff9c4
+    style ASIL fill:#ffccbc
+    style R fill:#e0e0e0
+    style A fill:#c8e6c9
+    style B fill:#81c784
+    style CC fill:#4caf50
+    style D fill:#2e7d32,color:#fff
 ```
 
 ## HARA 的发展历程

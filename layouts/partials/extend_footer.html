@@ -1,5 +1,24 @@
 {{- partial "mathjax.html" . -}}
 
+<!-- Mermaid 图表支持 -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default',
+    securityLevel: 'loose',
+    themeVariables: {
+      primaryColor: '#e1f5fe',
+      primaryTextColor: '#000',
+      primaryBorderColor: '#0277bd',
+      lineColor: '#0277bd',
+      secondaryColor: '#fff9c4',
+      tertiaryColor: '#c8e6c9',
+      fontFamily: 'arial'
+    }
+  });
+</script>
+
 <!-- TOC 自动高亮和滚动跟随脚本 -->
 {{- if (.Param "ShowToc") }}
 <script src="{{ "js/toc.js" | relURL }}"></script>
