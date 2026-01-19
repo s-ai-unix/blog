@@ -73,15 +73,15 @@ graph TB
     ASIL --> CC[ASIL C 高要求]
     ASIL --> D[ASIL D 最高要求]
 
-    style S fill:#ef5350,stroke:#c62828,stroke-width:2px
-    style E fill:#ffa726,stroke:#ef6c00,stroke-width:2px
-    style C fill:#ffee58,stroke:#f9a825,stroke-width:2px
-    style ASIL fill:#ab47bc,stroke:#6a1b9a,stroke-width:3px,color:#ffffff
-    style R fill:#bdbdbd,stroke:#616161,stroke-width:2px
-    style A fill:#a5d6a7,stroke:#388e3c,stroke-width:2px
-    style B fill:#66bb6a,stroke:#388e3c,stroke-width:2px
-    style CC fill:#43a047,stroke:#2e7d32,stroke-width:2px
-    style D fill:#2e7d32,stroke:#1b5e20,stroke-width:3px,color:#ffffff
+    style S fill:#FF3B30,stroke:#FF3B30,stroke-width:2px,color:#ffffff
+    style E fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style C fill:#FFCC00,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style ASIL fill:#AF52DE,stroke:#AF52DE,stroke-width:3px,color:#ffffff
+    style R fill:#8E8E93,stroke:#8E8E93,stroke-width:2px,color:#ffffff
+    style A fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style B fill:#30D158,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style CC fill:#32D74B,stroke:#32D74B,stroke-width:2px,color:#ffffff
+    style D fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
 ```
 
 ## HARA 的发展历程
@@ -122,14 +122,14 @@ flowchart TD
     Step5 --> Step6[步骤6: 功能安全需求分配<br>FSR Allocation]
     Step6 --> End[输出安全需求规格]
 
-    style Start fill:#42a5f5,stroke:#1976d2,stroke-width:3px,color:#ffffff
-    style Step1 fill:#90caf9,stroke:#1976d2,stroke-width:2px
-    style Step2 fill:#ffcc80,stroke:#ef6c00,stroke-width:2px
-    style Step3 fill:#ffcc80,stroke:#ef6c00,stroke-width:2px
-    style Step4 fill:#ab47bc,stroke:#6a1b9a,stroke-width:2px
-    style Step5 fill:#81c784,stroke:#388e3c,stroke-width:2px
-    style Step6 fill:#66bb6a,stroke:#388e3c,stroke-width:2px
-    style End fill:#26a69a,stroke:#00695c,stroke-width:3px,color:#ffffff
+    style Start fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
+    style Step1 fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style Step2 fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style Step3 fill:#FFCC00,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style Step4 fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
+    style Step5 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style Step6 fill:#30D158,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style End fill:#32D74B,stroke:#32D74B,stroke-width:3px,color:#ffffff
 ```
 
 #### 步骤 1：项目定义（Item Definition）
@@ -336,11 +336,11 @@ graph TB
         Goal --> FSR4[热管理安全策略 ASIL B]
     end
 
-    style Item fill:#90caf9,stroke:#1976d2,stroke-width:3px,color:#ffffff
-    style Hazard fill:#ffcc80,stroke:#ef6c00,stroke-width:2px
-    style Event fill:#ab47bc,stroke:#6a1b9a,stroke-width:2px
-    style ASILD fill:#ef5350,stroke:#c62828,stroke-width:3px,color:#ffffff
-    style Goal fill:#66bb6a,stroke:#388e3c,stroke-width:3px,color:#ffffff
+    style Item fill:#5AC8FA,stroke:#007AFF,stroke-width:3px,color:#ffffff
+    style Hazard fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style Event fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
+    style ASILD fill:#FF3B30,stroke:#FF3B30,stroke-width:3px,color:#ffffff
+    style Goal fill:#34C759,stroke:#34C759,stroke-width:3px,color:#ffffff
 ```
 
 **项目定义**：

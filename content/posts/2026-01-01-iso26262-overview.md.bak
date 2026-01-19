@@ -59,53 +59,59 @@ ISO 26262 是 IEC 61508 在汽车领域的应用和裁剪，两者关系如下�
 
 ISO 26262 分为 12 个部分，每个部分都有其特定的职责和范围：
 
-
-```mermaid
-graph TB
-    subgraph ISO 26262标准体系
-        P1[Part 1: 词汇<br/>术语定义]
-        P2[Part 2: 功能安全管理<br/>安全文化/安全计划]
-        P3[Part 3: 概念阶段<br/>HARA/ASIL确定]
-        P4[Part 4: 系统级开发<br/>技术安全概念/架构设计]
-        P5[Part 5: 硬件级开发<br/>FMEDA/硬件指标]
-        P6[Part 6: 软件级开发<br/>软件架构/编码规范]
-        P7[Part 7: 生产和运行<br/>生产一致性/服务]
-        P8[Part 8: 支持过程<br/>配置管理/文档管理]
-        P9[Part 9: ASIL导向分析<br/>FMEA/FTA]
-        P10[Part 10: 指南<br/>解释和示例]
-        P11[Part 11: 半导体<br/>IC开发特殊要求]
-        P12[Part 12: 摩托车<br/>摩托车适配]
-    end
-
-    P1 --> P2
-    P2 --> P3
-    P3 --> P4
-    P4 --> P5
-    P4 --> P6
-    P4 --> P7
-    P3 -.-> P9
-    P9 -.-> P5
-    P9 -.-> P6
-    P5 --> P8
-    P6 --> P8
-    P10 -.-> P3
-    P10 -.-> P4
-    P10 -.-> P5
-    P11 -.-> P5
-    P12 -.-> P3
-
-    style P1 fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
-    style P2 fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
-    style P3 fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
-    style P4 fill:#FFCC00,stroke:#FF9500,stroke-width:2px,color:#ffffff
-    style P5 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
-    style P6 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
-    style P7 fill:#30D158,stroke:#34C759,stroke-width:2px,color:#ffffff
-    style P8 fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
-    style P9 fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
-    style P10 fill:#8E8E93,stroke:#8E8E93,stroke-width:2px,color:#ffffff
-    style P11 fill:#007AFF,stroke:#007AFF,stroke-width:2px,color:#ffffff
-    style P12 fill:#007AFF,stroke:#007AFF,stroke-width:2px,color:#ffffff
+```
+ISO 26262 标准体系
+│
+├─ Part 1: 词汇
+│   └─ 定义标准中使用的所有术语
+│
+├─ Part 2: 功能安全管理
+│   ├─ 组织层面的管理（安全文化）
+│   └─ 项目层面的管理（安全计划）
+│
+├─ Part 3: 概念阶段
+│   ├─ 危害分析（HARA）
+│   ├─ ASIL 确定
+│   └─ 功能安全概念
+│
+├─ Part 4: 系统级开发
+│   ├─ 技术安全概念
+│   ├─ 系统架构设计
+│   └─ 系统集成与测试
+│
+├─ Part 5: 硬件级开发
+│   ├─ 硬件安全需求
+│   ├─ FMEDA 分析
+│   └─ 硬件架构指标
+│
+├─ Part 6: 软件级开发
+│   ├─ 软件安全需求
+│   ├─ 软件架构设计
+│   └─ 软件测试
+│
+├─ Part 7: 生产和运行
+│   ├─ 生产一致性
+│   ├─ 服务和维护
+│   └─ 运行监控
+│
+├─ Part 8: 支持过程
+│   ├─ 配置管理
+│   ├─ 文档管理
+│   └─ 工具置信度评估
+│
+├─ Part 9: ASIL 导向的分析
+│   ├─ FMEA 分析
+│   ├─ FTA 分析
+│   └─ 依赖性分析
+│
+├─ Part 10: 指南
+│   └─ 解释和示例
+│
+├─ Part 11: 半导体
+│   └─ IC 开发的特殊要求
+│
+└─ Part 12: 摩托车
+    └─ 摩托车的适配要求
 ```
 
 ## 各部分的核心内容与关联
@@ -319,66 +325,41 @@ ISO 26262 采用经典的 V 模型作为安全生命周期的框架。让我们�
 
 ### V 模型的右侧（实现和验证）
 
-```mermaid
-graph TB
-    subgraph V模型右侧-实现与验证
-        Impl3[第3阶段: 硬件和软件实现] --> Int2[第2阶段: 集成]
-        Int2 --> Val1[第1阶段: 验证]
-        Val1 --> Prod0[第0阶段: 生产<br/>Part 7]
-        
-        Impl3 --> H1[硬件制造]
-        Impl3 --> S1[软件编码]
-        Impl3 --> U1[单元测试]
-        
-        Int2 --> SI1[软件集成]
-        Int2 --> HI1[硬件集成]
-        Int2 --> SYS1[系统集成]
-        
-        Val1 --> ST1[系统测试]
-        Val1 --> SV1[安全验证]
-        Val1 --> FSA[功能安全评估<br/>Part 2]
-        
-        Prod0 --> PC1[生产一致性]
-        Prod0 --> SM1[服务和维护]
-        Prod0 --> OM1[运行监控]
-    end
-    
-    style Impl3 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
-    style Int2 fill:#30D158,stroke:#34C759,stroke-width:2px,color:#ffffff
-    style Val1 fill:#32D74B,stroke:#32D74B,stroke-width:2px,color:#ffffff
-    style Prod0 fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
-    style H1 fill:#5AC8FA,stroke:#007AFF,stroke-width:1px
-    style S1 fill:#5AC8FA,stroke:#007AFF,stroke-width:1px
-    style U1 fill:#5AC8FA,stroke:#007AFF,stroke-width:1px
-    style SI1 fill:#FFB74D,stroke:#FF9500,stroke-width:1px
-    style HI1 fill:#FFB74D,stroke:#FF9500,stroke-width:1px
-    style SYS1 fill:#FFB74D,stroke:#FF9500,stroke-width:1px
-    style ST1 fill:#FFE082,stroke:#FF9500,stroke-width:1px
-    style SV1 fill:#FFE082,stroke:#FF9500,stroke-width:1px
-    style FSA fill:#FFE082,stroke:#FF9500,stroke-width:1px
-    style PC1 fill:#32D74B,stroke:#34C759,stroke-width:1px
-    style SM1 fill:#32D74B,stroke:#34C759,stroke-width:1px
-    style OM1 fill:#32D74B,stroke:#34C759,stroke-width:1px
+```
+第3阶段：硬件实现和软件实现
+│
+├─ 硬件制造
+├─ 软件编码
+└─ 单元测试
+│
+第2阶段：集成
+│
+├─ 软件集成
+├─ 硬件集成
+└─ 系统集成
+│
+第1阶段：验证
+│
+├─ 系统测试
+├─ 安全验证
+└─ 功能安全评估（Part 2）
+│
+第0阶段：生产（Part 7）
+│
+├─ 生产一致性
+├─ 服务和维护
+└─ 运行监控
 ```
 
 ### V 模型的支撑（Part 8）
 
-```mermaid
-graph LR
-    subgraph 支撑过程-贯穿全程
-        Support[支撑过程<br/>Part 8]
-        
-        Support --> CM[配置管理<br/>版本控制/变更管理]
-        Support --> DM[文档管理<br/>追溯性/完整性]
-        Support --> CHG[变更管理<br/>变更控制流程]
-        Support --> TOOL[工具置信度评估<br/>TCL 1-4级]
-    end
-    
-    style Support fill:#AF52DE,stroke:#AF52DE,stroke-width:3px,color:#ffffff
-    style CM fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
-    style DM fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
-    style CHG fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
-    style TOOL fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
+```
+支撑过程（贯穿全程）
+│
+├─ 配置管理
+├─ 文档管理
+├─ 变更管理
+└─ 工具置信度评估
 ```
 
 ## ASIL 等级体系：风险驱动的分类

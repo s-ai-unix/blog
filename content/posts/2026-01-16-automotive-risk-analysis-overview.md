@@ -79,11 +79,11 @@ graph LR
 
     RPN -->|1-1000分| RISK[风险等级评估]
 
-    style S fill:#ef5350,stroke:#c62828,stroke-width:2px
-    style O fill:#ffa726,stroke:#ef6c00,stroke-width:2px
-    style D fill:#ab47bc,stroke:#6a1b9a,stroke-width:2px
-    style RPN fill:#7e57c2,stroke:#4527a0,stroke-width:3px,color:#ffffff
-    style RISK fill:#26a69a,stroke:#00695c,stroke-width:2px
+    style S fill:#FF3B30,stroke:#FF3B30,stroke-width:2px,color:#ffffff
+    style O fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style D fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
+    style RPN fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
+    style RISK fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
 ```
 
 RPN的取值范围为1-1000分。RPN越高，表示该失效模式的风险越大，需要优先采取措施降低风险。需要特别强调的是，RPN仅用于优先级排序，三个维度的权重并非总是相等，在特定行业或应用场景下，组织可能需要根据自身经验调整评估标准。
@@ -107,16 +107,16 @@ flowchart TD
     I --> F
     H --> J[完成归档]
 
-    style A fill:#90caf9,stroke:#1976d2,stroke-width:2px
-    style B fill:#90caf9,stroke:#1976d2,stroke-width:2px
-    style C fill:#90caf9,stroke:#1976d2,stroke-width:2px
-    style D fill:#ffcc80,stroke:#ef6c00,stroke-width:2px
-    style E fill:#ffcc80,stroke:#ef6c00,stroke-width:2px
-    style F fill:#ce93d8,stroke:#7b1fa2,stroke-width:2px
-    style G fill:#81c784,stroke:#388e3c,stroke-width:2px
-    style H fill:#a5d6a7,stroke:#388e3c,stroke-width:2px
-    style I fill:#81c784,stroke:#388e3c,stroke-width:2px
-    style J fill:#66bb6a,stroke:#388e3c,stroke-width:3px,color:#ffffff
+    style A fill:#5AC8FA,stroke:#007AFF,stroke-width:2px
+    style B fill:#5AC8FA,stroke:#007AFF,stroke-width:2px
+    style C fill:#5AC8FA,stroke:#007AFF,stroke-width:2px
+    style D fill:#FF9500,stroke:#FF9500,stroke-width:2px
+    style E fill:#FF9500,stroke:#FF9500,stroke-width:2px
+    style F fill:#AF52DE,stroke:#AF52DE,stroke-width:2px
+    style G fill:#34C759,stroke:#34C759,stroke-width:2px
+    style H fill:#30D158,stroke:#30D158,stroke-width:2px
+    style I fill:#34C759,stroke:#34C759,stroke-width:2px
+    style J fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
 ```
 
 **第一步：规划与准备。** 这一阶段的核心任务是明确分析的范围、边界和团队组成。范围定义需要回答"分析什么"和"不分析什么"这两个基本问题，通常通过系统边界图来表达。团队组成应涵盖设计、工艺、质量、制造等多学科专家，确保知识的全面覆盖。一个典型的FMEA团队包括：1名项目经理（负责协调和资源保障）、2-3名设计工程师（负责技术方案和设计决策）、1名工艺工程师（负责制造可行性分析）、1名测试工程师（负责检测能力评估）、1名质量工程师（负责标准和规范把控）。
@@ -181,6 +181,32 @@ FTA分析包括**定性分析**和**定量分析**两种主要类型。定性分
 
 FTA的实施遵循系统化的八步流程，每一步都至关重要。
 
+```mermaid
+flowchart TD
+    A[第一步: 系统定义与边界确定<br>明确分析范围和深度] --> B[第二步: 顶事件选择<br>选择系统故障作为顶事件]
+    B --> C[第三步: 构建故障树<br>层层追溯故障原因]
+    C --> D[第四步: 识别基本事件<br>确定底层不可分解故障]
+    D --> E[第五步: 定性分析<br>识别最小割集]
+    E --> F[第六步: 定量分析<br>计算故障概率]
+    F --> G[第七步: 结果评估与改进建议<br>评估可靠性识别薄弱环节]
+    G --> H[第八步: 文档化与更新<br>持续更新文档]
+    G --> I{需要改进?}
+    I -->|是| J[实施改进措施]
+    J --> D
+    I -->|否| H
+
+    style A fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style B fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style C fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style D fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style E fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
+    style F fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
+    style G fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style H fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
+    style I fill:#FF3B30,stroke:#FF3B30,stroke-width:2px,color:#ffffff
+    style J fill:#FFCC00,stroke:#FFCC00,stroke-width:2px,color:#ffffff
+```
+
 **第一步：系统定义与边界确定。** 在开始故障树构建之前，必须明确分析对象的范围和边界。这包括：定义顶事件（系统故障）的具体表现形式；确定系统的工作模式和环境条件；明确分析的深度要求（哪些事件需要进一步分解，哪些作为基本事件）；识别系统与外部环境的接口关系。边界定义的质量直接影响后续分析的准确性和效率。
 
 **第二步：顶事件选择。** 顶事件是故障树分析的起点，通常选择那些后果严重、发生概率较高的系统故障。在汽车领域，常见的顶事件选择包括：车辆无法启动、制动失效、转向助力丧失、碰撞安全系统未触发等。顶事件的定义应尽可能具体、可测量、可验证，避免模糊的描述。
@@ -200,6 +226,44 @@ FTA的实施遵循系统化的八步流程，每一步都至关重要。
 #### 2.2.4 案例介绍：柴油发动机无法启动故障分析
 
 让我们通过一个具体的汽车故障案例来说明FTA的实际应用。假设一辆配备高压共轨柴油发动机的商用车出现"发动机无法启动"的问题，我们需要通过FTA分析识别故障原因。
+
+```mermaid
+flowchart TD
+    Start[开始FTA分析] --> A[顶事件定义<br>发动机无法启动]
+    A --> B[第一层分解<br>识别三大系统故障]
+    B --> C[燃油系统故障分析]
+    B --> D[进气系统故障分析]
+    B --> E[其他因素分析]
+
+    C --> C1[第二层:识别6个故障点]
+    C1 --> C2[第三层:深入分析关键部件<br>如高压泵故障]
+
+    D --> D1[第二层:识别4个故障点]
+    E --> E1[第二层:识别其他因素]
+
+    C2 --> F[最小割集识别]
+    D1 --> F
+    E1 --> F
+
+    F --> G[定量概率分析<br>P_top ≈ 0.12%]
+    G --> H[改进建议制定]
+    H --> End[完成分析]
+
+    style Start fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style A fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style B fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style C fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style D fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style E fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style C1 fill:#30D158,stroke:#30D158,stroke-width:2px,color:#ffffff
+    style C2 fill:#32D74B,stroke:#32D74B,stroke-width:2px,color:#ffffff
+    style D1 fill:#30D158,stroke:#30D158,stroke-width:2px,color:#ffffff
+    style E1 fill:#30D158,stroke:#30D158,stroke-width:2px,color:#ffffff
+    style F fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
+    style G fill:#FF3B30,stroke:#FF3B30,stroke-width:2px,color:#ffffff
+    style H fill:#FFCC00,stroke:#FFCC00,stroke-width:2px,color:#ffffff
+    style End fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
+```
 
 **顶事件定义：** "发动机无法启动"——在发动机冷启动状态下，起动机正常运转但发动机无法点火着车。
 
@@ -235,13 +299,13 @@ graph TD
     OR3 --> A3[增压器故障]
     OR3 --> A4[EGR阀卡滞]
 
-    style Top fill:#ef5350,stroke:#c62828,stroke-width:3px,color:#ffffff
-    style OR1 fill:#ffa726,stroke:#ef6c00,stroke-width:2px
-    style OR2 fill:#ffcc80,stroke:#ef6c00,stroke-width:2px
-    style OR3 fill:#ffcc80,stroke:#ef6c00,stroke-width:2px
-    style Fuel fill:#90caf9,stroke:#1976d2,stroke-width:2px
-    style Air fill:#90caf9,stroke:#1976d2,stroke-width:2px
-    style Other fill:#a5d6a7,stroke:#388e3c,stroke-width:2px
+    style Top fill:#FF3B30,stroke:#FF3B30,stroke-width:3px,color:#ffffff
+    style OR1 fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style OR2 fill:#FFCC00,stroke:#FFCC00,stroke-width:2px,color:#ffffff
+    style OR3 fill:#FFCC00,stroke:#FFCC00,stroke-width:2px,color:#ffffff
+    style Fuel fill:#007AFF,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style Air fill:#007AFF,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style Other fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
 ```
 
 **定量概率分析：** 假设各基本事件的年失效率如下：低压泵失效0.1%、高压泵失效0.05%、喷油器堵塞0.02%、空气滤清器堵塞0.01%、增压器机械故障0.03%、正时链条跳齿0.01%。使用或门概率公式计算顶事件概率：$P_{top} = 1 - (1-0.001)(1-0.0005)(1-0.0002)(1-0.0001)(1-0.0003)(1-0.0001) ≈ 0.12\%$。即约千分之一的车辆在一年内可能出现发动机无法启动故障。
@@ -274,7 +338,21 @@ STPA与传统方法的关键差异体现在多个维度。思维模式上，FMEA
 
 #### 2.3.3 操作步骤
 
-STPA的实施分为七个步骤，每一步都围绕"控制结构"这一核心概念展开。
+STPA的实施分为七个步骤，每一步都围绕"控制结构"这一核心概念展开。STPA的核心分析流程可以归纳为五个关键步骤：
+
+```mermaid
+flowchart TD
+    A[第一步: 识别损失<br>人员伤亡/财产损失/<br>环境损失/业务损失] --> B[第二步: 识别危害<br>系统状态+可能后果]
+    B --> C[第三步: 构建控制结构<br>识别控制器/传感器/<br>执行器/反馈回路]
+    C --> D[第四步: 识别不安全控制行为UCA<br>遗漏/错误/时序/强度问题]
+    D --> E[第五步: 制定控制措施<br>预防/检测/恢复/告警]
+
+    style A fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style B fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style C fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
+    style D fill:#FF3B30,stroke:#FF3B30,stroke-width:2px,color:#ffffff
+    style E fill:#34C759,stroke:#34C759,stroke-width:3px,color:#ffffff
+```
 
 **第一步：系统定义。** 这一步骤的目标是建立对被分析系统的共同理解。需要明确的要素包括：系统的目的和功能、系统边界（与外部环境的接口）、系统的工作模式（正常、降级、紧急等）、系统的物理架构和功能架构。与FMEA/FTA的系统定义相比，STPA更强调**控制结构**的识别，即系统中的控制回路和信息流向。
 
@@ -303,11 +381,11 @@ graph TB
         Human -.->|手动操作| Process
     end
 
-    style Controller fill:#42a5f5,stroke:#1976d2,stroke-width:3px,color:#ffffff
-    style Actuator fill:#66bb6a,stroke:#388e3c,stroke-width:2px
-    style Sensor fill:#ffa726,stroke:#ef6c00,stroke-width:2px
-    style Process fill:#ab47bc,stroke:#6a1b9a,stroke-width:2px
-    style Human fill:#ba68c8,stroke:#7b1fa2,stroke-width:2px
+    style Controller fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
+    style Actuator fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style Sensor fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style Process fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
+    style Human fill:#FF3B30,stroke:#FF3B30,stroke-width:2px,color:#ffffff
 ```
 
 分析框架基于四个问题：控制动作是否应该在某种情境下发出但没有发出？控制动作是否不应该在某种情境下发出但却发出？控制动作是否在错误的时机发出？控制动作的强度、方向或其他参数是否错误？对于每个控制器，需要考虑其在不同工作模式、不同输入条件下可能产生的所有UCA。
@@ -390,16 +468,16 @@ graph LR
     Cont[可控度 C<br>C0-C3] --> ASIL
     ASIL --> RESULT[安全目标与需求]
 
-    style D fill:#ef5350,stroke:#c62828,stroke-width:3px,color:#ffffff
-    style CC fill:#ffa726,stroke:#ef6c00,stroke-width:2px
-    style B fill:#42a5f5,stroke:#1976d2,stroke-width:2px
-    style A fill:#66bb6a,stroke:#388e3c,stroke-width:2px
-    style QM fill:#bdbdbd,stroke:#616161,stroke-width:2px
-    style S fill:#90caf9,stroke:#1976d2,stroke-width:2px
-    style E fill:#ffcc80,stroke:#ef6c00,stroke-width:2px
-    style Cont fill:#a5d6a7,stroke:#388e3c,stroke-width:2px
-    style ASIL fill:#ab47bc,stroke:#6a1b9a,stroke-width:2px
-    style RESULT fill:#26a69a,stroke:#00695c,stroke-width:3px,color:#ffffff
+    style D fill:#FF3B30,stroke:#FF3B30,stroke-width:3px,color:#ffffff
+    style CC fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style B fill:#007AFF,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style A fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style QM fill:#8E8E93,stroke:#8E8E93,stroke-width:2px,color:#ffffff
+    style S fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style E fill:#FFCC00,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style Cont fill:#30D158,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style ASIL fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
+    style RESULT fill:#32D74B,stroke:#32D74B,stroke-width:3px,color:#ffffff
 ```
 
 从上表可以看出：危害的严重程度越高、暴露概率越高、可控性越低，所需的ASIL等级就越高。ASIL D是最高安全等级，适用于可能导致生命威胁且暴露概率和可控度都较高的危害事件，如制动系统失效、转向系统失效等。ASIL A是最低的安全等级要求，通常适用于可能导致轻微伤害且可控性较高的危害事件。
@@ -419,13 +497,13 @@ flowchart TD
     E --> F[第六步: 安全目标制定<br>制定高层安全要求]
     F --> G[第七步: FSR分解<br>功能安全需求分解与分配]
 
-    style A fill:#90caf9,stroke:#1976d2,stroke-width:2px
-    style B fill:#90caf9,stroke:#1976d2,stroke-width:2px
-    style C fill:#ffcc80,stroke:#ef6c00,stroke-width:2px
-    style D fill:#ffcc80,stroke:#ef6c00,stroke-width:2px
-    style E fill:#ab47bc,stroke:#6a1b9a,stroke-width:2px
-    style F fill:#81c784,stroke:#388e3c,stroke-width:2px
-    style G fill:#66bb6a,stroke:#388e3c,stroke-width:3px,color:#ffffff
+    style A fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style B fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style C fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style D fill:#FFCC00,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style E fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
+    style F fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style G fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
 ```
 
 **第一步：功能定义。** HARA的起点是对被分析项目的**功能**进行清晰、完整的定义。功能定义应包括：项目的主要功能和辅助功能、项目的正常运行条件和边界条件、项目的接口（与驾驶员、与其他系统、与环境的交互）。功能定义应足够详细，以便后续识别危害场景，但不需要深入到具体的设计实现。
@@ -516,14 +594,14 @@ flowchart TD
     F --> G[第七步: 风险处理<br>规避/转移/接受/缓解]
     G --> H[第八步: 持续监控与更新<br>漏洞管理与响应]
 
-    style A fill:#90caf9,stroke:#1976d2,stroke-width:2px
-    style B fill:#ffcc80,stroke:#ef6c00,stroke-width:2px
-    style C fill:#ffcc80,stroke:#ef6c00,stroke-width:2px
-    style D fill:#ab47bc,stroke:#6a1b9a,stroke-width:2px
-    style E fill:#ba68c8,stroke:#7b1fa2,stroke-width:2px
-    style F fill:#81c784,stroke:#388e3c,stroke-width:2px
-    style G fill:#66bb6a,stroke:#388e3c,stroke-width:2px
-    style H fill:#26a69a,stroke:#00695c,stroke-width:3px,color:#ffffff
+    style A fill:#5AC8FA,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style B fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style C fill:#FFCC00,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style D fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
+    style E fill:#FF3B30,stroke:#FF3B30,stroke-width:2px,color:#ffffff
+    style F fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style G fill:#30D158,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style H fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
 ```
 
 **第一步：资产识别。** 资产识别的目标是建立被分析项目的资产清单。资产分类包括：数据资产（个人隐私数据、安全关键配置数据、诊断数据）、功能资产（安全关键功能、诊断功能、通信功能）、接口资产（外部通信接口、内部网络接口、诊断接口）。每项资产需要明确其安全属性要求：机密性（防止未授权访问）、完整性（防止未授权篡改）、可用性（防止未授权拒绝）。
@@ -638,8 +716,8 @@ graph LR
         A4 --> A5
     end
 
-    classDef trad fill:#90caf9,stroke:#1976d2,stroke-width:3px,color:#ffffff
-    classDef ai fill:#ba68c8,stroke:#7b1fa2,stroke-width:3px,color:#ffffff
+    classDef trad fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
+    classDef ai fill:#AF52DE,stroke:#AF52DE,stroke-width:3px,color:#ffffff
 ```
 
 从对比可以看出，传统风险分析与AI风险分析各有优势和局限。在实践中，两种方法应该**互补使用**：对于已知的、边界清晰的系统组件和接口，使用传统方法进行系统化的风险分析；对于AI模型特有的风险（对抗样本、分布偏移、模型偏见），引入专门的AI风险评估方法。
@@ -721,14 +799,19 @@ SOTIF与ISO 26262的互补关系：
 
 #### 4.2.4 三大功能安全标准的关系
 
-```
-IEC 61508（功能安全基础标准，通用）
-     │
-     ├── 派生 ───→ ISO 26262（汽车功能安全，故障风险）
-     │                │
-     │                └── 互补 ───→ ISO 21448（汽车SOTIF，性能局限风险）
-     │
-     └── 影响 ───→ 其他行业标准（铁路IEC 61508-5、医疗IEC 62304）
+```mermaid
+graph TB
+    IEC[IEC 61508<br>功能安全基础标准<br>通用]
+
+    IEC -->|派生| ISO262[ISO 26262<br>汽车功能安全<br>故障风险]
+    ISO262 -->|互补| ISO214[ISO 21448<br>汽车SOTIF<br>性能局限风险]
+
+    IEC -->|影响| OTHER[其他行业标准<br>铁路/医疗等]
+
+    style IEC fill:#FF3B30,stroke:#FF3B30,stroke-width:3px,color:#ffffff
+    style ISO262 fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
+    style ISO214 fill:#34C759,stroke:#34C759,stroke-width:3px,color:#ffffff
+    style OTHER fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
 ```
 
 IEC 61508是父标准，定义了通用的功能安全概念、要求和框架。ISO 26262是IEC 61508在汽车行业的派生标准，针对汽车E/E系统的特殊性进行了定制。ISO 21448是独立于ISO 26262的标准，专注于SOTIF风险，与ISO 26262形成互补关系。
@@ -812,39 +895,38 @@ R156的核心要求包括：
 
 ### 4.5 标准协同关系图
 
-```
-                              ┌─────────────────┐
-                              │   IEC 61508     │
-                              │  (功能安全基础)  │
-                              └────────┬────────┘
-                                       │
-                              ┌────────▼────────┐
-                    ┌─────────│   ISO 26262     │◄─────────┐
-                    │         │  (道路车辆FuSa) │           │
-                    │         └────────┬────────┘           │
-                    │                  │                    │
-                    │         ┌────────▼────────┐           │
-                    │         │   ISO 21448     │           │
-                    │         │   (SOTIF)       │           │
-                    │         └────────┬────────┘           │
-                    │                  │                    │
-         ┌──────────┴──────────┐      │                    │
-         │                     │      │                    │
-         ▼                     ▼      ▼                    ▼
-  ┌─────────────┐      ┌─────────────┐              ┌─────────────┐
-  │   ASPICE    │      │UNECE R155   │              │UNECE R156   │
-  │  (过程能力)  │      │   (CSMS)    │              │   (SUMS)    │
-  └─────────────┘      │  (法规强制)  │              │  (法规强制)  │
-         │             └──────┬──────┘              └──────┬──────┘
-         │                    │                            │
-         │         ┌──────────┴──────────┐                 │
-         │         │                     │                 │
-         └────────►│  ISO/SAE 21434     ◄┴────────────────┘
-                   │   (汽车网络安全)    │
-                   │   (行业推荐标准)    │
-                   └─────────────────────┘
+```mermaid
+graph TB
+    IEC[IEC 61508<br>功能安全基础]
 
-       过程保障                              产品保障
+    IEC --> ISO262[ISO 26262<br>道路车辆FuSa]
+    ISO262 --> ISO214[ISO 21448<br>SOTIF]
+
+    ISO262 --> ASPICE[ASPICE<br>过程能力]
+    ISO262 --> R155[UNECE R155<br>CSMS<br>法规强制]
+    ISO262 --> R156[UNECE R156<br>SUMS<br>法规强制]
+
+    R155 --> ISO21434[ISO/SAE 21434<br>汽车网络安全<br>行业推荐标准]
+    R156 --> ISO21434
+
+    subgraph LEGEND[标准分类]
+        PROC[过程保障]
+        PROD[产品保障]
+    end
+
+    ASPICE -.-> PROC
+    ISO21434 -.-> PROD
+
+    style IEC fill:#FF3B30,stroke:#FF3B30,stroke-width:3px,color:#ffffff
+    style ISO262 fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
+    style ISO214 fill:#34C759,stroke:#34C759,stroke-width:3px,color:#ffffff
+    style ASPICE fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style R155 fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
+    style R156 fill:#FF3B30,stroke:#FF3B30,stroke-width:2px,color:#ffffff
+    style ISO21434 fill:#32D74B,stroke:#32D74B,stroke-width:3px,color:#ffffff
+    style PROC fill:#8E8E93,stroke:#8E8E93,stroke-width:1px,color:#ffffff
+    style PROD fill:#8E8E93,stroke:#8E8E93,stroke-width:1px,color:#ffffff
+    style LEGEND fill:#F2F2F7,stroke:#C7C7CC,stroke-width:1px,color:#000000
 ```
 
 ### 4.6 标准点评与趋势

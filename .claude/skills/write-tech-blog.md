@@ -57,7 +57,106 @@
 4. 第四章：进阶内容或扩展
 5. 结语：总结和展望
 
-### 3. 配图
+### 3. 配图与图表
+
+#### 3.1 Mermaid图表
+
+> **核心要求（必须遵守）**：
+> - ✅ **所有 mermaid 图必须使用苹果风格配色**
+> - ✅ **所有节点和连线文字必须为白色（`color:#ffffff`）以确保清晰可见**
+> - ✅ **边框宽度：核心节点 3px，重要节点 2px，次要节点 1px**
+> - ✅ **使用 subgraph 对相关元素进行分组**
+> - ✅ **为复杂图表添加图例说明**
+
+**适用场景**：
+- 流程图（FMEA、FTA、STPA、HARA、TARA等方法步骤）
+- 系统架构图（标准体系、系统分解）
+- 对比图（方法对比、标准对比）
+- 风险分析图（ASIL等级、风险评估）
+
+**苹果风格配色方案**：
+```yaml
+蓝色系:
+  主色: "#007AFF"    # 苹果标准蓝 - 主要步骤、核心内容
+  辅色: "#5AC8FA"    # 天蓝色 - 次要元素、支撑内容
+
+绿色系:
+  主色: "#34C759"    # 苹果绿 - 成功、完成、结果、硬件、软件
+  次色: "#30D158"   # 深绿色 - 实现阶段
+  强调: "#32D74B"   # 亮绿色 - 最终成果
+
+橙色系:
+  主色: "#FF9500"    # 苹果橙 - 警告、分析、评估
+  次色: "#FFCC00"    # 金黄色 - 次级警告
+
+红色系:
+  主色: "#FF3B30"    # 苹果红 - 风险、错误、关键问题、最高等级
+
+紫色系:
+  主色: "#AF52DE"    # 苹果紫 - 复杂分析、中间步骤、支持过程
+
+灰色系:
+  主色: "#8E8E93"    # 苹果灰 - 辅助信息、参考等级
+```
+
+**图表样式规范**：
+- 所有节点文字必须使用白色：`color:#ffffff`
+- 边框宽度：3px（核心节点）、2px（重要节点）、1px（次要节点）
+- 使用`subgraph`对相关元素进行分组
+- 为复杂图表添加图例说明
+
+**模板代码**：
+
+**流程图模板**：
+```mermaid
+flowchart TD
+    Start[开始] --> Step1[步骤1]
+    Step1 --> Step2[步骤2]
+    Step2 --> End[完成]
+
+    style Start fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
+    style Step1 fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style Step2 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style End fill:#32D74B,stroke:#32D74B,stroke-width:3px,color:#ffffff
+```
+
+**系统架构图模板**：
+```mermaid
+graph TB
+    System[系统] --> Module1[模块1]
+    System --> Module2[模块2]
+    System --> Module3[模块3]
+
+    style System fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
+    style Module1 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style Module2 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style Module3 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+```
+
+**对比图模板**：
+```mermaid
+graph LR
+    A[方案A] --> ResultA[结果A]
+    B[方案B] --> ResultB[结果B]
+
+    style A fill:#007AFF,stroke:#007AFF,stroke-width:2px,color:#ffffff
+    style B fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
+    style ResultA fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style ResultB fill:#30D158,stroke:#34C759,stroke-width:2px,color:#ffffff
+```
+
+**ASCII图转换规则**：
+- 将所有ASCII风格的树状图（使用`│`、`├─`、`└─`）转换为mermaid图
+- 在系统架构、流程、对比等部分添加彩色mermaid图
+- 确保转换后的图保持原有的逻辑结构
+
+**添加位置指南**：
+- 方法论部分：在介绍分析方法时添加流程图
+- 系统架构部分：在介绍标准或系统结构时添加架构图
+- 对比分析部分：在进行方法或标准对比时添加对比图
+- 风险分析部分：在讨论ASIL等级或风险矩阵时添加风险图
+
+#### 3.2 Unsplash图片
 
 **图片要求**：
 - 从 Unsplash 下载高质量的抽象/几何图片
@@ -281,6 +380,7 @@ cover:
 1. ✅ 文章内容完整，逻辑清晰
 2. ✅ 数学公式正确渲染
 3. ✅ 配图显示正常
-4. ✅ 文章已提交到 git
-5. ✅ deploy.sh 执行成功
-6. ✅ 博客页面可以正常访问
+4. ✅ **所有 mermaid 图表使用苹果风格配色，文字清晰可见（白色）**
+5. ✅ 文章已提交到 git
+6. ✅ deploy.sh 执行成功
+7. ✅ 博客页面可以正常访问
