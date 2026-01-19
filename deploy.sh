@@ -165,7 +165,7 @@ echo "   ✅ 子模块已恢复"
 
 echo ""
 echo "✅ 部署完成！"
-echo "📍 博客地址: https://s-ai-unix.github.io/blog/"
+echo "📍 博客地址: https://s-ai-unix.github.io/"
 echo "⏳ 通常需要 1-3 分钟生效"
 echo ""
 echo "📊 部署统计："
