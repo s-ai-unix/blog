@@ -1,9 +1,9 @@
-{{- /* 每日国学经典名句组件 */ -}}
-{{- $quotes := site.Data.classical-quotes -}}
-{{- $now := now -}}
-{{- $days := int (div $now.Unix 86400) -}}
-{{- $quoteIndex := mod $days (len $quotes) -}}
-{{- $quote := index $quotes $quoteIndex -}}
+{{/* 每日国学经典名句组件 */}}
+{{ $quotes := site.Data.classical-quotes }}
+{{ $now := now }}
+{{ $days := int (div $now.Unix 86400) }}
+{{ $quoteIndex := mod $days (len $quotes) }}
+{{ $quote := index $quotes $quoteIndex }}
 
 <div class="classical-quote-container">
     <div class="quote-decoration-top">❝</div>
