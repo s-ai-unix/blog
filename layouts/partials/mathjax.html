@@ -8,6 +8,12 @@
   function fixDoubleEscapes() {
     var elements = document.querySelectorAll('p, li, td, div, span, h1, h2, h3, h4, h5, h6');
     elements.forEach(function(el) {
+      // 跳过名言组件元素，避免干扰
+      if (el.classList.contains('classical-quote-container') ||
+          el.classList.contains('quote-text') ||
+          el.closest('.classical-quote-container')) {
+        return;
+      }
       var html = el.innerHTML;
       var fixed = false;
 
