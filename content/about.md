@@ -28,8 +28,9 @@ Currently focusing on intelligent automotive systems, I bridge the gap between d
 ### Professional Journey
 - **Geely Auto** - Principal Product Manager, Intelligent Cockpit (2023-2024)
 - **OPPO** - Staff Data Analytical Engineer (2022-2023)
-- **Huami** - Senior Data Analytical Engineer (2016-2021) - Xiaomi ecosystem
+- **Huami/Zepp** - Senior Data Analytical Engineer (2016-2021) - Xiaomi ecosystem
 - **Ironport/Cisco** - Senior Anti-Spam Engineer (2012-2016)
+- **Merkle/Dentsu(电通集团)** - Database Production Analyst
 
 ### Education
 
