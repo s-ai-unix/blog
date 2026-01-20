@@ -7,11 +7,11 @@ categories: ["风险管理", "AI安全", "行业对比"]
 tags: ["AI风险管理", "功能安全", "ISO 26262", "SOTIF", "DAL", "医疗AI", "航空安全"]
 cover:
     image: "images/covers/ai-risk-management.jpg"
-    alt: "AI驱动行业风险管理对比"
-    caption: "汽车、航空、医疗三大行业的AI风险管理"
+    alt: "AI驱动的行业风险管理对比"
+    caption: "汽车、航空、医疗三大行业的风险分析"
 ---
 
-# AI驱动行业风险管理：汽车、航空、医疗行业的深度对比研究
+## 引言
 
 ## 引言
 
