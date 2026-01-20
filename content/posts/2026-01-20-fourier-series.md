@@ -272,12 +272,17 @@ $$ c_n = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x)e^{-inx}\,dx $$
 
 ```mermaid
 graph LR
-    A[周期函数 f(x)] --> B[傅里叶分析]
-    B --> C[时域表示<br/>f(x) 随时间变化]
-    B --> D[频域表示<br/>系数 cₙ 的分布]
+    A[周期函数 f_x] --> B[傅里叶分析]
+    B --> C[时域表示]
+    B --> D[频域表示]
 
-    C --> E[波形图<br/>振幅 vs 时间]
-    D --> F[频谱图<br/>振幅 vs 频率]
+    C --> E[波形图]
+    D --> F[频谱图]
+
+    C2[时域: f_x 随时间变化] -.-> C
+    D2[频域: 系数 c_n 分布] -.-> D
+    E2[振幅 vs 时间] -.-> E
+    F2[振幅 vs 频率] -.-> F
 
     style A fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
     style B fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
@@ -285,6 +290,10 @@ graph LR
     style D fill:#007AFF,stroke:#007AFF,stroke-width:2px,color:#ffffff
     style E fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
     style F fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
+    style C2 fill:#34C759,stroke:#34C759,stroke-width:1px,color:#ffffff
+    style D2 fill:#34C759,stroke:#34C759,stroke-width:1px,color:#ffffff
+    style E2 fill:#34C759,stroke:#34C759,stroke-width:1px,color:#ffffff
+    style F2 fill:#34C759,stroke:#34C759,stroke-width:1px,color:#ffffff
 ```
 
 ### 3.4 帕塞瓦尔等式：能量守恒
@@ -392,15 +401,24 @@ $$ s(t) = A_c\cos(\omega_c t) + \frac{A_c k_a A_m}{2}[\cos((\omega_c+\omega_m)t)
 ```mermaid
 graph TB
     subgraph 傅里叶变换的核心应用
-        A[信号处理<br/>音频分析] --> D[时频转换]
-        B[图像压缩<br/>JPEG] --> D
-        C[量子力学<br/>波函数展开] --> D
-        E[热传导<br/>偏微分方程] --> D
-        F[通信系统<br/>调制解调] --> D
-        G[医学成像<br/>CT/MRI] --> D
+        A[信号处理] --> D[时频转换]
+        B[图像压缩] --> D
+        C[量子力学] --> D
+        E[热传导] --> D
+        F[通信系统] --> D
+        G[医学成像] --> D
+
+        A2[音频分析] -.-> A
+        B2[JPEG] -.-> B
+        C2[波函数展开] -.-> C
+        E2[偏微分方程] -.-> E
+        F2[调制解调] -.-> F
+        G2[CT和MRI] -.-> G
     end
 
-    D --> H[统一的思想<br/>频域分析]
+    D --> H[统一的思想]
+
+    D2[频域分析] -.-> H
 
     style A fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
     style B fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
@@ -410,6 +428,13 @@ graph TB
     style F fill:#007AFF,stroke:#007AFF,stroke-width:2px,color:#ffffff
     style G fill:#007AFF,stroke:#007AFF,stroke-width:2px,color:#ffffff
     style H fill:#34C759,stroke:#34C759,stroke-width:3px,color:#ffffff
+    style A2 fill:#FF9500,stroke:#FF9500,stroke-width:1px,color:#ffffff
+    style B2 fill:#FF9500,stroke:#FF9500,stroke-width:1px,color:#ffffff
+    style C2 fill:#FF9500,stroke:#FF9500,stroke-width:1px,color:#ffffff
+    style E2 fill:#007AFF,stroke:#007AFF,stroke-width:1px,color:#ffffff
+    style F2 fill:#007AFF,stroke:#007AFF,stroke-width:1px,color:#ffffff
+    style G2 fill:#007AFF,stroke:#007AFF,stroke-width:1px,color:#ffffff
+    style D2 fill:#34C759,stroke:#34C759,stroke-width:1px,color:#ffffff
 ```
 
 ## 第五章：数学之美——简单性背后的深刻
