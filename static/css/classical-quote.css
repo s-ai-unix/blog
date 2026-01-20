@@ -65,11 +65,12 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* 作者信息 - 一行显示 */
+/* 作者信息 - 一行显示，居中对齐 */
 .profile_inner .quote-footer {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 1rem;
