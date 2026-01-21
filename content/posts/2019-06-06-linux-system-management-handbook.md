@@ -16,7 +16,7 @@ cover:
 
 ## Node.js安装与配置
 
-Node.js是现代Web开发中不可或缺的运行时环境。在CentOS系统上，我们可以通过NodeSource官方源快速安装最���版本。
+Node.js是现代Web开发中不可或缺的运行时环境。在CentOS系统上，我们可以通过NodeSource官方源快速安装最新版本。
 
 ### 使用NodeSource安装Node.js
 
@@ -198,7 +198,7 @@ memcheck
 
 ### 高级内存监控工具
 
-#### top命���
+#### top命令
 
 ```bash
 # 启动交互式监控工具
