@@ -28,13 +28,14 @@ math: true
 timeline
     title 贝叶斯公式发展历程
     section 18世纪
-        1763年 : 贝叶斯遗作发表<br>拉普拉斯独立推导
+        1763年 : 贝叶斯遗作发表
+        1812年 : 拉普拉斯系统阐述
     section 19-20世纪
-        20世纪初 : 频率学派占据主导<br>贝叶斯方法被边缘化
-        20世纪中叶 : 萨瓦奇、杰弗里斯<br>复兴贝叶斯思想
-        1980年代 : 计算机突破<br>MCMC方法实用化
+        20世纪初 : 频率学派占据主导
+        20世纪中叶 : 萨瓦奇、杰弗里斯复兴贝叶斯思想
+        1980年代 : MCMC方法实用化
     section 21世纪
-        21世纪 : 机器学习与AI时代<br>贝叶斯方法成为核心
+        21世纪 : 贝叶斯方法成为AI核心
 ```
 
 ## 第一章：贝叶斯牧师的那篇遗作
@@ -174,21 +175,21 @@ $$
 ```mermaid
 flowchart LR
     subgraph "第一步：先验知识"
-        PRIOR[先验分布<br/>p(θ)<br/>基于过往经验]
+        PRIOR["先验分布 p(θ)"]
     end
 
     subgraph "第二步：收集证据"
-        DATA[观测数据<br/>D<br/>新信息]
-        LIKELIHOOD[似然函数<br/>p(D|θ)<br/>数据在不同假设下的概率]
+        DATA["观测数据 D"]
+        LIKELIHOOD["似然函数 p(D|θ)"]
     end
 
     subgraph "第三步：贝叶斯更新"
-        MULTIPLY[乘法运算<br/>p(θ) × p(D|θ)]
-        NORMALIZE[归一化<br/>除以证据因子<br/>p(D)]
+        MULTIPLY["乘法运算"]
+        NORMALIZE["归一化"]
     end
 
     subgraph "第四步：后验信念"
-        POSTERIOR[后验分布<br/>p(θ|D)<br/>更新后的信念]
+        POSTERIOR["后验分布 p(θ|D)"]
     end
 
     PRIOR -->|结合| MULTI
@@ -214,25 +215,25 @@ flowchart LR
 ```mermaid
 flowchart TD
     subgraph "18世纪先驱"
-        BAYES[Thomas Bayes<br/>1701-1761<br/>贝叶斯公式创始人]
-        LAPLACE[Laplace<br/>1749-1827<br/>独立推导者]
+        BAYES["Thomas Bayes (1701-1761)"]
+        LAPLACE["Laplace (1749-1827)"]
     end
 
     subgraph "20世纪频率学派"
-        PEARSON[Pearson<br/>频率学派先驱]
-        FISHER[Fisher<br/>MLE提出者]
-        NEYMAN[Neyman<br/>置信区间]
+        PEARSON["Pearson"]
+        FISHER["Fisher"]
+        NEYMAN["Neyman"]
     end
 
     subgraph "20世纪贝叶斯复兴"
-        DE_FINETTI[de Finetti<br/>主观概率]
-        JEFFREYS[Jeffreys<br/>无信息先验]
-        SAVAGE[Savage<br/>决策理论]
+        DE_FINETTI["de Finetti"]
+        JEFFREYS["Jeffreys"]
+        SAVAGE["Savage"]
     end
 
     subgraph "现代计算突破"
-        METROPOLIS[Metropolis<br/>MCMC算法]
-        GEMAN[Geman Brothers<br/>Gibbs采样]
+        METROPOLIS["Metropolis"]
+        GEMAN["Geman Brothers"]
     end
 
     BAYES -->|1763年论文| LAPLACE
@@ -311,7 +312,7 @@ $$
 
 预测分布为：
 $$
-p(y_*|x_*, D) = \int p(y_*|x_*, \beta) \cdot p(\beta|D) \, d\beta
+p(y^*|x^*, D) = \int p(y^*|x^*, \beta) \cdot p(\beta|D) \, d\beta
 $$
 
 这个积分考虑了参数的所有可能取值，给出了更全面的预测。
