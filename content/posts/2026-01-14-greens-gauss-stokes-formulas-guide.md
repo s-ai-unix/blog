@@ -4,7 +4,7 @@ date: 2026-01-14T22:14:36+08:00
 draft: false
 description: "从物理直观到数学严谨，系统介绍格林公式、高斯公式和斯托克斯公式，揭示它们在向量微积分中的统一本质"
 categories: ["数学", "微积分"]
-tags: ["微积分", "格林公式", "高斯公式", "斯托克斯公式", "向量微积分"]
+tags: ["数学史", "微分几何"]
 cover:
     image: "images/covers/vector-calculus-geometry.jpg"
     alt: "向量场的几何直觉"

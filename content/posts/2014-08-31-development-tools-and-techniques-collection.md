@@ -3,10 +3,8 @@ title: "开发工具与编程技巧集锦"
 date: 2014-08-31T17:47:03+08:00
 draft: false
 tags:
-  - JavaScript
   - Python
-  - 开发工具
-  - 编程技巧
+  - 系统管理
   - 数据结构
   - 算法
 description: "汇集JavaScript、Python等多语言开发技巧，涵盖数组操作、数据结构实现、算法实践等实用技能。"

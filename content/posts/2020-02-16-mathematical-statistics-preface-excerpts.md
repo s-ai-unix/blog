@@ -2,11 +2,7 @@
 title: "高等数理统计学前言摘录"
 date: 2020-02-16T10:41:40+08:00
 draft: false
-tags:
-  - 学习方法
-  - 数理统计学
-  - 学术建议
-  - 读书心得
+tags: ["数据分析"]
 categories:
   - Blog
 comments: true

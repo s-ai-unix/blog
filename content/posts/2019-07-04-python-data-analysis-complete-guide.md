@@ -4,10 +4,6 @@ date: 2019-07-04T11:43:34+08:00
 draft: false
 tags:
   - Python
-  - NumPy
-  - Pandas
-  - Matplotlib
-  - Seaborn
   - 数据分析
 description: "全面掌握Python数据分析核心工具，从NumPy数组操作到Pandas数据处理，再到Matplotlib和Seaborn可视化，构建完整的数据分析技能体系。"
 cover:

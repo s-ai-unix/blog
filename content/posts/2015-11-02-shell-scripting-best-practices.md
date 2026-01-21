@@ -4,9 +4,6 @@ date: 2015-11-02T16:21:57+08:00
 draft: false
 tags:
   - Shell
-  - Bash
-  - 脚本编程
-  - 自动化
   - 系统管理
   - 文本处理
 description: "深入学习Shell脚本编程，从基础语法到高级技巧，掌握命令行自动化的核心技能。"

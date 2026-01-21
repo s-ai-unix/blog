@@ -4,10 +4,7 @@ date: 2025-01-12T20:30:00+08:00
 draft: false
 tags:
   - 微分几何
-  - Gauss-Bonnet定理
-  - Gauss-Bonnet-Chern定理
-  - 陈省身
-  - 数学
+  - 数学史
 categories:
   - 数学
 comments: true

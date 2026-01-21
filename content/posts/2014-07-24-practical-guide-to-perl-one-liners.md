@@ -4,7 +4,6 @@ date: 2014-07-24T15:05:16+08:00
 draft: false
 tags:
   - Perl
-  - One-liners
   - 命令行
   - 文本处理
 description: "Perl one-liners是强大的命令行工具，可以在不创建脚本文件的情况下快速完成文本处理任务。本文收集了最实用的Perl one-liners示例。"

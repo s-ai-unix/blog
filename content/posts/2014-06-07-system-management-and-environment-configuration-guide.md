@@ -4,12 +4,6 @@ date: 2014-06-07T14:25:00+08:00
 draft: false
 tags:
   - 系统管理
-  - Apache
-  - PHP
-  - MySQL
-  - CGI
-  - 环境配置
-  - Web服务
 description: "从Apache、PHP配置到MySQL、CGI配置，全面掌握Web服务器环境的搭建与管理技巧。"
 cover:
   image: "images/covers/1558494949-ef010cbdcc31.jpg"

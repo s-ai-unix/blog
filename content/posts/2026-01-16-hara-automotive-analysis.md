@@ -4,7 +4,7 @@ date: 2026-01-16T09:06:00+08:00
 draft: false
 description: "深入探讨汽车行业危害分析与风险评估（HARA）的理论基础、发展历程及实际应用案例"
 categories: ["汽车工程", "功能安全"]
-tags: ["HARA", "ISO 26262", "功能安全", "ASIL", "汽车安全"]
+tags: ["HARA", "ISO 26262", "功能安全", "ASIL"]
 cover:
     image: "images/covers/hara-automotive.jpg"
     alt: "汽车安全分析概念图"

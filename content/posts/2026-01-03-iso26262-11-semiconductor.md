@@ -4,7 +4,7 @@ date: 2026-01-03
 draft: false
 description: "深入解读 ISO 26262-11 半导体部分，学习如何分析和评估半导体芯片的功能安全，包括IP核、SoC等。"
 categories: ["ISO 26262", "汽车功能安全", "半导体"]
-tags: ["ISO 26262", "功能安全", "半导体", "IP核", "SoC"]
+tags: ["ISO 26262", "功能安全"]
 cover:
     image: "images/covers/iso26262-11-semiconductor.jpg"
     alt: "ISO 26262 半导体"

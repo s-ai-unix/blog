@@ -4,7 +4,7 @@ date: 2026-01-21T00:00:00+08:00
 draft: false
 description: "从黑底白字的终端到会说人话的智能体，技术工具的进化史本质上是一场关于人机交互的持续革命"
 categories: ["技术哲学", "AI", "工具演进"]
-tags: ["Shell", "AI Agent", "MCP", "技术哲学", "人机交互"]
+tags: ["Shell"]
 cover:
     image: "images/covers/shell-to-agent.jpg"
     alt: "命令行终端与AI助手的融合意象"

@@ -4,7 +4,7 @@ date: 2019-07-05T08:00:01+08:00
 draft: false
 description: "分享R语言在数据分析中的实用技巧和最佳实践"
 categories: ["R语言", "数据分析"]
-tags: ["R语言", "数据分析", "统计"]
+tags: ["Python", "数据分析"]
 cover:
     image: "images/covers/1592609931095-54a2168ae893.jpg"
     alt: "R语言统计分析"

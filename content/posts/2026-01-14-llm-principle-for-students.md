@@ -4,7 +4,7 @@ date: 2026-01-14T08:50:00+08:00
 draft: false
 description: '从预测下一个词的简单想法出发，解释大语言模型的工作原理，面向初中生和高中生的通俗易懂指南。'
 categories: ["人工智能", "深度学习", "科普"]
-tags: ["大语言模型", "ChatGPT", "神经网络", "注意力机制", "科普"]
+tags: ["Python", "神经网络", "深度学习"]
 cover:
     image: "images/covers/ai-neural-network.jpg"
     alt: "抽象的神经网络图案"

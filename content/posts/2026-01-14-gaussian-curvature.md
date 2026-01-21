@@ -4,7 +4,7 @@ date: 2026-01-14T21:16:00+08:00
 draft: false
 description: "从古希腊的几何学到现代物理，高斯曲率如何改变了我们理解宇宙的方式"
 categories: ["数学", "微分几何"]
-tags: ["高斯曲率", "微分几何", "数学史", "几何"]
+tags: ["微分几何", "数学史", "几何"]
 cover:
     image: "images/covers/photo-1635070041078-e363dbe005cb.jpg"
     alt: "抽象几何图形"

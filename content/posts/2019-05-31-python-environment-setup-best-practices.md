@@ -4,10 +4,7 @@ date: 2019-05-31T08:00:00+08:00
 draft: false
 tags:
   - Python
-  - pipenv
-  - 环境配置
-  - 包管理
-  - 开发工具
+  - 系统管理
 description: "全面掌握Python开发环境配置技巧，包括pipenv虚拟环境管理、国内镜像源配置、warning信息控制等实用技巧，提升Python开发效率。"
 cover:
   image: "images/covers/1526379095098-d400fd0bf935.jpg"

@@ -4,7 +4,7 @@ date: 2026-01-14T08:30:00+08:00
 draft: false
 description: "从马尔可夫决策过程到深度强化学习，探索人工智能如何通过试错学习最优策略，包括Q-learning、Policy Gradient和Actor-Critic等经典算法的完整数学推导。"
 categories: ["人工智能", "机器学习"]
-tags: ["强化学习", "机器学习", "深度学习", "马尔可夫决策过程", "Q-learning", "Policy Gradient", "Actor-Critic", "DQN"]
+tags: ["机器学习", "深度学习"]
 cover:
     image: "images/covers/rl-network.jpg"
     alt: "神经网络连接示意图"

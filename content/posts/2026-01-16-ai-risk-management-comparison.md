@@ -4,7 +4,7 @@ date: 2026-01-16T10:00:00+08:00
 draft: false
 description: "从风险分类框架、标准体系、实践案例、管理方法和进展挑战五个维度，系统对比汽车、航空、医疗三大行业的AI风险分析与风险管理方法论。"
 categories: ["风险管理", "AI安全", "行业对比"]
-tags: ["AI风险管理", "功能安全", "ISO 26262", "SOTIF", "DAL", "医疗AI", "航空安全"]
+tags: ["功能安全", "ISO 26262"]
 cover:
     image: "images/covers/ai-risk-management.jpg"
     alt: "AI驱动的行业风险管理对比"

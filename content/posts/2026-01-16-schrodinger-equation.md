@@ -8,11 +8,7 @@ categories:
   - 量子力学
   - 数学史
 tags:
-  - 薛定谔方程
-  - 量子力学
-  - 埃尔温·薛定谔
-  - 波函数
-  - 不确定性原理
+  - 广义相对论
 mathjax: true
 cover:
   image: images/covers/schrodinger-equation.jpg

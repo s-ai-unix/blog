@@ -4,7 +4,7 @@ date: 2026-01-14T20:35:00+08:00
 draft: false
 description: "从高速公路的弯道到机器人的轨迹规划，探索Frenet标架如何用简洁的数学语言描述曲线的局部几何，并在自动驾驶和机器人工程中发挥关键作用。"
 categories: ["数学", "工程"]
-tags: ["微分几何", "Frenet标架", "自动驾驶", "机器人学", "数学建模"]
+tags: ["微分几何", "自动驾驶", "数学史"]
 cover:
     image: "images/covers/geometry-curves.jpg"
     alt: "几何曲线的抽象艺术图"

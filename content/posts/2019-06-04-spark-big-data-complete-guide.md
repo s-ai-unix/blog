@@ -4,13 +4,7 @@ date: 2019-06-04 08:59:32 +0800
 lastmod: 2020-11-20 22:08:55 +0800
 draft: false
 description: "Apache Spark完全使用指南，涵盖Spark SQL、文件操作、MLlib机器学习、PySpark实战技巧等核心内容"
-tags:
-  - Apache Spark
-  - Big Data
-  - Spark SQL
-  - PySpark
-  - MLlib
-  - 数据处理
+tags: ["系统管理"]
 categories:
   - Big Data
   - Data&ML&AI

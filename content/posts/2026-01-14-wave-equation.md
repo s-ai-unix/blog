@@ -4,7 +4,7 @@ date: 2026-01-14T22:04:00+08:00
 draft: false
 description: "从达朗贝尔的经典推导到现代应用，波动方程描述了波如何在时空中传播，连接了音乐、光学、地震学和量子力学。"
 categories: ["数学物理"]
-tags: ["偏微分方程", "波动方程", "傅里叶分析", "达朗贝尔公式"]
+tags: ["偏微分方程", "数学史"]
 cover:
     image: "images/covers/wave-equation.jpg"
     alt: "波动的抽象可视化"

@@ -4,7 +4,7 @@ date: 2026-01-20T21:10:00+08:00
 draft: false
 description: "深入解析首个汽车 AI 安全国际标准，系统掌握数据定义安全的新方法论"
 categories: ["汽车安全", "人工智能", "标准解读"]
-tags: ["ISO 8800", "功能安全", "自动驾驶", "AI安全", "机器学习"]
+tags: ["功能安全", "自动驾驶", "机器学习"]
 cover:
     image: "images/covers/iso-8800-ai-safety.jpg"
     alt: "AI安全网络示意图"

@@ -4,7 +4,7 @@ date: 2019-07-20T08:50:36+08:00
 draft: false
 description: "从七年数据分析经验出发,深入探讨数据分析的方法论、职业要求、常见误区以及个人成长感悟"
 categories: ["数据分析", "职业发展"]
-tags: ["数据分析", "职业思考", "工作经验"]
+tags: ["数据分析"]
 cover:
     image: "images/covers/1551288049-bebda4e38f71.jpg"
     alt: "数据分析思维导图"

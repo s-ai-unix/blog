@@ -6,7 +6,7 @@ draft: false
 keywords: ["Hadoop", "Presto", "HUE", "Zeppelin", "EMR", "大数据", "集群部署"]
 description: "详细介绍Hadoop生态系统的部署实践，包括数据准备、Presto配置、HUE用户管理和Zeppelin集成"
 categories: ["大数据"]
-tags: ["Hadoop", "Presto", "HUE", "Zeppelin", "EMR"]
+tags: ["系统管理"]
 
 # 封面图片配置
 cover:

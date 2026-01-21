@@ -4,7 +4,7 @@ date: 2026-01-16T09:09:00+08:00
 draft: false
 description: "深入探讨汽车行业威胁分析与风险评估（TARA）的理论基础、方法论体系及丰富的行业实践案例"
 categories: ["汽车工程", "网络安全"]
-tags: ["TARA", "ISO/SAE 21434", "汽车网络安全", "威胁建模", "风险评估"]
+tags: ["功能安全"]
 cover:
     image: "images/covers/automotive-risk-analysis.jpg"
     alt: "汽车网络安全威胁分析概念图"

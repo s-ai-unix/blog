@@ -4,7 +4,7 @@ date: 2026-01-14T21:35:00+08:00
 draft: false
 description: "从欧几里得到黎曼，探索度量张量如何描述弯曲空间的距离和角度"
 categories: ["数学", "微分几何"]
-tags: ["黎曼度量", "度量张量", "微分几何", "广义相对论", "数学史"]
+tags: ["微分几何", "广义相对论", "数学史"]
 cover:
     image: "images/covers/photo-1620641788421-7a1c342ea42e.jpg"
     alt: "抽象几何空间"

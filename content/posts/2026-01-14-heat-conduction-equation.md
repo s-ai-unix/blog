@@ -4,7 +4,7 @@ date: 2026-01-14T21:54:00+08:00
 draft: false
 description: "从傅里叶的实验到现代数学物理的核心，热传导方程连接了微观粒子运动与宏观世界演化。"
 categories: ["数学物理"]
-tags: ["偏微分方程", "热力学", "傅里叶分析", "扩散过程"]
+tags: ["偏微分方程", "广义相对论"]
 cover:
     image: "images/covers/photo-1620641788421-7a1c342ea42e.jpg"
     alt: "热传导的抽象可视化"

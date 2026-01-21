@@ -4,7 +4,7 @@ date: 2026-01-15T23:55:00+08:00
 draft: false
 description: "回顾神经网络七十年发展历程，从感知机到 Transformer，详解核心算法的数学原理"
 categories: ["深度学习", "神经网络", "算法"]
-tags: ["神经网络", "深度学习", "感知机", "CNN", "RNN", "LSTM", "Transformer", "反向传播"]
+tags: ["神经网络", "深度学习", "机器学习"]
 cover:
     image: "images/covers/neural-network-evolution.jpg"
     alt: "抽象神经网络连接图"

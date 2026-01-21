@@ -4,7 +4,7 @@ date: 2026-01-14T22:04:00+08:00
 draft: false
 description: "从温度分布到静电场，探索调和函数的奇妙世界"
 categories: ["数学物理", "偏微分方程"]
-tags: ["拉普拉斯方程", "调和函数", "偏微分方程", "数学物理"]
+tags: ["数学史", "偏微分方程"]
 cover:
     image: "images/covers/unsplash-laplacian.jpg"
     alt: "抽象几何图形"

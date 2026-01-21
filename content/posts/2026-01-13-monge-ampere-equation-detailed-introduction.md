@@ -4,7 +4,7 @@ date: 2026-01-13T16:00:00+08:00
 draft: false
 description: "从历史脉络到核心公式推导，系统梳理蒙日-安培方程的理论演进与跨学科应用。"
 categories: ["数学", "偏微分方程"]
-tags: ["Monge–Ampère", "最优传输", "几何", "PDE"]
+tags: ["几何"]
 mathjax: true
 cover:
   image: "images/covers/1555255707-c07966088b7b.jpg"

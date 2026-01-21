@@ -4,7 +4,7 @@ date: 2026-01-20T20:00:00+08:00
 draft: false
 description: "从1928年的物理学困境出发，我们逐步推导狄拉克方程，理解它如何自然地给出电子自旋，预言反物质，并最终统一量子力学与狭义相对论。"
 categories: ["量子力学", "相对论", "数学物理"]
-tags: ["狄拉克方程", "量子力学", "相对论", "电子自旋", "反物质"]
+tags: ["广义相对论"]
 cover:
     image: "images/covers/dirac-equation-cover.jpg"
     alt: "狄拉克方程的数学之美"

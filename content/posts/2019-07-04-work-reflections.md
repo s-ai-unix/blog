@@ -4,7 +4,7 @@ date: 2019-07-04T12:04:30+08:00
 draft: false
 description: "回顾三年的数据分析工作历程,分享职业转型的思考与准备"
 categories: ["职业发展", "数据分析"]
-tags: ["职业思考", "数据科学", "机器学习"]
+tags: ["机器学习"]
 cover:
     image: "images/covers/1454165804606-c3d57bc86b40.jpg"
     alt: "职业发展路径"

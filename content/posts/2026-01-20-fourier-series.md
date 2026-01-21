@@ -4,7 +4,7 @@ date: 2026-01-20T21:00:00+08:00
 draft: false
 description: "从1822年傅里叶的《热的解析理论》出发，我们逐步理解如何用简单的正弦波叠加出任何复杂的周期函数，这个想法不仅解决了热传导问题，更奠定了现代信号处理、量子力学和信息技术的数学基础。"
 categories: ["数学", "微积分", "数学史"]
-tags: ["傅里叶级数", "三角级数", "函数逼近", "信号处理", "数学史"]
+tags: ["数学史"]
 math: true
 cover:
     image: "images/covers/fourier-series.jpg"

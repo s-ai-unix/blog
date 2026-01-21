@@ -4,7 +4,7 @@ date: 2026-01-16T09:08:00+08:00
 draft: false
 description: "系统介绍FMEA、FTA、STPA、HARA、TARA五大风险分析方法论，对比传统与AI风险分析，并深入解读国际与欧盟标准体系"
 categories: ["技术综述"]
-tags: ["汽车", "风险分析", "功能安全", "ISO 26262", "FMEA", "FTA", "STPA", "HARA", "TARA", "网络安全"]
+tags: ["功能安全", "ISO 26262", "HARA"]
 cover:
     image: "images/covers/automotive-risk-analysis.jpg"
     alt: "汽车风险分析概念图"

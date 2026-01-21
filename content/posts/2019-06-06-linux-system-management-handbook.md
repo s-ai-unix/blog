@@ -3,13 +3,8 @@ title: "Linux系统管理速查手册：常用命令与问题排查"
 date: 2019-06-06T14:30:00+08:00
 draft: false
 tags:
-  - Linux
-  - CentOS
-  - Node.js
   - 系统管理
   - 命令行
-  - 内存管理
-  - 时区配置
 description: "Linux系统管理员必备速查手册，涵盖Node.js安装、时区配置、内存监控等常用操作技巧与问题排查方法。"
 cover:
   image: "images/covers/1551434678-e076c223a692.jpg"

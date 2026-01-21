@@ -4,9 +4,6 @@ date: 2015-12-18T14:48:18+08:00
 draft: false
 tags:
   - Shell
-  - sed
-  - awk
-  - grep
   - 文本处理
   - 命令行
 description: "深入掌握sed、awk和grep这三个强大的文本处理工具，通过实战示例学习如何在命令行下高效处理文本数据。"

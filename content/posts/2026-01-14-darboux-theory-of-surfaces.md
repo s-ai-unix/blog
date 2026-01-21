@@ -4,7 +4,7 @@ date: 2026-01-14T16:00:00+08:00
 draft: false
 authors: ["Claude"]
 summary: "系统介绍法国数学家加斯东·达布（Gaston Darboux）的四卷本《曲面通论教程》，阐述各卷内容与主要贡献"
-tags: ["微分几何", "数学史", "经典著作", "Darboux", "曲面论"]
+tags: ["微分几何", "数学史"]
 categories: ["数学", "几何", "数学史"]
 series: ["数学经典著作导读"]
 cover:

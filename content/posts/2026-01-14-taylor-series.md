@@ -4,7 +4,7 @@ date: 2026-01-14T22:10:00+08:00
 draft: false
 description: "从微积分基础到深度学习前沿，探索泰勒公式的强大威力"
 categories: ["数学", "微积分", "机器学习"]
-tags: ["泰勒公式", "微积分", "机器学习", "深度学习", "优化算法"]
+tags: ["数学史", "机器学习", "深度学习", "算法"]
 cover:
     image: "images/covers/unsplash-taylor.jpg"
     alt: "抽象几何曲线"

@@ -4,7 +4,7 @@ date: 2026-01-15T22:30:00+08:00
 draft: false
 description: "回顾机器学习黄金时代，详细推导十大经典算法的数学原理，从线性回归到主成分分析"
 categories: ["机器学习", "算法"]
-tags: ["机器学习", "算法", "数学", "历史"]
+tags: ["机器学习", "算法", "数学史"]
 cover:
     image: "images/covers/ml-algorithms-legacy.jpg"
     alt: "抽象几何图案"

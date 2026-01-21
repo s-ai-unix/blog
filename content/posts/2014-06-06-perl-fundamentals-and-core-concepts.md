@@ -4,8 +4,8 @@ date: 2014-06-06T17:07:24+08:00
 draft: false
 tags:
   - Perl
-  - 编程基础
-  - 教程
+  - Python
+  - 综述
 description: "深入探讨Perl语言的基础知识和核心概念，包括变量作用域、列表操作、正则表达式等重要内容。"
 cover:
   image: "images/covers/1555066931-4365d14bab8c.jpg"

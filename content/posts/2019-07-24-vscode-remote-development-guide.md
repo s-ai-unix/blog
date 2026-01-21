@@ -4,7 +4,7 @@ date: 2019-07-24T15:28:32+08:00
 draft: false
 description: "全面介绍VScode Remote Development功能,实现远程服务器开发的极致体验"
 categories: ["开发工具", "VSCode"]
-tags: ["VSCode", "远程开发", "开发环境"]
+tags: ["系统管理", "Python"]
 cover:
     image: "images/covers/1498050108023-c5249f4df085.jpg"
     alt: "VSCode远程开发"

@@ -4,7 +4,7 @@ date: 2026-01-14T08:30:00+08:00
 draft: false
 description: "本文全面回顾深度学习算法的发展历程、数学原理、架构演进及未来前景，涵盖从基础神经网络到Transformer的完整演进路径。"
 categories: ["深度学习", "神经网络"]
-tags: ["深度学习", "神经网络", "CNN", "RNN", "Transformer", "机器学习", "数学推导", "综述"]
+tags: ["深度学习", "神经网络", "机器学习", "数学史", "综述"]
 cover:
     image: "images/covers/photo-1620712943543-bcc4688e7485.jpg"
     alt: "神经网络连接"

@@ -4,7 +4,7 @@ date: 2019-07-07T07:32:15+08:00
 draft: false
 description: "详细解析机器学习项目的完整工作流程,从问题定义到模型部署的全流程指南"
 categories: ["机器学习", "项目管理"]
-tags: ["机器学习", "工作流程", "数据科学"]
+tags: ["机器学习"]
 cover:
     image: "images/covers/1555255707-c07966088b7b.jpg"
     alt: "机器学习流程"
