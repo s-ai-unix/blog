@@ -227,10 +227,6 @@ graph TB
 
     HMC --> NUTS["NUTS<br/>(2011)"]
 
-    Metro --> Style1 style fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
-    Gibbs --> Style2 style fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
-    HMC --> Style3 style fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
-
     style MC fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
     style Direct fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
     style MCMC fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
@@ -242,9 +238,6 @@ graph TB
     style HMC fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
     style Slice fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
     style NUTS fill:#AF52DE,stroke:#AF52DE,stroke-width:2px,color:#ffffff
-    style Style1 fill:none,stroke:none,color:#ffffff
-    style Style2 fill:none,stroke:none,color:#ffffff
-    style Style3 fill:none,stroke:none,color:#ffffff
 ```
 
 ## 第四章：经典应用举例
