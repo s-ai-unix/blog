@@ -33,7 +33,7 @@ ignoreLogs: ['warning-goldmark-raw-html']
 
 params:
   env: production
-  description: "s-ai-unix 的个人技术博客，分享数学、深度学习、机器人学等领域的知识和思考"
+  description: "s-ai-unix 的个人技术博客，分享数学、AI、智能汽车、历史等领域的知识和思考"
   author: "s-ai-unix"
 
   # 启用评论功能
