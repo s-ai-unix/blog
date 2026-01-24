@@ -53,13 +53,13 @@ PCA 的目标是找到一个低维表示，保留数据的大部分信息。关�
 数据点 $\mathbf{x}_i$ 投影到 $\mathbf{w}$ 上的值是：
 
 $$
-z_i = \mathbf{w}^T \mathbf{x}_i
+z_i = \mathbf{w}\^{\top} \mathbf{x}_i
 $$
 
 投影值的均值是：
 
 $$
-\bar{z} = \frac{1}{n}\sum_{i=1}^{n} z_i = \mathbf{w}^T \bar{\mathbf{x}}
+\bar{z} = \frac{1}{n}\sum_{i=1}^{n} z_i = \mathbf{w}\^{\top} \bar{\mathbf{x}}
 $$
 
 其中 $\bar{\mathbf{x}} = \frac{1}{n}\sum_{i=1}^{n} \mathbf{x}_i$ 是数据的均值。
@@ -67,25 +67,25 @@ $$
 投影的方差是：
 
 $$
-\text{Var}(z) = \frac{1}{n}\sum_{i=1}^{n} (z_i - \bar{z})^2 = \frac{1}{n}\sum_{i=1}^{n} (\mathbf{w}^T (\mathbf{x}_i - \bar{\mathbf{x}}))^2
+\text{Var}(z) = \frac{1}{n}\sum_{i=1}^{n} (z_i - \bar{z})^2 = \frac{1}{n}\sum_{i=1}^{n} (\mathbf{w}\^{\top} (\mathbf{x}_i - \bar{\mathbf{x}}))^2
 $$
 
 让我们定义中心化的数据 $\tilde{\mathbf{x}}_i = \mathbf{x}_i - \bar{\mathbf{x}}$，则：
 
 $$
-\text{Var}(z) = \frac{1}{n}\sum_{i=1}^{n} (\mathbf{w}^T \tilde{\mathbf{x}}_i)^2 = \frac{1}{n}\sum_{i=1}^{n} \mathbf{w}^T \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^T \mathbf{w} = \mathbf{w}^T \left(\frac{1}{n}\sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^T\right) \mathbf{w}
+\text{Var}(z) = \frac{1}{n}\sum_{i=1}^{n} (\mathbf{w}\^{\top} \tilde{\mathbf{x}}_i)^2 = \frac{1}{n}\sum_{i=1}^{n} \mathbf{w}\^{\top} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i\^{\top} \mathbf{w} = \mathbf{w}\^{\top} \left(\frac{1}{n}\sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^{\top}\right) \mathbf{w}
 $$
 
-注意到 $\frac{1}{n}\sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^T$ 正是数据的**协方差矩阵**：
+注意到 $\frac{1}{n}\sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^{\top}$ 正是数据的**协方差矩阵**：
 
 $$
-\mathbf{\Sigma} = \frac{1}{n}\sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^T
+\mathbf{\Sigma} = \frac{1}{n}\sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^{\top}
 $$
 
 因此，PCA 的优化问题是：
 
 $$
-\max_{\mathbf{w}} \mathbf{w}^T \mathbf{\Sigma} \mathbf{w}, \quad \text{约束：} \mathbf{w}^T \mathbf{w} = 1
+\max_{\mathbf{w}} \mathbf{w}\^{\top} \mathbf{\Sigma} \mathbf{w}, \quad \text{约束：} \mathbf{w}\^{\top} \mathbf{w} = 1
 $$
 
 这就是 PCA 的第一个视角：**寻找使投影方差最大的方向**。
@@ -127,7 +127,7 @@ $$
 计算协方差矩阵：
 
 $$
-\mathbf{\Sigma} = \frac{1}{n}\sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^T \in \mathbb{R}^{d \times d}
+\mathbf{\Sigma} = \frac{1}{n}\sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i\^{\top} \in \mathbb{R}^{d \times d}
 $$
 
 注意：$\mathbf{\Sigma}$ 是一个对称半正定矩阵。
@@ -135,7 +135,7 @@ $$
 我们要找到第一个主成分的方向 $\mathbf{w}_1$，使得投影方差最大：
 
 $$
-\mathbf{w}_1 = \arg\max_{\mathbf{w}} \mathbf{w}^T \mathbf{\Sigma} \mathbf{w}, \quad \text{s.t. } \mathbf{w}^T \mathbf{w} = 1
+\mathbf{w}_1 = \arg\max_{\mathbf{w}} \mathbf{w}\^{\top} \mathbf{\Sigma} \mathbf{w}, \quad \text{s.t. } \mathbf{w}\^{\top} \mathbf{w} = 1
 $$
 
 ### 使用拉格朗日乘数法
@@ -143,7 +143,7 @@ $$
 这是一个带约束的优化问题，我们可以使用拉格朗日乘数法求解。定义拉格朗日函数：
 
 $$
-\mathcal{L}(\mathbf{w}, \lambda) = \mathbf{w}^T \mathbf{\Sigma} \mathbf{w} - \lambda (\mathbf{w}^T \mathbf{w} - 1)
+\mathcal{L}(\mathbf{w}, \lambda) = \mathbf{w}\^{\top} \mathbf{\Sigma} \mathbf{w} - \lambda (\mathbf{w}\^{\top} \mathbf{w} - 1)
 $$
 
 其中 $\lambda$ 是拉格朗日乘数。
@@ -167,10 +167,10 @@ $$
 让我们计算投影方差的值。将特征方程 $\mathbf{\Sigma} \mathbf{w} = \lambda \mathbf{w}$ 代入方差表达式：
 
 $$
-\mathbf{w}^T \mathbf{\Sigma} \mathbf{w} = \mathbf{w}^T \lambda \mathbf{w} = \lambda \mathbf{w}^T \mathbf{w} = \lambda
+\mathbf{w}\^{\top} \mathbf{\Sigma} \mathbf{w} = \mathbf{w}\^{\top} \lambda \mathbf{w} = \lambda \mathbf{w}\^{\top} \mathbf{w} = \lambda
 $$
 
-因为 $\mathbf{w}$ 是单位向量，$\mathbf{w}^T \mathbf{w} = 1$。
+因为 $\mathbf{w}$ 是单位向量，$\mathbf{w}\^{\top} \mathbf{w} = 1$。
 
 这说明：**投影方差等于对应的特征值**！
 
@@ -186,13 +186,13 @@ $$
 数学表述为：
 
 $$
-\mathbf{w}_2 = \arg\max_{\mathbf{w}} \mathbf{w}^T \mathbf{\Sigma} \mathbf{w}, \quad \text{s.t. } \mathbf{w}^T \mathbf{w} = 1, \mathbf{w}^T \mathbf{w}_1 = 0
+\mathbf{w}_2 = \arg\max_{\mathbf{w}} \mathbf{w}\^{\top} \mathbf{\Sigma} \mathbf{w}, \quad \text{s.t. } \mathbf{w}\^{\top} \mathbf{w} = 1, \mathbf{w}\^{\top} \mathbf{w}_1 = 0
 $$
 
 同样使用拉格朗日乘数法：
 
 $$
-\mathcal{L}(\mathbf{w}, \lambda, \mu) = \mathbf{w}^T \mathbf{\Sigma} \mathbf{w} - \lambda (\mathbf{w}^T \mathbf{w} - 1) - \mu \mathbf{w}^T \mathbf{w}_1
+\mathcal{L}(\mathbf{w}, \lambda, \mu) = \mathbf{w}\^{\top} \mathbf{\Sigma} \mathbf{w} - \lambda (\mathbf{w}\^{\top} \mathbf{w} - 1) - \mu \mathbf{w}\^{\top} \mathbf{w}_1
 $$
 
 对 $\mathbf{w}$ 求梯度：
@@ -201,19 +201,19 @@ $$
 2\mathbf{\Sigma}\mathbf{w} - 2\lambda \mathbf{w} - \mu \mathbf{w}_1 = 0
 $$
 
-左乘 $\mathbf{w}_1^T$：
+左乘 $\mathbf{w}_1^\top$：
 
 $$
-2\mathbf{w}_1^T \mathbf{\Sigma}\mathbf{w} - 2\lambda \mathbf{w}_1^T \mathbf{w} - \mu \mathbf{w}_1^T \mathbf{w}_1 = 0
+2\mathbf{w}_1\^{\top} \mathbf{\Sigma}\mathbf{w} - 2\lambda \mathbf{w}_1\^{\top} \mathbf{w} - \mu \mathbf{w}_1\^{\top} \mathbf{w}_1 = 0
 $$
 
 由于 $\mathbf{\Sigma}\mathbf{w}_1 = \lambda_1 \mathbf{w}_1$（其中 $\lambda_1$ 是最大特征值）：
 
 $$
-2\lambda_1 \mathbf{w}_1^T \mathbf{w} - 2\lambda \mathbf{w}_1^T \mathbf{w} - \mu = 0
+2\lambda_1 \mathbf{w}_1\^{\top} \mathbf{w} - 2\lambda \mathbf{w}_1\^{\top} \mathbf{w} - \mu = 0
 $$
 
-但 $\mathbf{w}_1^T \mathbf{w} = 0$（正交约束），所以 $\mu = 0$。
+但 $\mathbf{w}_1\^{\top} \mathbf{w} = 0$（正交约束），所以 $\mu = 0$。
 
 因此，我们得到：
 
@@ -247,10 +247,10 @@ $$
 对于数据点 $\mathbf{x}_i$，它的降维表示（编码）是：
 
 $$
-\mathbf{z}_i = (z_{i1}, z_{i2}, \ldots, z_{ik})^T
+\mathbf{z}_i = (z_{i1}, z_{i2}, \ldots, z_{ik})^\top
 $$
 
-其中 $z_{ij} = \mathbf{w}_j^T \tilde{\mathbf{x}}_i$ 是 $\tilde{\mathbf{x}}_i$ 在 $\mathbf{w}_j$ 上的投影。
+其中 $z_{ij} = \mathbf{w}_j\^{\top} \tilde{\mathbf{x}}_i$ 是 $\tilde{\mathbf{x}}_i$ 在 $\mathbf{w}_j$ 上的投影。
 
 从低维表示重构（解码）回原始空间：
 
@@ -269,7 +269,7 @@ $$
 我们的目标是最小化这个误差：
 
 $$
-\min_{\mathbf{w}_1, \ldots, \mathbf{w}_k} \sum_{i=1}^{n} \left\|\tilde{\mathbf{x}}_i - \sum_{j=1}^{k} \mathbf{w}_j (\mathbf{w}_j^T \tilde{\mathbf{x}}_i)\right\|^2
+\min_{\mathbf{w}_1, \ldots, \mathbf{w}_k} \sum_{i=1}^{n} \left\|\tilde{\mathbf{x}}_i - \sum_{j=1}^{k} \mathbf{w}_j (\mathbf{w}_j\^{\top} \tilde{\mathbf{x}}_i)\right\|^2
 $$
 
 ### 利用正交投影的性质
@@ -277,30 +277,30 @@ $$
 记 $\mathbf{W} = [\mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_k] \in \mathbb{R}^{d \times k}$，则重构误差可以写成：
 
 $$
-\text{Error} = \sum_{i=1}^{n} \|\tilde{\mathbf{x}}_i - \mathbf{W}\mathbf{W}^T \tilde{\mathbf{x}}_i\|^2
+\text{Error} = \sum_{i=1}^{n} \|\tilde{\mathbf{x}}_i - \mathbf{W}\mathbf{W}\^{\top} \tilde{\mathbf{x}}_i\|^2
 $$
 
-利用矩阵迹的性质 $\sum_{i=1}^{n} \|\mathbf{a}_i\|^2 = \text{tr}\left(\sum_{i=1}^{n} \mathbf{a}_i \mathbf{a}_i^T\right)$：
+利用矩阵迹的性质 $\sum_{i=1}^{n} \|\mathbf{a}_i\|^2 = \text{tr}\left(\sum_{i=1}^{n} \mathbf{a}_i \mathbf{a}_i^{\top}\right)$：
 
 $$
 \begin{aligned}
-\text{Error} &= \sum_{i=1}^{n} \text{tr}\left((\tilde{\mathbf{x}}_i - \mathbf{W}\mathbf{W}^T \tilde{\mathbf{x}}_i)(\tilde{\mathbf{x}}_i - \mathbf{W}\mathbf{W}^T \tilde{\mathbf{x}}_i)^T\right) \\\\
-&= \text{tr}\left(\sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^T\right) - 2\text{tr}\left(\mathbf{W}^T \sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^T \mathbf{W}\right) + \text{tr}\left(\mathbf{W}^T \sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^T \mathbf{W}\right) \\\\
-&= \text{tr}(n\mathbf{\Sigma}) - \text{tr}(\mathbf{W}^T n \mathbf{\Sigma} \mathbf{W}) \\\\
-&= n \left[\text{tr}(\mathbf{\Sigma}) - \text{tr}(\mathbf{W}^T \mathbf{\Sigma} \mathbf{W})\right]
+\text{Error} &= \sum_{i=1}^{n} \text{tr}\left((\tilde{\mathbf{x}}_i - \mathbf{W}\mathbf{W}^\top \tilde{\mathbf{x}}_i)(\tilde{\mathbf{x}}_i - \mathbf{W}\mathbf{W}^\top \tilde{\mathbf{x}}_i)^\top\right) \\
+&= \text{tr}\left(\sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^\top\right) - 2\text{tr}\left(\mathbf{W}^\top \sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^\top \mathbf{W}\right) + \text{tr}\left(\mathbf{W}^\top \sum_{i=1}^{n} \tilde{\mathbf{x}}_i \tilde{\mathbf{x}}_i^\top \mathbf{W}\right) \\
+&= \text{tr}(n\mathbf{\Sigma}) - \text{tr}(\mathbf{W}^\top n \mathbf{\Sigma} \mathbf{W}) \\
+&= n \left[\text{tr}(\mathbf{\Sigma}) - \text{tr}(\mathbf{W}^\top \mathbf{\Sigma} \mathbf{W})\right]
 \end{aligned}
 $$
 
-这里我们利用了 $\mathbf{W}^T \mathbf{W} = \mathbf{I}$（正交矩阵）。
+这里我们利用了 $\mathbf{W}\^{\top} \mathbf{W} = \mathbf{I}$（正交矩阵）。
 
 ### 两种视角的等价性
 
-最小化重构误差等价于最大化 $\text{tr}(\mathbf{W}^T \mathbf{\Sigma} \mathbf{W})$。
+最小化重构误差等价于最大化 $\text{tr}(\mathbf{W}\^{\top} \mathbf{\Sigma} \mathbf{W})$。
 
 展开：
 
 $$
-\text{tr}(\mathbf{W}^T \mathbf{\Sigma} \mathbf{W}) = \sum_{j=1}^{k} \mathbf{w}_j^T \mathbf{\Sigma} \mathbf{w}_j
+\text{tr}(\mathbf{W}\^{\top} \mathbf{\Sigma} \mathbf{W}) = \sum_{j=1}^{k} \mathbf{w}_j\^{\top} \mathbf{\Sigma} \mathbf{w}_j
 $$
 
 这正是前 $k$ 个主成分的投影方差之和！
@@ -344,10 +344,10 @@ $$
 
 ### 步骤 2：计算协方差矩阵
 
-对于中心化数据 $\tilde{\mathbf{X}} = [\tilde{\mathbf{x}}_1, \tilde{\mathbf{x}}_2, \ldots, \tilde{\mathbf{x}}_n]^T \in \mathbb{R}^{n \times d}$：
+对于中心化数据 $\tilde{\mathbf{X}} = [\tilde{\mathbf{x}}_1, \tilde{\mathbf{x}}_2, \ldots, \tilde{\mathbf{x}}_n]\^{\top} \in \mathbb{R}^{n \times d}$：
 
 $$
-\mathbf{\Sigma} = \frac{1}{n}\tilde{\mathbf{X}}^T \tilde{\mathbf{X}} \in \mathbb{R}^{d \times d}
+\mathbf{\Sigma} = \frac{1}{n}\tilde{\mathbf{X}}\^{\top} \tilde{\mathbf{X}} \in \mathbb{R}^{d \times d}
 $$
 
 协方差矩阵的元素 $\Sigma_{ij}$ 表示第 $i$ 个特征和第 $j$ 个特征的协方差：
@@ -413,7 +413,7 @@ $$
 如果需要从低维表示重构回原始空间：
 
 $$
-\hat{\mathbf{X}} = \mathbf{Z} \mathbf{W}^T = \tilde{\mathbf{X}} \mathbf{W} \mathbf{W}^T
+\hat{\mathbf{X}} = \mathbf{Z} \mathbf{W}\^{\top} = \tilde{\mathbf{X}} \mathbf{W} \mathbf{W}^{\top}
 $$
 
 加上均值：
@@ -428,12 +428,12 @@ PCA 有一个优美的几何解释：数据的主成分方向，就是拟合数�
 
 ### 椭圆方程
 
-考虑二维数据，协方差矩阵 $\mathbf{\Sigma} = \begin{pmatrix} \sigma_x^2 & \sigma_{xy} \\\\ \sigma_{xy} & \sigma_y^2 \end{pmatrix}$。
+考虑二维数据，协方差矩阵 $\mathbf{\Sigma} = \begin{pmatrix} \sigma_x^2 & \sigma_{xy} \\ \sigma_{xy} & \sigma_y^2 \end{pmatrix}$。
 
 数据分布的等密度椭圆（假设数据服从高斯分布）是：
 
 $$
-\mathbf{x}^T \mathbf{\Sigma}^{-1} \mathbf{x} = c
+\mathbf{x}\^{\top} \mathbf{\Sigma}^{-1} \mathbf{x} = c
 $$
 
 其中 $c$ 是常数。
