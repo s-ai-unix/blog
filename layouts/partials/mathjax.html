@@ -1,4 +1,4 @@
-{{ if or .Params.mathjax .Site.Params.mathjax }}
+{{ if or .Params.math .Params.mathjax .Site.Params.math .Site.Params.mathjax }}
 <script>
 // 修复 Goldmark 导致的双重转义问题，然后加载 MathJax
 (function() {
