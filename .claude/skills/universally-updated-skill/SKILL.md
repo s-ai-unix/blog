@@ -1,6 +1,6 @@
 ---
 name: universally-updated-skill
-description: "Skill synchronization tool for keeping skills in sync across multiple directories. Use when creating a new skill, updating an existing skill, listing available skills, or ensuring skill consistency across Claude Code, OpenCode, and Hugo Blog directories."
+description: "Skill synchronization tool for keeping skills in sync across multiple directories. Use when creating a new skill, updating an existing skill, listing available skills, or ensuring skill consistency across Claude Code, OpenCode, Hugo Blog, and Gemini directories."
 ---
 
 # universally-updated-skill
@@ -30,6 +30,7 @@ Skills are synchronized to these locations:
 | `~/.config/opencode/skill` | OpenCode (legacy path) |
 | `~/.config/opencode/skills` | OpenCode (new path) |
 | `/Users/sun1/Gitlab/Personal/Hugo_Blog/blog/.claude/skills` | Hugo Blog |
+| `~/.gemini/skills` | Gemini |
 
 ## Usage
 

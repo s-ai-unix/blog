@@ -10,6 +10,7 @@ TARGET_DIRS=(
     "$HOME/.config/opencode/skill"
     "$HOME/.config/opencode/skills"
     "/Users/sun1/Gitlab/Personal/Hugo_Blog/blog/.claude/skills"
+    "$HOME/.gemini/skills"
 )
 
 # Source directory (primary skills location)
@@ -183,6 +184,7 @@ Target directories:
     - ~/.config/opencode/skill
     - ~/.config/opencode/skills
     - ~/Gitlab/Personal/Hugo_Blog/blog/.claude/skills
+    - ~/.gemini/skills
 
 Examples:
     sync-skill.sh --list
