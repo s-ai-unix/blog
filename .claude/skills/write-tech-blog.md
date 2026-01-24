@@ -64,7 +64,254 @@
 
 ### 3. 配图与图表
 
-#### 3.1 Mermaid图表
+#### 3.1 数学图形（Python Plotly）
+
+> **核心要求（必须遵守）**：
+> - ✅ **所有数学函数图形（曲线、曲面、向量场等）使用 Python Plotly 绘制**
+> - ✅ **图形风格：简洁、专业、配色协调**
+> - ✅ **图片格式：导出为 PNG，保存到 `static/images/math/` 目录**
+> - ✅ **图片插入：在文章适当位置插入，添加描述性 alt 文本**
+
+**适用场景**：
+- 数学函数图像（一元/多元函数）
+- 几何图形（曲线、曲面）
+- 向量场可视化
+- 数据可视化（统计图表）
+- 物理现象模拟图
+- 其他需要展示数学关系或数据分布的图形
+
+**Plotly 图形设计原则**：
+
+1. **配色方案**：使用优雅、协调的配色
+   - 主色调：`#1f77b4`（蓝色）、`#ff7f0e`（橙色）、`#2ca02c`（绿色）
+   - 背景色：白色或浅灰 `#f8f9fa`
+   - 网格线：浅灰 `#e0e0e0`
+
+2. **图形样式**：
+   - 线条宽度：2-3px
+   - 字体：无衬线字体（Arial, Helvetica）
+   - 坐标轴标签：清晰、易读
+   - 图例：位置合理，不遮挡主要内容
+
+**常用图形类型代码模板**：
+
+**1. 一元函数曲线图**：
+```python
+import plotly.graph_objects as go
+import numpy as np
+
+# 生成数据
+x = np.linspace(-10, 10, 500)
+y = np.sin(x) / x  # 示例：sinc 函数
+
+# 创建图形
+fig = go.Figure()
+
+# 添加曲线
+fig.add_trace(go.Scatter(
+    x=x, y=y,
+    mode='lines',
+    line=dict(color='#1f77b4', width=3),
+    name='sinc(x)'
+))
+
+# 设置布局
+fig.update_layout(
+    title='Sinc 函数图像',
+    xaxis_title='x',
+    yaxis_title='sinc(x)',
+    template='plotly_white',
+    width=800,
+    height=500,
+    font=dict(size=14),
+    plot_bgcolor='white',
+    xaxis=dict(gridcolor='#e0e0e0', zerolinecolor='#333'),
+    yaxis=dict(gridcolor='#e0e0e0', zerolinecolor='#333')
+)
+
+# 保存图片
+fig.write_image('static/images/math/sinc-function.png', scale=2)
+```
+
+**2. 3D 曲面图**：
+```python
+import plotly.graph_objects as go
+import numpy as np
+
+# 生成网格数据
+x = np.linspace(-5, 5, 100)
+y = np.linspace(-5, 5, 100)
+X, Y = np.meshgrid(x, y)
+Z = np.sin(np.sqrt(X**2 + Y**2))  # 示例：二维 sinc 函数
+
+# 创建曲面图
+fig = go.Figure(data=[go.Surface(
+    x=X, y=Y, z=Z,
+    colorscale='Viridis',
+    colorbar=dict(title='z 值')
+)])
+
+# 设置布局
+fig.update_layout(
+    title='二维 Sinc 函数曲面',
+    scene=dict(
+        xaxis_title='x',
+        yaxis_title='y',
+        zaxis_title='z',
+    ),
+    width=800,
+    height=600,
+    font=dict(size=12)
+)
+
+# 保存图片
+fig.write_image('static/images/math/2d-sinc-surface.png', scale=2)
+```
+
+**3. 向量场图**：
+```python
+import plotly.graph_objects as go
+import numpy as np
+
+# 生成网格
+x, y = np.meshgrid(np.linspace(-3, 3, 20),
+                   np.linspace(-3, 3, 20))
+
+# 定义向量场 (示例：旋涡场)
+u = -y
+v = x
+
+# 创建向量场图
+fig = go.Figure(data=go.Scatter(
+    x=x.flatten(),
+    y=y.flatten(),
+    mode='markers',
+    marker=dict(size=5, color='#1f77b4')
+))
+
+# 添加向量箭头 (使用 quiver)
+fig.add_trace(go.Scatter(
+    x=x.flatten(),
+    y=y.flatten(),
+    mode='lines',
+    line=dict(color='#ff7f0e', width=1),
+    hoverinfo='none'
+))
+
+# 设置布局
+fig.update_layout(
+    title='旋涡向量场',
+    xaxis_title='x',
+    yaxis_title='y',
+    width=600,
+    height=600,
+    plot_bgcolor='white',
+    xaxis=dict(scaleanchor="y", scaleratio=1, gridcolor='#e0e0e0'),
+    yaxis=dict(scaleanchor="x", scaleratio=1, gridcolor='#e0e0e0')
+)
+
+# 保存图片
+fig.write_image('static/images/math/vector-field.png', scale=2)
+```
+
+**4. 参数方程曲线**：
+```python
+import plotly.graph_objects as go
+import numpy as np
+
+# 参数范围
+t = np.linspace(0, 2*np.pi, 500)
+
+# 参数方程 (示例：蝴蝶曲线)
+x = np.sin(t) * (np.exp(np.cos(t)) - 2*np.cos(4*t) - np.sin(t/12)**5)
+y = np.cos(t) * (np.exp(np.cos(t)) - 2*np.cos(4*t) - np.sin(t/12)**5)
+
+fig = go.Figure()
+
+fig.add_trace(go.Scatter(
+    x=x, y=y,
+    mode='lines',
+    line=dict(color='#ff7f0e', width=2),
+    fill='toself',
+    fillcolor='rgba(255, 127, 14, 0.2)',
+    name='蝴蝶曲线'
+))
+
+fig.update_layout(
+    title='蝴蝶曲线',
+    xaxis_title='x',
+    yaxis_title='y',
+    width=600,
+    height=600,
+    plot_bgcolor='white',
+    xaxis=dict(gridcolor='#e0e0e0', zerolinecolor='#333'),
+    yaxis=dict(gridcolor='#e0e0e0', zerolinecolor='#333')
+)
+
+fig.write_image('static/images/math/butterfly-curve.png', scale=2)
+```
+
+**5. 等高线图**：
+```python
+import plotly.graph_objects as go
+import numpy as np
+
+# 生成数据
+x = np.linspace(-3, 3, 100)
+y = np.linspace(-3, 3, 100)
+X, Y = np.meshgrid(x, y)
+Z = X**2 - Y**2  # 马鞍面
+
+fig = go.Figure(data=go.Contour(
+    x=x,
+    y=y,
+    z=Z,
+    colorscale='RdBu_r',
+    contours=dict(
+        start=-4,
+        end=4,
+        size=0.5
+    ),
+    colorbar=dict(title='z 值')
+))
+
+fig.update_layout(
+    title='马鞍面等高线图',
+    xaxis_title='x',
+    yaxis_title='y',
+    width=600,
+    height=500
+)
+
+fig.write_image('static/images/math/contour-plot.png', scale=2)
+```
+
+**图片保存和插入规范**：
+
+1. **文件命名**：使用描述性英文名，如 `sinc-function.png`、`gradient-descent-3d.png`
+2. **保存位置**：`static/images/math/[filename].png`
+3. **插入 Markdown**：
+   ```markdown
+   ![Sinc 函数图像](/images/math/sinc-function.png)
+
+   *图 1：Sinc 函数 sinc(x) = sin(x)/x 的图像*
+   ```
+
+**使用流程**：
+1. 根据数学概念选择合适的图形类型
+2. 使用上述模板编写 Python 代码
+3. 运行代码生成图片（需要安装 `plotly` 和 `kaleido`：`pip install plotly kaleido`）
+4. 检查图片质量（scale=2 保证高清）
+5. 在文章合适位置插入图片
+6. 添加描述性说明
+
+**注意事项**：
+- 图形应辅助理解，不应过于复杂
+- 坐标轴标签使用清晰的中文或数学符号
+- 图例说明要完整
+- 确保图片在高分辨率下清晰可读
+
+#### 3.2 Mermaid图表
 
 > **核心要求（必须遵守）**：
 > - ✅ **所有 mermaid 图必须使用苹果风格配色**
@@ -161,7 +408,7 @@ graph LR
 - 对比分析部分：在进行方法或标准对比时添加对比图
 - 风险分析部分：在讨论ASIL等级或风险矩阵时添加风险图
 
-#### 3.2 Unsplash图片
+#### 3.3 Unsplash封面图片
 
 **图片要求**：
 - 从 Unsplash 下载高质量的抽象/几何图片
@@ -420,7 +667,8 @@ cover:
 1. ✅ 文章内容完整，逻辑清晰
 2. ✅ 数学公式正确渲染
 3. ✅ 配图显示正常
-4. ✅ **所有 mermaid 图表使用苹果风格配色，文字清晰可见（白色）**
-5. ✅ 文章已提交到 git
-6. ✅ deploy.sh 执行成功
-7. ✅ 博客页面可以正常访问
+4. ✅ **数学图形使用 Plotly 绘制，图片清晰、配色协调**
+5. ✅ **所有 mermaid 图表使用苹果风格配色，文字清晰可见（白色）**
+6. ✅ 文章已提交到 git
+7. ✅ deploy.sh 执行成功
+8. ✅ 博客页面可以正常访问
