@@ -51,14 +51,14 @@ $$
 多元高斯分布的概率密度函数是：
 
 $$
-f(\mathbf{x} | \mathbf{\mu}, \mathbf{\Sigma}) = \frac{1}{(2\pi)^{d/2} |\mathbf{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2} (\mathbf{x} - \mathbf{\mu})^T \mathbf{\Sigma}^{-1} (\mathbf{x} - \mathbf{\mu})\right)
+f(\mathbf{x} | \mathbf{\mu}, \mathbf{\Sigma}) = \frac{1}{(2\pi)^{d/2} |\mathbf{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2} (\mathbf{x} - \mathbf{\mu})^\top \mathbf{\Sigma}^{-1} (\mathbf{x} - \mathbf{\mu})\right)
 $$
 
 这里需要解释几个符号：
 
 1. **行列式** $|\mathbf{\Sigma}|$：协方差矩阵的行列式
 2. **逆矩阵** $\mathbf{\Sigma}^{-1}$：协方差矩阵的逆矩阵
-3. **二次型** $(\mathbf{x} - \mathbf{\mu})^T \mathbf{\Sigma}^{-1} (\mathbf{x} - \mathbf{\mu})$：这给出了点 $\mathbf{x}$ 到均值 $\mathbf{\mu}$ 的"距离"
+3. **二次型** $(\mathbf{x} - \mathbf{\mu})^\top \mathbf{\Sigma}^{-1} (\mathbf{x} - \mathbf{\mu})$：这给出了点 $\mathbf{x}$ 到均值 $\mathbf{\mu}$ 的"距离"
 
 ### 协方差矩阵的意义
 
@@ -217,7 +217,7 @@ $$
 对 $\mathbf{\Sigma}_k$ 最大化 $Q$ 函数，我们得到：
 
 $$
-\mathbf{\Sigma}_k^{(t+1)} = \frac{\sum_{n=1}^{N} \gamma_{nk}^{(t)} (\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})(\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})^T}{\sum_{n=1}^{N} \gamma_{nk}^{(t)}}
+\mathbf{\Sigma}_k^{(t+1)} = \frac{\sum_{n=1}^{N} \gamma_{nk}^{(t)} (\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})(\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})^\top}{\sum_{n=1}^{N} \gamma_{nk}^{(t)}}
 $$
 
 直观上，新的协方差矩阵是加权样本协方差，权重是责任。
@@ -241,9 +241,7 @@ $$
 2. **M 步**：更新参数
    - $\pi_k^{(t+1)} = \frac{1}{N} \sum_{n=1}^{N} \gamma_{nk}^{(t)}$
    - $\mathbf{\mu}_k^{(t+1)} = \frac{\sum_{n=1}^{N} \gamma_{nk}^{(t)} \mathbf{x}_n}{\sum_{n=1}^{N} \gamma_{nk}^{(t)}}$
-   $$
-   \mathbf{\Sigma}_k^{(t+1)} = \frac{\sum_{n=1}^{N} \gamma_{nk}^{(t)} (\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})(\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})^T}{\sum_{n=1}^{N} \gamma_{nk}^{(t)}}
-   $$
+   - $\mathbf{\Sigma}_k^{(t+1)} = \frac{\sum_{n=1}^{N} \gamma_{nk}^{(t)} (\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})(\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})^\top}{\sum_{n=1}^{N} \gamma_{nk}^{(t)}}$
 
 3. **检查收敛**：如果参数变化很小或对数似然函数变化很小，停止迭代
 
