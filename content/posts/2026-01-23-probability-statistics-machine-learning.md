@@ -9,7 +9,6 @@ cover:
     image: "images/covers/prob-stat2.jpg"
     alt: "概率与统计的抽象可视化"
     caption: "不确定性中的确定性"
-math: true
 ---
 
 # 概率论与数理统计在机器学习中的应用

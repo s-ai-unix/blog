@@ -2,14 +2,13 @@
 title: "线性代数在机器学习中的应用"
 date: 2026-01-23T08:00:00+08:00
 draft: false
-description: "深入介绍线性代数的基本概念、理论体系及其在机器学习、深度学习中的核心应用"
+description: "深入介绍线性代数的基本概念���理论体系及其在机器学习、深度学习中的核心应用"
 categories: ["数学", "机器学习"]
 tags: ["线性代数", "机器学习", "深度学习", "数据分析", "神经网络"]
 cover:
     image: "images/covers/linear-algebra-ml.jpg"
     alt: "线性代数与机器学习的抽象可视化"
     caption: "数学与机器学习的交融"
-math: true
 ---
 
 # 线性代数在机器学习中的应用
