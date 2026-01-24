@@ -104,7 +104,7 @@ $$
 - $\pi_k$ 是混合系数（mixing coefficient），满足 $\sum_{k=1}^{K} \pi_k = 1$ 且 $\pi_k \geq 0$
 - $\mathbf{\mu}_k$ 是第 $k$ 个高斯分量的均值
 - $\mathbf{\Sigma}_k$ 是第 $k$ 个高斯分量的协方差矩阵
-- $\mathcal{N}(\mathbf{x} | \mathbf{\mu}_k, \mathbf{\mathbf{\Sigma}_k)$ 是均值为 $\mathbf{\mu}_k$、协方差矩阵为 $\mathbf{\Sigma}_k$ 的高斯分布
+- $\mathcal{N}(\mathbf{x} | \mathbf{\mu}_k, \mathbf{\Sigma}_k)$ 是均值为 $\mathbf{\mu}_k$、协方差矩阵为 $\mathbf{\Sigma}_k$ 的高斯分布
 
 ### 软聚类：责任（Responsibility）
 
@@ -113,7 +113,7 @@ $$
 后验概率（responsibility）$\gamma_{nk}$ 定义为：
 
 $$
-\gamma_{nk} = p(z_k = 1 | \mathbf{x}_n, \mathbf{\pi}, \mathbf{\mu}, \mathbf{\Sigma}) = \frac{\pi_k \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_k, \mathbf{\mathbf{\Sigma}}k)}{\sum_{j=1}^{K} \pi_j \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_j, \mathbf{\Sigma}_j)}
+\gamma_{nk} = p(z_k = 1 | \mathbf{x}_n, \mathbf{\pi}, \mathbf{\mu}, \mathbf{\Sigma}) = \frac{\pi_k \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_k, \mathbf{\Sigma}_k)}{\sum_{j=1}^{K} \pi_j \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_j, \mathbf{\Sigma}_j)}
 $$
 
 这个公式的解释是：给定数据点 $\mathbf{x}_n$，它来自第 $k$ 个高斯分量的后验概率，正比于第 $k$ 个高斯分量的先验概率 $\pi_k$ 乘以该高斯分量生成 $\mathbf{x}_n$ 的似然。
@@ -129,16 +129,16 @@ GMM 的完整模型包含：
    - 从 $\mathcal{N}(\mathbf{\mu}_z, \mathbf{\Sigma}_z)$ 中采样 $\mathbf{x}$
 
 2. **参数集**：
-   - $\mathbf{\pi} = (\pi_1, \pi_2, \ldots, pi_K)$：混合系数
+   - $\mathbf{\pi} = (\pi_1, \pi_2, \ldots, \pi_K)$：混合系数
    - $\mathbf{\mu} = (\mathbf{\mu}_1, \mathbf{\mu}_2, \ldots, \mathbf{\mu}_K)$：均值向量
-   - $\mathbf{\Sigma} = (\mathbf{\Sigma}_1, \mathbf{\Sigma}_2, \ldots, \mathbf{\mathbf{\Sigma}}_K)$：协方差矩阵
+   - $\mathbf{\Sigma} = (\mathbf{\Sigma}_1, \mathbf{\Sigma}_2, \ldots, \mathbf{\Sigma}_K)$：协方差矩阵
 
 3. **隐变量**：
    - $\mathbf{z}_1, \mathbf{z}_2, \ldots, \mathbf{z}_N$：每个数据点的分量归属
 
 ## EM 算法：从随机到最优的优雅迭代
 
-现在，我们面临一个关键问题：给定数据集 $\{\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_N\}$，如何估计 GMM 的参数 $\mathbf{\pi}, \mathbf{\mu}, \mathbf{\mathbf{\Sigma}}$？
+现在，我们面临一个关键问题：给定数据集 $\{\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_N\}$，如何估计 GMM 的参数 $\mathbf{\pi}, \mathbf{\mu}, \mathbf{\Sigma}$？
 
 这是一个经典的含有隐变量的参数估计问题。直接使用最大似然估计会得到一个极其复杂的优化问题，无法解析求解。
 
@@ -151,7 +151,7 @@ EM 算法提供了一种优雅的解决方案：通过迭代地优化下界来�
 完全数据（观测+隐变量）的对数似然函数是：
 
 $$
-\mathcal{L}_c(\mathbf{\pi}, \mathbf{\mu}, \mathbf{\mathbf{\Sigma}} | \mathbf{X}, \mathbf{Z}) = \sum_{n=1}^{N} \sum_{k=1}^{K} z_{nk} \left[\log \pi_k + \log \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_k, \mathbf{\mathbf{\Sigma}}_k)\right]
+\mathcal{L}_c(\mathbf{\pi}, \mathbf{\mu}, \mathbf{\Sigma} | \mathbf{X}, \mathbf{Z}) = \sum_{n=1}^{N} \sum_{k=1}^{K} z_{nk} \left[\log \pi_k + \log \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_k, \mathbf{\Sigma}_k)\right]
 $$
 
 但 $\mathbf{Z}$ 是未知的，我们无法直接优化 $\mathcal{L}_c$。EM 算法的思路是：在给定当前参数的条件下，计算隐变量的后验期望，然后用这个期望来更新参数。
@@ -162,7 +162,7 @@ $$
 Q(\mathbf{\theta}, \mathbf{\theta}^{\text{old}}) = E_{\mathbf{Z}|\mathbf{X}, \mathbf{\theta}^{\text{old}}}[\log p(\mathbf{X}, \mathbf{Z} | \mathbf{\theta})]
 $$
 
-其中 $\mathbf{\theta} = (\mathbf{\pi}, \mathbf{\mu}, \mathbf{\mathbf{\Sigma}})$ 是所有参数。
+其中 $\mathbf{\theta} = (\mathbf{\pi}, \mathbf{\mu}, \mathbf{\Sigma})$ 是所有参数。
 
 EM 算法的核心保证是：$Q$ 函数的增加意味着对数似然函数的增加（或至少不减少）。
 
@@ -171,13 +171,13 @@ EM 算法的核心保证是：$Q$ 函数的增加意味着对数似然函数的�
 给定当前参数 $\mathbf{\theta}^{\text{old}}$，计算后验概率 $\gamma_{nk}^{(t)}$：
 
 $$
-\gamma_{nk}^{(t)} = \frac{\pi_k^{(t)} \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_k^{(t)}, \mathbf{\mathbf{\Sigma}}_k^{(t)})}{\sum_{j=1}^{K} \pi_j^{(t)} \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_j^{(t)}, \mathbf{\mathbf{\Sigma}}_j^{(t)})}
+\gamma_{nk}^{(t)} = \frac{\pi_k^{(t)} \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_k^{(t)}, \mathbf{\Sigma}_k^{(t)})}{\sum_{j=1}^{K} \pi_j^{(t)} \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_j^{(t)}, \mathbf{\Sigma}_j^{(t)})}
 $$
 
 然后，计算 $Q$ 函数的期望。经过一些代数运算（这里我们略去繁琐的推导），$Q$ 函数可以写成：
 
 $$
-Q(\mathbf{\theta}, \mathbf{\theta}^{(t)}) = \sum_{n=1}^{N} \sum_{k=1}^{K} \gamma_{nk}^{(t)} \left[\log \pi_k + \log \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_k, \mathbf{\mathbf{\Sigma}}_k)\right]
+Q(\mathbf{\theta}, \mathbf{\theta}^{(t)}) = \sum_{n=1}^{N} \sum_{k=1}^{K} \gamma_{nk}^{(t)} \left[\log \pi_k + \log \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_k, \mathbf{\Sigma}_k)\right]
 $$
 
 ### M 步：最大化 $Q$ 函数
@@ -186,18 +186,18 @@ $$
 
 #### 1. 更新混合系数 $\pi_k$
 
-对 $\pi_k$ 最大化 $Q$ 函数，带有约束 $\sum_{k=1}^{K} pi_k = 1$ 和 $pi_k \geq 0$。
+对 $\pi_k$ 最大化 $Q$ 函数，带有约束 $\sum_{k=1}^{K} \pi_k = 1$ 和 $\pi_k \geq 0$。
 
 使用拉格朗日乘数法：
 
 $$
-\frac{\partial}{\partial pi_k} \left[Q + \lambda \left(\sum_{j=1}^{K} pi_j - 1\right)\right] = \sum_{n=1}^{N} \frac{\gamma_{nk}^{(t)}}{pi_k} + \lambda = 0
+\frac{\partial}{\partial \pi_k} \left[Q + \lambda \left(\sum_{j=1}^{K} \pi_j - 1\right)\right] = \sum_{n=1}^{N} \frac{\gamma_{nk}^{(t)}}{\pi_k} + \lambda = 0
 $$
 
 解得：
 
 $$
-pi_k^{(t+1)} = \frac{1}{N} \sum_{n=1}^{N} \gamma_{nk}^{(t)}
+\pi_k^{(t+1)} = \frac{1}{N} \sum_{n=1}^{N} \gamma_{nk}^{(t)}
 $$
 
 直观上，新的混合系数是所有数据点对第 $k$ 个分量的平均责任。
@@ -212,12 +212,12 @@ $$
 
 直观上，新的均值是所有数据点的加权平均，权重是数据点对该分量的责任。
 
-#### 3. 更新协方差矩阵 $\mathbf{\mathbf{\Sigma}}_k$
+#### 3. 更新协方差矩阵 $\mathbf{\Sigma}_k$
 
-对 $\mathbf{\mathbf{\Sigma}}_k$ 最大化 $Q$ 函数，我们得到：
+对 $\mathbf{\Sigma}_k$ 最大化 $Q$ 函数，我们得到：
 
 $$
-\mathbf{\mathbf{\Sigma}}_k^{(t+1)} = \frac{\sum_{n=1}^{N} \gamma_{nk}^{(t)} (\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})(\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})^T}{\sum_{n=1}^{N} \gamma_{nk}^{(t)}}
+\mathbf{\Sigma}_k^{(t+1)} = \frac{\sum_{n=1}^{N} \gamma_{nk}^{(t)} (\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})(\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})^T}{\sum_{n=1}^{N} \gamma_{nk}^{(t)}}
 $$
 
 直观上，新的协方差矩阵是加权样本协方差，权重是责任。
@@ -227,7 +227,7 @@ $$
 综合起来，EM 算法的流程是：
 
 **初始化**：
-1. 随机初始化参数 $\mathbf{\mu}^{(0)}, \mathbf{\mathbf{\Sigma}}^{(0)}, \mathbf{\pi}^{(0)}$
+1. 随机初始化参数 $\mathbf{\mu}^{(0)}, \mathbf{\Sigma}^{(0)}, \mathbf{\pi}^{(0)}$
    - 或使用 K-means++ 进行更好的初始化
 
 **迭代**：
@@ -235,13 +235,13 @@ $$
 
 1. **E 步**：计算后验责任
    $$
-   \gamma_{nk}^{(t)} = \frac{\pi_k^{(t)} \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_k^{(t)}, \mathbf{\mathbf{\Sigma}}_k^{(t)})}{\sum_{j=1}^{K} \pi_j^{(t)} \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_j^{(t)}, \mathbf{\mathbf{\mathbf{\Sigma}}_j^{(t)})}
+   \gamma_{nk}^{(t)} = \frac{\pi_k^{(t)} \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_k^{(t)}, \mathbf{\Sigma}_k^{(t)})}{\sum_{j=1}^{K} \pi_j^{(t)} \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_j^{(t)}, \mathbf{\Sigma}_j^{(t)})}
    $$
 
 2. **M 步**：更新参数
-   - $pi_k^{(t+1)} = \frac{1}{N} \sum_{n=1}^{N} \gamma_{nk}^{(t)}$
+   - $\pi_k^{(t+1)} = \frac{1}{N} \sum_{n=1}^{N} \gamma_{nk}^{(t)}$
    - $\mathbf{\mu}_k^{(t+1)} = \frac{\sum_{n=1}^{N} \gamma_{nk}^{(t)} \mathbf{x}_n}{\sum_{n=1}^{N} \gamma_{nk}^{(t)}}$
-   - $\mathbf{\mathbf{\Sigma}}_k^{(t+1)} = \frac{\sum_{n=1}^{N} \gamma_{nk}^{(t)} (\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})(\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})^T}{\sum_{n=1}^{N} \gamma_{nk}^{(t)}}$
+   - $\mathbf{\Sigma}_k^{(t+1)} = \frac{\sum_{n=1}^{N} \gamma_{nk}^{(t)} (\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})(\mathbf{x}_n - \mathbf{\mu}_k^{(t+1)})^T}{\sum_{n=1}^{N} \gamma_{nk}^{(t)}}$
 
 3. **检查收敛**：如果参数变化很小或对数似然函数变化很小，停止迭代
 
@@ -316,7 +316,7 @@ EM 算法的一个关键问题是对数似然函数可能有多个局部最大�
 最简单的方法是随机初始化：
 - 随机选择 $K$ 个数据点作为初始均值
 - 将协方差矩阵初始化为单位矩阵
-- 混合系数初始化为 $pi_k = 1/K$
+- 混合系数初始化为 $\pi_k = 1/K$
 
 这种方法简单但可能收敛到次优解。
 
@@ -351,7 +351,7 @@ GMM 可以用于异常检测：如果一个数据点对所有高斯分量都有�
 
 **方法**：
 1. 用正常数据训练 GMM
-2. 计算新数据点的似然 $p(\mathbf{x}) = \sum_{k=1}^{K} \pi_k \mathcal{N}(\mathbf{x} | \mathbf{\mu}_k, \mathbf{\mathbf{\Sigma}}_k)$
+2. 计算新数据点的似然 $p(\mathbf{x}) = \sum_{k=1}^{K} \pi_k \mathcal{N}(\mathbf{x} | \mathbf{\mu}_k, \mathbf{\Sigma}_k)$
 3. 如果 $p(\mathbf{x}) < \text{threshold}$，标记为异常
 
 这在金融欺诈检测、网络入侵检测等领域有广泛应用。
