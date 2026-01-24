@@ -18,6 +18,7 @@
       var fixed = false;
 
       // 修复下划线问题: $h_<em>t</em>$ -> $h_t$
+      // Case 1: 完整的 <em>...</em> 在公式内
       if (html.indexOf('<em>') !== -1) {
         var newHtml = html.replace(
           /\$([^$]*?)<em>([^<]+?)<\/em>([^$]*?)\$/g,
@@ -33,6 +34,40 @@
           function(match, before, sub, after) {
             return '$$' + before + '_' + sub + after + '$$';
           }
+        );
+        if (newHtml !== html) {
+          html = newHtml;
+          fixed = true;
+        }
+      }
+
+      // Case 2: 处理跨边界的 <em> 标签
+      // 修复: $...\sum</em>{i=1}$ -> $...\sum_{i=1}$
+      if (html.indexOf('</em>') !== -1) {
+        var newHtml = html.replace(
+          /\$([^$]*?)<\/em>([^$]*?)\$/g,
+          function(match, before, after) {
+            return '$' + before + '_{' + after + '$';
+          }
+        );
+        newHtml = newHtml.replace(
+          /\$\$([^$]*?)<\/em>([^$]*?)\$\$/g,
+          function(match, before, after) {
+            return '$$' + before + '_{' + after + '$$';
+          }
+        );
+        if (newHtml !== html) {
+          html = newHtml;
+          fixed = true;
+        }
+      }
+
+      // Case 3: 修复公式开头的 <em> 标签
+      // 修复: <em>$...$ -> $...$
+      if (html.indexOf('<em>$') !== -1) {
+        var newHtml = html.replace(
+          /<em>\$/g,
+          '$'
         );
         if (newHtml !== html) {
           html = newHtml;
