@@ -1,6 +1,6 @@
 ---
 title: "Ricci Flow - A Comprehensive Review"
-date: 2024-12-31T08:00:00+08:00
+date: 2026-01-22T08:00:00+08:00
 draft: false
 description: "深入介绍 Ricci 流的基本概念、数学推导、历史发展及其在微分几何和理论物理中的重要应用"
 categories: ["数学", "微分几何"]
