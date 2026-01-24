@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (language === 'mermaid' ||
         code.startsWith('flowchart') ||
         code.startsWith('graph') ||
-        code.startsWith('gitgraph')) {
+        code.startsWith('gitgraph') ||
+        code.startsWith('graph TD') ||
+        code.startsWith('graph LR')) {
 
       // 创建mermaid div
       const mermaidDiv = document.createElement('div');

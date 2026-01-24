@@ -80,7 +80,7 @@ $$\hat{y} = \arg\max_{c_k} P(\mathbf{x}|c_k) P(c_k)$$
 这个公式的物理直觉非常清晰：我们将"先验信息"（类别的普遍性）与"观测到的证据"（特征在各类别中的可能性）结合起来，做出最优决策。
 
 ```mermaid
-flowchart TD
+graph TD
     subgraph Training["训练阶段"]
         A["训练数据集"] --> B["估计先验概率 P(c_k)"]
         A --> C["估计条件概率 P(x_i|c_k)"]

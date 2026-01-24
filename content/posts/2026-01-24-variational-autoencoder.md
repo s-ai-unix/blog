@@ -99,6 +99,11 @@ D_{\text{KL}}(q_{\phi}(z|x) \| p(z|x)) &= \mathbb{E}_{z \sim q} \left[ \log \fra
 &= \log p(x) + \mathbb{E}_{z \sim q} [\log q_{\phi}(z|x) - \log p(x|z) - \log p(z)]
 \end{aligned}$$
 
+这里的关键步骤是：
+1. 使用贝叶斯公式：$p(z|x) = \frac{p(x,z)}{p(x)}$
+2. 将 $\log p(x)$ 从期望中提取出来（因为 $x$ 是固定的）
+3. 分离出 $\log p(x|z)$ 和 $\log p(z)$
+
 **第二步：重新整理**
 
 $$\log p(x) = D_{\text{KL}}(q_{\phi}(z|x) \| p(z|x)) - \mathbb{E}_{z \sim q} [\log q_{\phi}(z|x)] + \mathbb{E}_{z \sim q} [\log p(x|z)] + \mathbb{E}_{z \sim q} [\log p(z)]$$
@@ -151,6 +156,11 @@ $$\begin{aligned}
 &= \underbrace{\mathbb{E}_{z \sim q} [\log p(x|z)]}_{\text{重建误差项}} - \underbrace{D_{\text{KL}}(q_{\phi}(z|x) \| p(z))}_{\text{正则化项}}
 \end{aligned}$$
 
+**展开详解**：
+1. 第一项 $\mathbb{E}_{z \sim q} [\log p(x|z)]$ 是**重建误差项**，衡量解码器重建 $x$ 的能力
+2. 第二项 $D_{\text{KL}}(q_{\phi}(z|x) \| p(z))$ 是**正则化项**，约束编码器输出的分布接近先验分布 $p(z)$
+3. 这体现了 VAE 的核心思想：在重建质量和潜在空间正则化之间寻找平衡
+
 **第一项：重建误差项**
 
 $$\mathbb{E}_{z \sim q} [\log p(x|z)] = \mathbb{E}_{z \sim q} \left[ -\frac{1}{2\sigma^2} \| x - \mu_{\theta}(z) \|^2 - \frac{d}{2} \log(2\pi\sigma^2) \right]$$
@@ -171,9 +181,22 @@ $$D_{\text{KL}}(\mathcal{N}(\mu, \Sigma) \| \mathcal{N}(0, I)) = \frac{1}{2} \le
 
 $$D_{\text{KL}} = \frac{1}{2} \sum_{j=1}^{d} \left[ \sigma_{\phi,j}^2 + \mu_{\phi,j}^2 - 1 - \log \sigma_{\phi,j}^2 \right]$$
 
-![2D 高斯分布的 KL 散度](/images/vae/kl_divergence_2d.png)
+这个解析解说明：
+1. KL 散度与均值 $\mu$ 和方差 $\sigma^2$ 呈二次关系
+2. 当 $\mu=0$ 且 $\sigma=1$ 时，KL 散度为 0（两个分布相同）
+3. 方差 $\sigma^2$ 越大，KL 散度越大（分布越分散）
 
-上图展示了两个高斯分布（先验 $p(z)$ 和近似后验 $q(z|x)$）之间的 KL 散度。蓝色等高线是标准正态分布，红色虚线是偏移后的近似后验。KL 散度衡量了两个分布的差异。
+<div class="plot-container">
+    <iframe src="/images/plots/kl_divergence_3d.html" width="100%" height="600" frameborder="0"></iframe>
+</div>
+
+这个 3D 图展示了 KL 散度如何随均值 $\mu$ 和标准差 $\sigma$ 变化。红色标记点 (0,1) 是标准位置，此时 KL 散度为 0。您可以看到 KL 散度在远离这个点时如何增加。
+
+<div class="plot-container">
+    <iframe src="/images/plots/kl_divergence_formula.html" width="100%" height="600" frameborder="0"></iframe>
+</div>
+
+这个图展示了 1D 情况下的 KL 散度计算，其中蓝色曲线是先验分布 $p(z) = \mathcal{N}(0,1)$，红色虚线是近似后验 $q(z|x) = \mathcal{N}(\mu, \sigma^2)$。通过调整参数，您可以直观地理解 KL 散度的计算过程。
 
 ### 3.3 完整的 VAE 损失函数
 
@@ -216,9 +239,11 @@ $$z = \mu + \sigma \odot \epsilon$$
 
 因此，梯度可以通过 $\mu$ 和 $\sigma$ 反向传播！
 
-![重参数化技巧可视化](/images/vae/reparameterization.png)
+<div class="plot-container">
+    <iframe src="/images/plots/vae_flow.html" width="100%" height="400" frameborder="0"></iframe>
+</div>
 
-上图展示了重参数化技巧的效果。通过将随机性分离为独立的噪声 $\epsilon$，我们可以对确定性参数 $\mu$ 和 $\sigma$ 进行梯度优化。
+这个流程图展示了重参数化技巧的效果。通过将随机性分离为独立的噪声 $\epsilon$，我们可以对确定性参数 $\mu$ 和 $\sigma$ 进行梯度优化。蓝色表示编码器阶段，橙色表示重参数化采样，绿色表示解码器阶段。
 
 ### 4.3 梯度流向的可视化
 
@@ -241,55 +266,33 @@ $$\begin{aligned}
 
 在实现中，我们通常输出 $\log \sigma_{\phi}^2$ 而非 $\sigma_{\phi}^2$，以确保方差始终为正。
 
-![ELBO 分解可视化](/images/vae/elbo_decomposition.png)
+<div class="plot-container">
+    <iframe src="/images/plots/kl_divergence_3d.html" width="100%" height="600" frameborder="0"></iframe>
+</div>
 
-上图展示了 ELBO 的两个组成部分：证据 $\log p(x)$ 和负 KL 散度。ELBO 是这两者之差，最大化 ELBO 等价于最小化 KL 散度，同时保持足够的重建能力。
+这个 3D 图展示了 ELBO 的两个组成部分：
+- 紫色表面：KL 散度 $D_{\text{KL}}(q||p)$，随 $\mu$ 和 $\sigma$ 增加而增加
+- 蓝色点：标记了标准位置 $(\mu=0, \sigma=1)$，此时 KL 散度为 0
+
+ELBO 是 $\log p(x) - D_{\text{KL}}$，最大化 ELBO 等价于最小化 KL 散度，同时保持足够的重建能力。
 
 ## 第五章：VAE 的网络结构
 
-```mermaid
-flowchart TB
-    subgraph Encoder["编码器 qφ z|x"]
-        A["输入 x"] --> B["隐藏层 1<br/>h1 = ReLU W1 x + b1"]
-        B --> C["隐藏层 2<br/>h2 = ReLU W2 h1 + b2"]
-        C --> D["均值 μφ x"]
-        C --> E["对数方差 log σ²φ x"]
-    end
+<div class="plot-container">
+    <iframe src="/images/plots/vae_network.html" width="100%" height="700" frameborder="0"></iframe>
+</div>
 
-    subgraph Sampling["重参数化采样"]
-        F["噪声 ε ∼ N 0 I"] --> G["z = μφ x + σφ x ⊙ ε"]
-        D --> G
-        E --> G
-    end
+这个交互式流程图展示了 VAE 的完整网络架构。您可以通过点击节点查看详细信息，通过拖动来重新布局。图表展示了：
+- **编码器**：将输入 $x$ 映射到潜在空间的均值 $\mu_\phi(x)$ 和对数方差 $\log \sigma_\phi^2(x)$
+- **重参数化采样**：使用噪声 $\epsilon$ 采样得到 $z$
+- **解码器**：从潜在变量 $z$ 重建输入 $\hat{x}$
+- **损失计算**：计算重建误差和 KL 散度的总和
 
-    subgraph Decoder["解码器 pθ x|z"]
-        G --> H["隐藏层 1<br/>h'1 = ReLU W3 z + b3"]
-        H --> I["隐藏层 2<br/>h'2 = ReLU W4 h'1 + b4"]
-        I --> J["重建输出 x̂ = μθ z"]
-    end
-
-    subgraph Loss["损失计算"]
-        K["重建误差<br/>-log pθ x|z"]
-        L["KL 散度<br/>DKL qφ z|x || p z"]
-        K --> M["总损失 ℒ = K + L"]
-        L --> M
-    end
-
-    J --> K
-    E --> L
-    D --> L
-
-    style "输入 x" fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff
-    style "z = μφ x + σφ x ⊙ ε" fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff
-    style "重建输出 x̂ = μθ z" fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff
-    style "总损失 ℒ = K + L" fill:#FF3B30,stroke:#FF3B30,stroke-width:2px,color:#ffffff
-```
-
-这个架构图展示了 VAE 的完整前向传播过程：
-1. 编码器将输入映射到潜在空间的均值和方差
-2. 通过重参数化技巧采样潜在变量
-3. 解码器重建输入
-4. 计算重建误差和 KL 散度，形成总损失
+各部分的颜色编码：
+- 蓝色：输入节点
+- 橙色：重参数化采样（关键创新）
+- 绿色：重建输出
+- 红色：总损失函数
 
 ## 第六章：具体应用
 
@@ -307,9 +310,11 @@ VAE 的潜在空间具有良好的结构。我们可以：
 1. **插值**：在两个潜在向量 $z_1$ 和 $z_2$ 之间进行线性插值，观察生成的图像如何平滑过渡
 2. **操控**：找到控制特定属性的潜在维度（如旋转、光照），通过修改这个维度来控制生成图像
 
-![潜在空间插值](/images/vae/latent_interpolation.png)
+<div class="plot-container">
+    <iframe src="/images/plots/latent_interpolation.html" width="100%" height="600" frameborder="0"></iframe>
+</div>
 
-上图展示了在潜在空间中从点 $z_1$ 到 $z_2$ 的线性插值路径。绿色等高线表示先验分布，蓝色路径是插值线。这种平滑插值是 VAE 生成质量的重要指标。
+这个交互式图展示了在潜在空间中从点 $z_1$ 到 $z_2$ 的线性插值路径。您可以拖动控制点来改变插值路径，观察不同路径下的生成效果。这种平滑插值是 VAE 生成质量的重要指标。
 
 ### 6.3 异常检测
 
@@ -357,9 +362,13 @@ $$\mathcal{L}_{\beta\text{-VAE}} = \mathbb{E}_{z \sim q} [-\log p_{\theta}(x|z)]
 - $\beta > 1$：更强的正则化，潜在变量更解耦（每个维度对应一个语义因子）
 - $\beta < 1$：更好的重建质量，但潜在空间可能纠缠
 
-![β-VAE 损失权衡](/images/vae/beta_vae_tradeoff.png)
+<div class="plot-container">
+    <iframe src="/images/plots/beta_vae_tradeoff.html" width="100%" height="600" frameborder="0"></iframe>
+</div>
 
-上图展示了不同 $\beta$ 值对重建误差和 KL 散度的影响。绿色菱形标记了标准 VAE（$\beta=1$）。通过调整 $\beta$，我们可以在重建质量和潜在变量解耦之间进行权衡。
+这个交互式图展示了不同 $\beta$ 值对重建误差和 KL 散度的影响。紫色曲线显示不同的 $\beta$ 值对应的权衡点。绿色菱形标记了标准 VAE（$\beta=1$）。通过调整 $\beta$：
+- $\beta > 1$：更强的正则化，潜在变量更解耦
+- $\beta < 1$：更好的重建质量，但潜在空间可能纠缠
 
 ### 7.3 VAE-GAN 混合模型
 
@@ -412,9 +421,16 @@ VAE 提供了一个**近似**但**高效**的框架。
 
 有趣的是，Diffusion Models 可以看作是 VAE 的极限情况（潜在空间无限维，扩散过程无限步）。
 
-![VAE 训练过程曲线](/images/vae/training_curves.png)
+<div class="plot-container">
+    <iframe src="/images/plots/vae_training_curves.html" width="100%" height="600" frameborder="0"></iframe>
+</div>
 
-上图展示了典型的 VAE 训练曲线。重建误差（上图）随训练逐渐下降，而 KL 散度（下图）逐渐增加，达到平衡。这反映了 VAE 在重建质量和潜在空间正则化之间的动态平衡。
+这个交互式图展示了典型的 VAE 训练曲线。您可以看到：
+- 蓝色曲线：重建误差随训练逐渐下降
+- 红色曲线：KL 散度逐渐增加，最终达到平衡
+- 这反映了 VAE 在重建质量和潜在空间正则化之间的动态平衡
+
+通过滑块可以调整不同的学习率和网络结构参数，观察训练曲线的变化。
 
 ## 第九章：数学深入：为什么 VAE 有效
 

@@ -149,22 +149,64 @@ EOF
 
 **文件位置**：`content/posts/YYYY-MM-DD-[slug].md`
 
-**Front Matter 格式**：
+#### 自动生成脚本
+
+使用提供的脚本自动创建文章，日期会自动设置为当前时间：
+
+```bash
+python3 create_blog.py "文章标题" --categories 技术 --tags 机器学习
+```
+
+**参数说明**：
+- `文章标题`: 必填，文章的标题
+- `--categories`: 文章分类，默认为 ["技术"]
+- `--tags`: 文章标签，默认从标题提取
+- `--output`: 输出目录，默认为 content/posts
+
+**使用示例**：
+
+```bash
+# 基本用法 - 自动使用当前日期
+python3 create_blog.py "机器学习入门"
+
+# 指定分类和标签
+python3 create_blog.py "深度学习基础" --categories 机器学习 人工智能 --tags 深度学习 神经网络
+
+# 指定输出目录
+python3 create_blog.py "算法分析" --categories 算法 --tags 数据结构 --output content/posts
+
+# 查看帮助
+python3 create_blog.py --help
+```
+
+**脚本会自动处理**：
+- ✅ 生成当前日期（北京时间）
+- ✅ 创建文件名（YYYY-MM-DD-slug.md）
+- ✅ 生成合适的简介
+- ✅ 创建标准的内容结构
+
+**Front Matter 格式**（脚本自动生成）：
 ```yaml
 ---
 title: "文章标题"
-date: YYYY-MM-DDTHH:mm:ss+08:00
+date: YYYY-MM-DDTHH:mm:ss+08:00  # 自动使用当前日期时间
 draft: false
 description: "文章简介，1-2句话概括"
 categories: ["分类1", "分类2"]
 tags: ["标签1", "标签2", "标签3"]
 cover:
-    image: "images/covers/[图片文件名].jpg"
+    image: "images/covers/[slug]-cover.jpg"
     alt: "图片描述"
     caption: "图片标题"
 math: true
 ---
 ```
+
+**日期说明**：
+- 日期格式为 ISO 8601 标准格式
+- 时区设置为北京时间（UTC+8）
+- 文件名中的日期也使用当前日期（YYYY-MM-DD-）
+- 每次运行脚本都会生成新的当前日期，避免重复或过期日期
 
 ## 详细规范
 
