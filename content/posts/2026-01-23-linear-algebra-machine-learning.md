@@ -26,16 +26,21 @@ cover:
 线性代数的核心研究对象是向量空间。直观地说，向量空间是一个包含向量的集合，这些向量可以进行加法和标量乘法运算。
 
 **定义**：设 $V$ 是一个非空集合，如果 $V$ 上的加法和标量乘法满足以下八条公理，则称 $V$ 是一个向量空间：
-1. 加法交换律：$\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$
-2. 加法结合律：$(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})$
-3. 零向量存在：存在 $\mathbf{0} \in V$ 使得 $\mathbf{v} + \mathbf{0} = \mathbf{v}$
-4. 负向量存在：对于每个 $\mathbf{v} \in V$，存在 $-\mathbf{v} \in V$ 使得 $\mathbf{v} + (-\mathbf{v}) = \mathbf{0}$
-5-8. 标量乘法的相关公理
+
+1. **加法交换律**：$\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$
+2. **加法结合律**：$(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})$
+3. **零向量存在**：存在 $\mathbf{0} \in V$ 使得 $\mathbf{v} + \mathbf{0} = \mathbf{v}$
+4. **负向量存在**：对于每个 $\mathbf{v} \in V$，存在 $-\mathbf{v} \in V$ 使得 $\mathbf{v} + (-\mathbf{v}) = \mathbf{0}$
+5. **标量乘法单位元**：$1 \cdot \mathbf{v} = \mathbf{v}$
+6. **标量乘法结合律**：$a(b\mathbf{v}) = (ab)\mathbf{v}$
+7. **标量乘法分配律1**：$a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}$
+8. **标量乘法分配律2**：$(a + b)\mathbf{v} = a\mathbf{v} + b\mathbf{v}$
 
 **例子**：
+
 - $\mathbb{R}^n$ 是最熟悉的向量空间，其中的向量是 $n$ 维实数向量
-- 函数空间：所有实值函数的集合构成向量空间
-- 矩阵集合：所有 $m \times n$ 矩阵构成向量空间
+- **函数空间**：所有实值函数的集合构成向量空间
+- **矩阵集合**：所有 $m \times n$ 矩阵构成向量空间
 
 ### 1.2 矩阵与线性变换
 
@@ -111,10 +116,12 @@ $$
 内积空间是带有"长度"和"角度"概念的向量空间。
 
 **内积定义**：
-对于向量 $\mathbf{u}, \mathbf{v} \in V$，内积 $\langle \mathbf{u}, \mathbf{v} \rangle$ 满足：
-1. 对称性：$\langle \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{v}, \mathbf{u} \rangle$
-2. 线性性：$\langle a\mathbf{u} + b\mathbf{v}, \mathbf{w} \rangle = a\langle \mathbf{u}, \mathbf{w} \rangle + b\langle \mathbf{v}, \mathbf{w} \rangle$
-3. 正定性：$\langle \mathbf{v}, \mathbf{v} \rangle \geq 0$，且等号仅在 $\mathbf{v} = \mathbf{0}$ 时成立
+
+对于向量 $\mathbf{u}, \mathbf{v} \in V$，内积 $\langle \mathbf{u}, \mathbf{v} \rangle$ 满足以下三条公理：
+
+1. **对称性**：$\langle \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{v}, \mathbf{u} \rangle$
+2. **线性性**：$\langle a\mathbf{u} + b\mathbf{v}, \mathbf{w} \rangle = a\langle \mathbf{u}, \mathbf{w} \rangle + b\langle \mathbf{v}, \mathbf{w} \rangle$
+3. **正定性**：$\langle \mathbf{v}, \mathbf{v} \rangle \geq 0$，且等号仅在 $\mathbf{v} = \mathbf{0}$ 时成立
 
 **范数**：$\|\mathbf{v}\| = \sqrt{\langle \mathbf{v}, \mathbf{v} \rangle}$
 
@@ -125,10 +132,12 @@ $$
 谱定理是线性代数中最优美的结果之一，它告诉我们对称矩阵可以被完美地"对角化"。
 
 **实对称矩阵的谱定理**：
+
 如果 $A$ 是实对称矩阵，那么：
-1. $A$ 的所有特征值都是实数
-2. 存在正交矩阵 $Q$ 使得 $Q^{\top} A Q = D$，其中 $D$ 是对角矩阵
-3. $A$ 的特征向量可以构成 $\mathbb{R}^n$ 的一组正交基
+
+1. **特征值都是实数**：$A$ 的所有特征值都是实数
+2. **可以对角化**：存在正交矩阵 $Q$ 使得 $Q^\top A Q = D$，其中 $D$ 是对角矩阵
+3. **正交特征向量**：$A$ 的特征向量可以构成 $\mathbb{R}^n$ 的一组正交基
 
 **几何解释**：
 谱定理告诉我们，任何对称变换都可以分解为一系列独立的伸缩变换，沿着互相垂直的方向进行。
@@ -262,10 +271,12 @@ $$
 SVM 是一个强大的分类算法，其核心思想是寻找一个最优的超平面来分离不同类别的数据。
 
 **线性可分情况**：
+
 寻找超平面 $\mathbf{w}^{\top} \mathbf{x} + b = 0$，使得：
-1. 对所有正例：$\mathbf{w}^{\top} \mathbf{x}_i + b \geq 1$
-2. 对所有负例：$\mathbf{w}^{\top} \mathbf{x}_i + b \leq -1$
-3. 最大化间隔：$\frac{2}{\|\mathbf{w}\|}$
+
+1. **正例约束**：对所有正例，$\mathbf{w}^{\top} \mathbf{x}_i + b \geq 1$
+2. **负例约束**：对所有负例，$\mathbf{w}^{\top} \mathbf{x}_i + b \leq -1$
+3. **最大化间隔**：$\frac{2}{\|\mathbf{w}\|}$
 
 **对偶问题**：
 使用拉格朗日乘子法，将原始问题转化为对偶问题：
