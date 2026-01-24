@@ -76,16 +76,17 @@
       }
 
       // 修复双重转义: \\ -> \
-      // 只在数学公式内修复，避免破坏LaTeX命��
+      // 只在数学公式内修复，避免破坏LaTeX命令
       if (html.indexOf('\\\\') !== -1) {
         // 只在 $...$ 或 $$...$$ 内部替换 \\...\
         var newHtml = html.replace(
           /(\$\{1,2\})([^$]*?)(\$\{1,2\})/g,
           function(match, open, content, close) {
-            // 在公式内容中将 \\ 替换为 \
-            return open + content.replace(/\\\\(.)/g, function(m, c) {
-              return '\\' + c;
-            }) + close;
+            // 在公式内容中将所有 \\ 替换为 \
+            while (content.indexOf('\\\\') !== -1) {
+              content = content.replace(/\\\\/g, '\\');
+            }
+            return open + content + close;
           }
         );
         if (newHtml !== html) {

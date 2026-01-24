@@ -79,7 +79,7 @@ AA^{-1} = A^{-1}A = I
 $$
 
 **转置**：
-矩阵 $A$ 的转置 $A^T$ 满足 $(A^T)_{ij} = A_{ji}$
+矩阵 $A$ 的转置 $A^{\top}$ 满足 $(A^{\top})_{ij} = A_{ji}$
 
 ### 1.4 行列式与特征值
 
@@ -127,7 +127,7 @@ $$
 **实对称矩阵的谱定理**：
 如果 $A$ 是实对称矩阵，那么：
 1. $A$ 的所有特征值都是实数
-2. 存在正交矩阵 $Q$ 使得 $Q^T A Q = D$，其中 $D$ 是对角矩阵
+2. 存在正交矩阵 $Q$ 使得 $Q^{\top} A Q = D$，其中 $D$ 是对角矩阵
 3. $A$ 的特征向量可以构成 $\mathbb{R}^n$ 的一组正交基
 
 **几何解释**：
@@ -138,7 +138,7 @@ $$
 SVD 是矩阵论中最强大的工具之一，它将任意矩阵分解为三个特殊矩阵的乘积：
 
 $$
-A = U\Sigma V^T
+A = U\Sigma V^{\top}
 $$
 
 其中：
@@ -153,7 +153,7 @@ $$
 
 **几何意义**：
 SVD 将线性变换分解为：
-1. 旋转/反射（$V^T$）
+1. 旋转/反射（$V^{\top}$）
 2. 沿坐标轴的伸缩（$\Sigma$）
 3. 另一个旋转/反射（$U$）
 
@@ -176,7 +176,7 @@ $$
 **Cholesky 分解**：
 对于正定矩阵 $A$：
 $$
-A = LL^T
+A = LL^{\top}
 $$
 其中 $L$ 是下三角矩阵。Cholesky 分解在优化和模拟中广泛应用。
 
@@ -201,13 +201,13 @@ PCA 是降维和数据可视化的核心算法，它本质上是寻找数据的�
 **PCA 的数学基础**：
 给定数据矩阵 $X \in \mathbb{R}^{m \times n}$（已中心化），协方差矩阵为：
 $$
-C = \frac{1}{m-1} X^T X
+C = \frac{1}{m-1} X^{\top} X
 $$
 
 PCA 的目标是在低维子空间中最大化数据方差。这等价于寻找协方差矩阵 $C$ 的最大特征值对应的特征向量。
 
 **PCA 算法步骤**：
-1. 计算协方差矩阵 $C = \frac{1}{m-1} X^T X$
+1. 计算协方差矩阵 $C = \frac{1}{m-1} X^{\top} X$
 2. 计算 $C$ 的特征值和特征向量
 3. 选择前 $k$ 个最大的特征值对应的特征向量
 4. 将数据投影到这些特征向量张成的子空间
@@ -247,12 +247,12 @@ $$
 **正规方程**：
 对目标函数求导并令导数为零，得到：
 $$
-X^T X \boldsymbol{\beta} = X^T \mathbf{y}
+X^{\top} X \boldsymbol{\beta} = X^{\top} \mathbf{y}
 $$
 
-如果 $X^T X$ 可逆，则解为：
+如果 $X^{\top} X$ 可逆，则解为：
 $$
-\boldsymbol{\beta} = (X^T X)^{-1} X^T \mathbf{y}
+\boldsymbol{\beta} = (X^{\top} X)^{-1} X^{\top} \mathbf{y}
 $$
 
 **数值稳定性**：在实际应用中，通常使用 QR 分解或 SVD 来求解，而不是直接计算逆矩阵。
@@ -262,20 +262,20 @@ $$
 SVM 是一个强大的分类算法，其核心思想是寻找一个最优的超平面来分离不同类别的数据。
 
 **线性可分情况**：
-寻找超平面 $\mathbf{w}^T \mathbf{x} + b = 0$，使得：
-1. 对所有正例：$\mathbf{w}^T \mathbf{x}_i + b \geq 1$
-2. 对所有负例：$\mathbf{w}^T \mathbf{x}_i + b \leq -1$
+寻找超平面 $\mathbf{w}^{\top} \mathbf{x} + b = 0$，使得：
+1. 对所有正例：$\mathbf{w}^{\top} \mathbf{x}_i + b \geq 1$
+2. 对所有负例：$\mathbf{w}^{\top} \mathbf{x}_i + b \leq -1$
 3. 最大化间隔：$\frac{2}{\|\mathbf{w}\|}$
 
 **对偶问题**：
 使用拉格朗日乘子法，将原始问题转化为对偶问题：
 $$
-\max_{\boldsymbol{\alpha}} \sum_{i=1}^{m} \alpha_i - \frac{1}{2} \sum_{i,j=1}^{m} \alpha_i \alpha_j y_i y_j \mathbf{x}_i^T \mathbf{x}_j
+\max_{\boldsymbol{\alpha}} \sum_{i=1}^{m} \alpha_i - \frac{1}{2} \sum_{i,j=1}^{m} \alpha_i \alpha_j y_i y_j \mathbf{x}_i^{\top} \mathbf{x}_j
 $$
 约束条件：$\sum_{i=1}^{m} \alpha_i y_i = 0$，$\alpha_i \geq 0$
 
 **核技巧**：
-通过核函数 $K(\mathbf{x}_i, \mathbf{x}_j) = \phi(\mathbf{x}_i)^T \phi(\mathbf{x}_j)$，SVM 可以处理非线性问题。
+通过核函数 $K(\mathbf{x}_i, \mathbf{x}_j) = \phi(\mathbf{x}_i)^{\top} \phi(\mathbf{x}_j)$，SVM 可以处理非线性问题。
 
 ### 3.5 特征提取与降维
 
@@ -350,11 +350,11 @@ $$
 - $\mathbf{q}$ 是查询向量
 - $\mathbf{K}$ 是键矩阵
 - $\mathbf{V}$ 是值矩阵
-- $\alpha_i = \frac{\exp(\mathbf{q}^T \mathbf{k}_i)}{\sum_j \exp(\mathbf{q}^T \mathbf{k}_j)}$ 是注意力权重
+- $\alpha_i = \frac{\exp(\mathbf{q}^{\top} \mathbf{k}_i)}{\sum_j \exp(\mathbf{q}^{\top} \mathbf{k}_j)}$ 是注意力权重
 
 **自注意力**：
 $$
-\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^{\top}}{\sqrt{d_k}}\right)V
 $$
 
 <div class="plot-container">
@@ -416,7 +416,7 @@ $$
 
 **值函数近似**：
 $$
-V(s) = \phi(s)^T \mathbf{w}
+V(s) = \phi(s)^{\top} \mathbf{w}
 $$
 其中 $\phi(s)$ 是状态 $s$ 的特征映射，$\mathbf{w}$ 是参数向量。
 
@@ -446,7 +446,7 @@ $$
 **Transformer 模型**：
 自注意力的核心计算：
 $$
-\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^{\top}}{\sqrt{d_k}}\right)V
 $$
 
 ### 5.4 计算机视觉中的应用
