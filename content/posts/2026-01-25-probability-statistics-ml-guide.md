@@ -74,24 +74,7 @@ $$
 
 贝叶斯公式在机器学习中的重要性怎么强调都不为过。它告诉我们：当我们观察到数据 $A$ 时，应该如何更新我们对假设 $B_i$ 的信念。
 
-```mermaid
-flowchart LR
-    subgraph 贝叶斯更新过程
-        Prior[先验分布]
-        Data[观测数据]
-        Likelihood[似然函数]
-        Posterior[后验分布]
-    end
-
-    Prior -->|应用贝叶斯公式| Likelihood
-    Data --> Likelihood
-    Likelihood -->|更新信念| Posterior
-
-    style Prior fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
-    style Data fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
-    style Likelihood fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
-    style Posterior fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
-```
+这个更新过程可以这样理解：我们从先验分布开始，���合观测到的数据（通过似然函数），得到后验分布。后验分布又成为下一轮推理的先验，如此循环。
 
 让我们用一个医疗诊断的例子来说明贝叶斯公式的应用。
 
@@ -444,60 +427,98 @@ $$
 
 ### 5.2 高斯过程
 
-高斯过程是一种非参数贝叶斯模型，它假设函数值服从多元正态分布。
+高斯过程是一种强大的非参数贝叶斯模型。与传统的参数模型不同，高斯过程不假设函数具有特定的形式，而是直接对函数空间进行建模。
+
+#### 5.2.1 从多元正态分布到高斯过程
+
+让我们从一个直观的例子开始。假设我们想知道某个函数 $f(x)$ 在几个点上的值。如果我们将这些点上的函数值看作一个随机向量，那么这个向量服从多元正态分布：
+
+$$
+\mathbf{f} = \begin{bmatrix} f(x_1) \\ f(x_2) \\ \vdots \\ f(x_n) \end{bmatrix} \sim \mathcal{N}(\boldsymbol{\mu}, \mathbf{K})
+$$
+
+其中 $\mathbf{K}_{ij} = k(x_i, x_j)$ 是核矩阵，描述了不同点之间函数值的相关性。
+
+高斯过程的思想是：将这个思想推广到无限多个点，从而定义一个函数的分布。
+
+#### 5.2.2 高斯过程的定义
 
 **定义**：高斯过程 $GP(\mu, k)$ 完全由均值函数 $\mu(x)$ 和协方差函数（核函数）$k(x, x')$ 确定：
 
 $$
-f \sim GP(\mu, k)
+f(x) \sim GP(\mu(x), k(x, x'))
 $$
 
-对于任意一组输入 $\mathbf{x} = [x_1, x_2, \ldots, x_n]^\top$，函数值 $\mathbf{f} = [f(x_1), f(x_2), \ldots, f(x_n)]^\top$ 服从多元正态分布：
+常用的核函数包括：
 
+- **平方指数核（RBF 核）**：
 $$
-\mathbf{f} \sim \mathcal{N}(\boldsymbol{\mu}, \mathbf{K})
-$$
-
-其中 $\boldsymbol{\mu}_i = \mu(x_i)$，$\mathbf{K}_{ij} = k(x_i, x_j)$。
-
-**预测**：给定训练数据 $\mathcal{D} = \{(\mathbf{X}, \mathbf{y})\}$，预测新输入 $\mathbf{x}_{*}$ 的输出 $f_{*}$。
-
-预测分布：
-
-$$
-f_{*} \mid \mathbf{X}, \mathbf{y}, \mathbf{x}_{*} \sim \mathcal{N}(\mu_{*}, \sigma_{*}^2)
+k(x, x') = \sigma_f^2 \exp\left(-\frac{\lVert x - x' \rVert^2}{2\ell^2}\right)
 $$
 
-其中：
+- **Matérn 核**：
+$$
+k_\nu(x, x') = \sigma_f^2 \frac{2^{1-\nu}}{\Gamma(\nu)}\left(\frac{\sqrt{2\nu}\lVert x - x' \rVert}{\ell}\right)^\nu K_\nu\left(\frac{\sqrt{2\nu}\lVert x - x' \rVert}{\ell}\right)
+$$
+
+其中 $\sigma_f^2$ 控制信号的幅度，$\ell$ 是长度尺度，控制函数的平滑程度。
+
+#### 5.2.3 高斯过程回归
+
+给定训练数据 $\mathcal{D} = \{(x_1, y_1), \ldots, (x_n, y_n)\}$，我们想要预测新输入 $x_*$ 对应的输出 $y_*$。
+
+假设观测模型为 $y = f(x) + \varepsilon$，其中 $\varepsilon \sim \mathcal{N}(0, \sigma_n^2)$ 是观测噪声。
+
+**预测分布**：
+
+$$
+p(y_* \mid x_*, \mathcal{D}) = \mathcal{N}(\bar{y}_*, \text{var}(y_*))
+$$
+
+其中预测均值和方差为：
 
 $$
 \begin{aligned}
-\mu_{*} &= \mathbf{k}_{*}^\top \mathbf{K}^{-1} \mathbf{y} \\
-\sigma_{*}^2 &= k(\mathbf{x}_{*}, \mathbf{x}_{*}) - \mathbf{k}_{*}^\top \mathbf{K}^{-1} \mathbf{k}_{*}
+\bar{y}_* &= \mathbf{k}_*^\top (\mathbf{K} + \sigma_n^2 \mathbf{I})^{-1} \mathbf{y} \\
+\text{var}(y_*) &= k(x_*, x_*) - \mathbf{k}_*^\top (\mathbf{K} + \sigma_n^2 \mathbf{I})^{-1} \mathbf{k}_*
 \end{aligned}
 $$
 
-这里 $\mathbf{k}_{*}$ 是测试点与训练点之间的核向量，$\mathbf{K}$ 是训练点之间的核矩阵。
+这里 $\mathbf{k}_* = [k(x_*, x_1), \ldots, k(x_*, x_n)]^\top$ 是测试点与训练点之间的核向量。
 
-![高斯过程回归](/images/math/gaussian-process-regression.png)
+![高斯过程回归预测](/images/math/gaussian-process.png)
 
-*图6：高斯过程回归。蓝色区域表示 $95\%$ 置信区间，红点是训练数据，蓝色线是预测均值。*
+*图6：高斯过程回归。蓝色区域表示 95% 置信区间，红点是训练数据。注意置信区间在训练点附近收缩，在远离训练点的地方扩大。*
 
-**应用**：贝叶斯优化、超参数调优、小样本学习等。
+#### 5.2.4 应用实例
 
-### 5.3 期望最大化（EM）算法
+高斯过程在以下场景中特别有用：
 
-EM 算法是一种用于含有隐变量的概率模型的参数估计方法。
+- **贝叶斯优化**：用于超参数调优，在高斯过程的预测基础上选择下一个要评估的点
+- **小样本学习**：当数据量很少时，高斯过程能提供可靠的预测和不确定性估计
+- **时间序列预测**：通过选择合适的核函数，可以灵活地建模各种时间序列模式
 
-**场景**：假设我们有一个概率模型，观测数据是 $\mathbf{X}$，隐变量是 $\mathbf{Z}$，参数是 $\theta$。我们想要最大化观测数据的对数似然：
+### 5.3 期望���大化算法
+
+期望最大化（Expectation-Maximization, EM）算法是一种用于含有隐变量的概率模型的参数估计方法。它的核心思想是通过迭代的方式，逐步改进参数估计。
+
+#### 5.3.1 为什么需要 EM 算法？
+
+考虑一个简单的场景：我们有两个硬币 A 和 B，A 是均匀硬币（正面概率 0.5），B 是有偏硬币（正面概率未知）。每次实验随机选择一个硬币（我们不知道选了哪个），抛掷几次，记录结果。我们想要估计 B 硬币的正面概率。
+
+这个问题中的"隐变量"就是每次实验选择了哪个硬币。如果我们知道这个信息，问题就很简单；但因为我们不知道，就需要 EM 算法。
+
+#### 5.3.2 EM 算法的推导
+
+**问题设定**：假设我们有观测数据 $\mathbf{X}$，隐变量 $\mathbf{Z}$，参数 $\theta$。目标是最大化观测数据的对数似然：
 
 $$
 \ell(\theta) = \log p(\mathbf{X} \mid \theta) = \log \sum_{\mathbf{Z}} p(\mathbf{X}, \mathbf{Z} \mid \theta)
 $$
 
-这个求和通常很难直接计算。EM 算法通过引入辅助分布 $q(\mathbf{Z})$ 来解决这个问题。
+这个求和直接计算通常很困难。EM 算法通过引入辅助分布 $q(\mathbf{Z})$ 来解决。
 
-**E 步（期望步）**：计算对数似然的下界：
+**关键洞察**：使用 Jensen 不等式，我们可以构造一个下界：
 
 $$
 \begin{aligned}
@@ -508,96 +529,71 @@ $$
 \end{aligned}
 $$
 
-当 $q(\mathbf{Z}) = p(\mathbf{Z} \mid \mathbf{X}, \theta)$ 时，下界最紧：
+当 $q(\mathbf{Z}) = p(\mathbf{Z} \mid \mathbf{X}, \theta)$ 时，下界最紧。
+
+#### 5.3.3 EM 算法的两个步骤
+
+**E 步（Expectation）**：计算隐变量的后验分布
 
 $$
 q^*(\mathbf{Z}) = p(\mathbf{Z} \mid \mathbf{X}, \theta^{\text{old}})
 $$
 
-**M 步（最大化步）**：最大化下界：
+**M 步（Maximization）**：最大化期望完整数据对数似然
 
 $$
-\theta^{\text{new}} = \arg\max_{\theta} \mathcal{L}(q^*, \theta)
+\theta^{\text{new}} = \arg\max_{\theta} \mathbb{E}_{q^*}[\log p(\mathbf{X}, \mathbf{Z} \mid \theta)]
 $$
 
-**迭代**：重复 E 步和 M 步，直到收敛。
+![EM 算法的收敛过程](/images/math/em-convergence.png)
 
-```mermaid
-flowchart LR
-    subgraph EM算法流程
-        Start([初始化参数])
-        EStep[E步计算后验分布]
-        MStep[M步最大化下界]
-        Check{收敛?}
-        Output([输出参数])
-    end
+*图7：EM 算法的对数似然单调递增。每次迭代保证似然不减，直到收敛到局部最优。*
 
-    Start --> EStep
-    EStep --> MStep
-    MStep --> Check
-    Check -->|否| EStep
-    Check -->|是| Output
+#### 5.3.4 应用：高斯混合模型
 
-    style Start fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#fff
-    style EStep fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
-    style MStep fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
-    style Check fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
-    style Output fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
-```
+高斯混合模型（GMM）假设数据来自多个高斯分布的混合：
 
-**应用**：高斯混合模型（GMM）、隐马尔可夫模型（HMM）、潜在狄利克雷分配（LDA）等。
+$$
+p(x) = \sum_{k=1}^{K} \pi_k \mathcal{N}(x \mid \mu_k, \Sigma_k)
+$$
 
-## 结语：概率论——处理不确定性的艺术
+EM 算法估计 GMM 参数：
 
-在这篇文章中，我们系统地介绍了概率论与数理统计在机器学习中的应用。从基础的概率公理开始，我们逐步深入到随机变量、概率分布、统计推断、信息论基础，最后探讨了这些理论如何在现代机器学习和深度学习算法中发挥作用。
+- **E 步**：计算每个样本属于每个高斯分量的责任度
+$$
+\gamma_{ik} = \frac{\pi_k \mathcal{N}(x_i \mid \mu_k, \Sigma_k)}{\sum_{j=1}^{K} \pi_j \mathcal{N}(x_i \mid \mu_j, \Sigma_j)}
+$$
+
+- **M 步**：更新参数
+$$
+\begin{aligned}
+\pi_k^{\text{new}} &= \frac{1}{N} \sum_{i=1}^{N} \gamma_{ik} \\
+\mu_k^{\text{new}} &= \frac{\sum_{i=1}^{N} \gamma_{ik} x_i}{\sum_{i=1}^{N} \gamma_{ik}} \\
+\Sigma_k^{\text{new}} &= \frac{\sum_{i=1}^{N} \gamma_{ik} (x_i - \mu_k^{\text{new}})(x_i - \mu_k^{\text{new}})^\top}{\sum_{i=1}^{N} \gamma_{ik}}
+\end{aligned}
+$$
+
+## 结语
+
+在这篇文章中，我们系统地介绍了概率论与数理统计在机器学习中的应用。
 
 **核心要点回顾**：
 
-1. **贝叶斯公式**是机器学习的核心思想之一。它告诉我们如何根据观测到的数据来更新对模型的信念。
+1. **贝叶斯公式**是机器学习的核心思想，告诉我们如何根据观测数据更新对模型的信念
 
-2. **MLE 和 MAP** 是两种主要的参数估计方法。MLE 寻找使观测数据出现概率最大的参数，而 MAP 则结合了先验信息。
+2. **MLE 和 MAP** 是两种主要的参数估计方法。MLE 寻找使观测数据出现概率最大的参数，而 MAP 则结合了先验信息
 
-3. **概率分布**（如正态分布、二项分布）为机器学习提供了丰富的建模工具。
+3. **概率分布**为机器学习提供了丰富的建模工具。正态分布、二项分布、伯努利分布等在不同场景中发挥重要作用
 
-4. **信息论**为机器学习提供了度量不确定性和信息量的工具。熵、KL 散度和交叉熵在机器学习中有广泛应用。
+4. **信息论**为机器学习提供了度量不确定性的工具。熵、KL 散度和交叉熵是许多损失函数的理论基础
 
-5. **概率模型**（如逻辑回归、高斯过程、EM 算法）为机器学习提供了坚实的理论基础。
+5. **概率模型**如逻辑回归、高斯过程、EM 算法等为机器学习提供了坚实的理论基础
 
-没有概率论，我们无法理解为什么一个模型在测试集上的表现不同于训练集（过拟合），无法量化模型预测的不确定性，也无法设计出鲁棒和可靠的算法。
-
-```mermaid
-flowchart LR
-    subgraph 概率论与数理统计
-        P1[概率基础]
-        P2[概率分布]
-        P3[统计推断]
-        P4[信息论]
-    end
-
-    subgraph 机器学习应用
-        ML1[监督学习]
-        ML2[深度学习]
-        ML3[贝叶斯方法]
-    end
-
-    P1 --> ML1
-    P2 --> ML1
-    P3 --> ML1
-    P3 --> ML3
-    P4 --> ML2
-
-    style P1 fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
-    style P2 fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
-    style P3 fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
-    style P4 fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
-    style ML1 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
-    style ML2 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
-    style ML3 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
-```
+没有概率论，我们无法理解过拟合现象，无法量化预测的不确定性，也无法设计出鲁棒可靠的算法。
 
 **未来的方向**：
 
-随着深度学习的发展，贝叶斯深度学习、不确定性量化、主动学习等方向越来越受到关注。这些方向的共同特点是：更加重视概率论和数理统计的理论基础，更加重视对不确定性的理解和建模。
+随着深度学习的发展，贝叶斯深度学习、不确定性量化、主动学习等方向越来越受到关注。这些方向的共同特点是更加重视对不确定性的理解和建模。
 
 希望这篇文章能够帮助读者建立概率论与数理统计在机器学习中的整体认识，为更深入的学习和研究打下坚实的基础。
 
@@ -608,3 +604,4 @@ flowchart LR
 3. Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep Learning*. MIT Press.
 4. MacKay, D. J. (2003). *Information Theory, Inference, and Learning Algorithms*. Cambridge University Press.
 5. Cover, T. M., & Thomas, J. A. (2006). *Elements of Information Theory* (2nd ed.). Wiley.
+6. Rasmussen, C. E., & Williams, C. K. I. (2006). *Gaussian Processes for Machine Learning*. MIT Press.
