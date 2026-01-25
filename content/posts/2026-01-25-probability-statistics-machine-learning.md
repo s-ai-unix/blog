@@ -1,20 +1,16 @@
-categories:
-- 技术
-- 机器学习
-cover:
-  alt: 概率论与数理统计在机器学习中的应用 cover image
-  caption: 概率论与数理统计在机器学习中的应用 - Cover Image
-  image: images/covers/概率论与数理统计在机器学习中的应用-cover.jpg
-date: '2026-01-25T10:58:25+08:00'
-description: 系统性地介绍概率论与数理统计在机器学习和深度学习中的核心概念、数学推导和实际应用
+---
+title: "概率论与数理统计在机器学习中的应用"
+date: 2026-01-25T10:58:25+08:00
 draft: false
+description: "系统性地介绍概率论与数理统计在机器学习和深度学习中的核心概念、数学推导和实际应用"
+categories: ["数学", "机器学习", "深度学习"]
+tags: ["概率论", "数理统计", "机器学习", "深度学习"]
+cover:
+    image: "images/covers/probability-statistics-ml-cover.jpg"
+    alt: "概率论与数理统计在机器学习中的应用封面"
+    caption: "概率论与数理统计在机器学习中的应用"
 math: true
-tags:
-- 概率论
-- 数理统计
-- 机器学习
-- 深度学习
-title: 概率论与数理统计在机器学习中的应用
+---
 
 # 概率论与数理统计在机器学习中的应用
 
@@ -227,7 +223,7 @@ $$
 多元正态分布是正态分布的推广，描述多个相关的随机变量的联合分布。
 
 **概率密度函数**：
-$$f(\mathbf{x}) = \frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})\right)$$
+$$f(\mathbf{x}) = \frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})\right)$$
 
 其中：
 - $\mathbf{x} \in \mathbb{R}^d$ 是随机向量
@@ -375,7 +371,7 @@ $$
 \end{aligned}
 $$
 
-**应用**：逻辑回归、线性回归等监督学习算法本质上都是 MLE 估计。例如，逻辑回归假设 $y_i | x_i \sim \text{Bernoulli}(\sigma(w^T x_i))$，然后通过最大化对数似然来估计参数 $w$。
+**应用**：逻辑回归、线性回归等监督学习算法本质上都是 MLE 估计。例如，逻辑回归假设 $y_i \mid x_i \sim \text{Bernoulli}(\sigma(w^\top x_i))$，然后通过最大化对数似然来估计参数 $w$。
 
 #### 4.1.2 最大后验估计（MAP）
 
@@ -397,10 +393,10 @@ $$\hat{\theta}_{\text{MAP}} = \arg\max_{\theta} p(\theta|D) = \arg\max_{\theta} 
 
 **例子：带高斯先验的线性回归**
 
-设线性回归模型为 $y = w^T x + \epsilon$，其中 $\epsilon \sim \mathcal{N}(0, \sigma^2)$。假设参数 $w$ 的先验分布为 $w \sim \mathcal{N}(0, \lambda^{-1} I)$。
+设线性回归模型为 $y = w^\top x + \epsilon$，其中 $\epsilon \sim \mathcal{N}(0, \sigma^2)$。假设参数 $w$ 的先验分布为 $w \sim \mathcal{N}(0, \lambda^{-1} I)$。
 
 似然函数：
-$$p(y|X, w) = \prod_{i=1}^{n} \mathcal{N}(y_i|w^T x_i, \sigma^2)$$
+$$p(y\mid X, w) = \prod_{i=1}^{n} \mathcal{N}(y_i\mid w^\top x_i, \sigma^2)$$
 
 后验分布：
 $$p(w|X, y) \propto p(y|X, w) p(w)$$
@@ -408,15 +404,15 @@ $$p(w|X, y) \propto p(y|X, w) p(w)$$
 取对数：
 $$
 \begin{aligned}
-\log p(w|X, y) &\propto \sum_{i=1}^{n} \log \mathcal{N}(y_i|w^T x_i, \sigma^2) + \log \mathcal{N}(w|0, \lambda^{-1} I) \\
-&\propto -\frac{1}{2\sigma^2}\sum_{i=1}^{n} (y_i - w^T x_i)^2 - \frac{\lambda}{2} w^T w + \text{constant}
+\log p(w\mid X, y) &\propto \sum_{i=1}^{n} \log \mathcal{N}(y_i\mid w^\top x_i, \sigma^2) + \log \mathcal{N}(w\mid 0, \lambda^{-1} I) \\
+&\propto -\frac{1}{2\sigma^2}\sum_{i=1}^{n} (y_i - w^\top x_i)^2 - \frac{\lambda}{2} w^\top w + \text{constant}
 \end{aligned}
 $$
 
 最大化后验等价于最小化负对数后验：
 $$
 \begin{aligned}
-w_{\text{MAP}} &= \arg\min_{w} \left(\sum_{i=1}^{n} (y_i - w^T x_i)^2 + \lambda \sigma^2 w^T w\right) \\
+w_{\text{MAP}} &= \arg\min_{w} \left(\sum_{i=1}^{n} (y_i - w^\top x_i)^2 + \lambda \sigma^2 w^\top w\right) \\
 &= \arg\min_{w} \left(\|y - Xw\|^2 + \alpha \|w\|^2\right)
 \end{aligned}
 $$
@@ -536,11 +532,11 @@ $$H(p, q) = H(p) + D_{\text{KL}}(p \| q)$$
 
 **应用**：逻辑回归和神经网络的交叉熵损失函数。
 
-**例子**：二分类问题。设 $y \in \{0, 1\}$ 是真实标签，$\hat{y} = \sigma(w^T x)$ 是预测概率。交叉熵损失为：
+**例子**：二分类问题。设 $y \in \{0, 1\}$ 是真实标签，$\hat{y} = \sigma(w^\top x)$ 是预测概率。交叉熵损失为：
 $$
 \begin{aligned}
 L &= -\sum_{i=1}^{n} [y_i \log \hat{y}_i + (1 - y_i) \log(1 - \hat{y}_i)] \\
-&= -\sum_{i=1}^{n} [y_i \log \sigma(w^T x_i) + (1 - y_i) \log(1 - \sigma(w^T x_i))]
+&= -\sum_{i=1}^{n} [y_i \log \sigma(w^\top x_i) + (1 - y_i) \log(1 - \sigma(w^\top x_i))]
 \end{aligned}
 $$
 
@@ -555,7 +551,7 @@ $$
 逻辑回归虽然名字中有"回归"，但它实际上是一个分类模型。它使用 sigmoid 函数将线性组合映射到 $[0, 1]$ 区间，然后将其解释为概率。
 
 **模型假设**：
-$$P(y = 1|x) = \sigma(w^T x) = \frac{1}{1 + e^{-w^T x}}$$
+$$P(y = 1 \mid x) = \sigma(w^\top x) = \frac{1}{1 + e^{-w^\top x}}$$
 
 其中 $\sigma(z) = \frac{1}{1 + e^{-z}}$ 是 sigmoid 函数。
 
@@ -563,29 +559,29 @@ $$P(y = 1|x) = \sigma(w^T x) = \frac{1}{1 + e^{-w^T x}}$$
 $$
 \begin{aligned}
 L(w) &= \prod_{i=1}^{n} P(y_i|x_i, w) \\
-&= \prod_{i=1}^{n} [\sigma(w^T x_i)]^{y_i} [1 - \sigma(w^T x_i)]^{1-y_i}
+&= \prod_{i=1}^{n} [\sigma(w^\top x_i)]^{y_i} [1 - \sigma(w^\top x_i)]^{1-y_i}
 \end{aligned}
 $$
 
 **对数似然**：
 $$
-\ell(w) = \sum_{i=1}^{n} [y_i \log \sigma(w^T x_i) + (1 - y_i) \log(1 - \sigma(w^T x_i))]
+\ell(w) = \sum_{i=1}^{n} [y_i \log \sigma(w^\top x_i) + (1 - y_i) \log(1 - \sigma(w^\top x_i))]
 $$
 
 **优化**：最大化对数似然等价于最小化负对数似然（交叉熵损失）：
-$$w^* = \arg\min_w \sum_{i=1}^{n} [y_i \log \sigma(w^T x_i) + (1 - y_i) \log(1 - \sigma(w^T x_i))]$$
+$$w^* = \arg\min_w \sum_{i=1}^{n} [y_i \log \sigma(w^\top x_i) + (1 - y_i) \log(1 - \sigma(w^\top x_i))]$$
 
 **梯度**：
 $$
 \begin{aligned}
-\frac{\partial \ell}{\partial w} &= \sum_{i=1}^{n} [y_i \frac{1}{\sigma(w^T x_i)} \sigma(w^T x_i)(1 - \sigma(w^T x_i)) x_i - (1 - y_i) \frac{1}{1 - \sigma(w^T x_i)} \sigma(w^T x_i)(1 - \sigma(w^T x_i)) x_i] \\
-&= \sum_{i=1}^{n} [y_i (1 - \sigma(w^T x_i)) - (1 - y_i) \sigma(w^T x_i)] x_i \\
-&= \sum_{i=1}^{n} [y_i - \sigma(w^T x_i)] x_i
+\frac{\partial \ell}{\partial w} &= \sum_{i=1}^{n} [y_i \frac{1}{\sigma(w^\top x_i)} \sigma(w^\top x_i)(1 - \sigma(w^\top x_i)) x_i - (1 - y_i) \frac{1}{1 - \sigma(w^\top x_i)} \sigma(w^\top x_i)(1 - \sigma(w^\top x_i)) x_i] \\
+&= \sum_{i=1}^{n} [y_i (1 - \sigma(w^\top x_i)) - (1 - y_i) \sigma(w^\top x_i)] x_i \\
+&= \sum_{i=1}^{n} [y_i - \sigma(w^\top x_i)] x_i
 \end{aligned}
 $$
 
 **梯度更新**：
-$$w \leftarrow w + \eta \sum_{i=1}^{n} [y_i - \sigma(w^T x_i)] x_i$$
+$$w \leftarrow w + \eta \sum_{i=1}^{n} [y_i - \sigma(w^\top x_i)] x_i$$
 
 其中 $\eta$ 是学习率。
 
@@ -596,7 +592,7 @@ $$w \leftarrow w + \eta \sum_{i=1}^{n} [y_i - \sigma(w^T x_i)] x_i$$
 **定义**：高斯过程 $GP(\mu, k)$ 完全由均值函数 $\mu(x)$ 和协方差函数（核函数）$k(x, x')$ 确定：
 $$f \sim GP(\mu, k)$$
 
-对于任意一组输入 $\mathbf{x} = [x_1, x_2, \ldots, x_n]^T$，函数值 $\mathbf{f} = [f(x_1), f(x_2), \ldots, f(x_n)]^T$ 服从多元正态分布：
+对于任意一组输入 $\mathbf{x} = [x_1, x_2, \ldots, x_n]^\top$，函数值 $\mathbf{f} = [f(x_1), f(x_2), \ldots, f(x_n)]^\top$ 服从多元正态分布：
 $$\mathbf{f} \sim \mathcal{N}(\boldsymbol{\mu}, \mathbf{K})$$
 
 其中 $\boldsymbol{\mu}_i = \mu(x_i)$，$\mathbf{K}_{ij} = k(x_i, x_j)$。
@@ -682,7 +678,7 @@ $$p(x|z_k = 1) = \mathcal{N}(x|\mu_k, \Sigma_k)$$
   \begin{aligned}
   \pi_k^{\text{new}} &= \frac{1}{N} \sum_{i=1}^{N} \gamma_{ik} \\
   \mu_k^{\text{new}} &= \frac{\sum_{i=1}^{N} \gamma_{ik} x_i}{\sum_{i=1}^{N} \gamma_{ik}} \\
-  \Sigma_k^{\text{new}} &= \frac{\sum_{i=1}^{N} \gamma_{ik} (x_i - \mu_k^{\text{new}})(x_i - \mu_k^{\text{new}})^T}{\sum_{i=1}^{N} \gamma_{ik}}
+  \Sigma_k^{\text{new}} &= \frac{\sum_{i=1}^{N} \gamma_{ik} (x_i - \mu_k^{\text{new}})(x_i - \mu_k^{\text{new}})^\top}{\sum_{i=1}^{N} \gamma_{ik}}
   \end{aligned}
   $$
 
@@ -812,34 +808,34 @@ $$P(w|C = 1) = \frac{\text{垃圾邮件中 } w \text{ 出现的次数} + 1}{\tex
 线性回归是机器学习中最基础的模型之一，它可以从概率的角度来理解。
 
 **模型假设**：
-$$y = w^T x + \epsilon, \quad \epsilon \sim \mathcal{N}(0, \sigma^2)$$
+$$y = w^\top x + \epsilon, \quad \epsilon \sim \mathcal{N}(0, \sigma^2)$$
 
 因此：
-$$y|x \sim \mathcal{N}(w^T x, \sigma^2)$$
+$$y \mid x \sim \mathcal{N}(w^\top x, \sigma^2)$$
 
 **似然函数**：
 $$
 \begin{aligned}
 L(w) &= \prod_{i=1}^{n} p(y_i|x_i, w) \\
-&= \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{(y_i - w^T x_i)^2}{2\sigma^2}\right)
+&= \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{(y_i - w^\top x_i)^2}{2\sigma^2}\right)
 \end{aligned}
 $$
 
 **对数似然**：
 $$
 \begin{aligned}
-\ell(w) &= \sum_{i=1}^{n} \left(-\frac{1}{2}\log(2\pi\sigma^2) - \frac{(y_i - w^T x_i)^2}{2\sigma^2}\right) \\
-&= -\frac{n}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (y_i - w^T x_i)^2
+\ell(w) &= \sum_{i=1}^{n} \left(-\frac{1}{2}\log(2\pi\sigma^2) - \frac{(y_i - w^\top x_i)^2}{2\sigma^2}\right) \\
+&= -\frac{n}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (y_i - w^\top x_i)^2
 \end{aligned}
 $$
 
 **MLE 估计**：最大化对数似然等价于最小化残差平方和：
-$$w^* = \arg\min_w \sum_{i=1}^{n} (y_i - w^T x_i)^2$$
+$$w^* = \arg\min_w \sum_{i=1}^{n} (y_i - w^\top x_i)^2$$
 
 这正是最小二乘法！因此，最小二乘法可以解释为在误差服从正态分布假设下的 MLE 估计。
 
 **解析解**：
-$$w^* = (X^T X)^{-1} X^T y$$
+$$w^* = (X^\top X)^{-1} X^\top y$$
 
 其中 $X \in \mathbb{R}^{n \times d}$ 是设计矩阵，$y \in \mathbb{R}^n$ 是目标向量。
 
