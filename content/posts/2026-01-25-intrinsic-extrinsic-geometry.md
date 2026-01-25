@@ -102,7 +102,7 @@ $$
 \begin{aligned}
 L &= \frac{\partial^2 \mathbf{r}}{\partial u^2} \cdot \mathbf{n} \\
 M &= \frac{\partial^2 \mathbf{r}}{\partial u \partial v} \cdot \mathbf{n} \\
-N &= \frac{\partial^2 \mathbf{r}}{\partial v^2} \cdot \mathbf{n}}
+N &= \frac{\partial^2 \mathbf{r}}{\partial v^2} \cdot \mathbf{n}
 \end{aligned}
 $$
 
