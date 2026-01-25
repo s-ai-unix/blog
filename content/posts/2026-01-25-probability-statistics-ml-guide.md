@@ -77,15 +77,20 @@ $$
 ```mermaid
 flowchart LR
     subgraph 贝叶斯更新过程
-        Prior[先验分布 P(θ)<br/>style fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff]
-        Data[观测数据 D<br/>style fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff]
-        Likelihood[似然函数 P(D&#124;θ)<br/>style fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff]
-        Posterior[后验分布 P(θ&#124;D)<br/>style fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff]
+        Prior[先验分布 P(θ)]
+        Data[观测数据 D]
+        Likelihood[似然函数 P(D|θ)]
+        Posterior[后验分布 P(θ|D)]
     end
 
     Prior -->|应用贝叶斯公式| Likelihood
     Data --> Likelihood
     Likelihood -->|更新信念| Posterior
+
+    style Prior fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
+    style Data fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
+    style Likelihood fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
+    style Posterior fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
 ```
 
 让我们用一个医疗诊断的例子来说明贝叶斯公式的应用。
@@ -455,24 +460,24 @@ $$
 
 其中 $\boldsymbol{\mu}_i = \mu(x_i)$，$\mathbf{K}_{ij} = k(x_i, x_j)$。
 
-**预测**：给定训练数据 $\mathcal{D} = \{(\mathbf{X}, \mathbf{y})\}$，预测新输入 $\mathbf{x}_*$ 的输出 $f_*$。
+**预测**：给定训练数据 $\mathcal{D} = \{(\mathbf{X}, \mathbf{y})\}$，预测新输入 $\mathbf{x}_{*}$ 的输出 $f_{*}$。
 
 预测分布：
 
 $$
-f_* \mid \mathbf{X}, \mathbf{y}, \mathbf{x}_* \sim \mathcal{N}(\mu_*, \sigma_*^2)
+f_{*} \mid \mathbf{X}, \mathbf{y}, \mathbf{x}_{*} \sim \mathcal{N}(\mu_{*}, \sigma_{*}^2)
 $$
 
 其中：
 
 $$
 \begin{aligned}
-\mu_* &= \mathbf{k}_*^\top \mathbf{K}^{-1} \mathbf{y} \\
-\sigma_*^2 &= k(\mathbf{x}_*, \mathbf{x}_*) - \mathbf{k}_*^\top \mathbf{K}^{-1} \mathbf{k}_*
+\mu_{*} &= \mathbf{k}_{*}^\top \mathbf{K}^{-1} \mathbf{y} \\
+\sigma_{*}^2 &= k(\mathbf{x}_{*}, \mathbf{x}_{*}) - \mathbf{k}_{*}^\top \mathbf{K}^{-1} \mathbf{k}_{*}
 \end{aligned}
 $$
 
-这里 $\mathbf{k}_*$ 是测试点与训练点之间的核向量，$\mathbf{K}$ 是训练点之间的核矩阵。
+这里 $\mathbf{k}_{*}$ 是测试点与训练点之间的核向量，$\mathbf{K}$ 是训练点之间的核矩阵。
 
 ![高斯过程回归](/images/math/gaussian-process-regression.png)
 
@@ -520,17 +525,24 @@ $$
 ```mermaid
 flowchart LR
     subgraph EM算法流程
-        Start[初始化参数 θ<br/>style fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#ffffff]
-        EStep[E步<br/>计算后验分布 q<br/>q = p(Z&#124;X,θ)<br/>style fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff]
-        MStep[M步<br/>最大化下界<br/>θ = argmax L(q,θ)<br/>style fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff]
-        Check{收敛?<br/>style fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff}
+        Start([初始化参数 θ])
+        EStep[E步: 计算后验分布]
+        MStep[M步: 最大化下界]
+        Check{收敛?}
+        Output([输出参数 θ])
     end
 
     Start --> EStep
     EStep --> MStep
     MStep --> Check
     Check -->|否| EStep
-    Check -->|是| Output[输出参数 θ<br/>style fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff]
+    Check -->|是| Output
+
+    style Start fill:#FF9500,stroke:#FF9500,stroke-width:2px,color:#fff
+    style EStep fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
+    style MStep fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
+    style Check fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
+    style Output fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
 ```
 
 **应用**：高斯混合模型（GMM）、隐马尔可夫模型（HMM）、潜在狄利克雷分配（LDA）等。
@@ -556,16 +568,16 @@ flowchart LR
 ```mermaid
 flowchart LR
     subgraph 概率论与数理统计
-        P1[概率基础<br/>贝叶斯公式<br/>条件概率<br/>style fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff]
-        P2[概率分布<br/>正态分布<br/>二项分布<br/>style fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff]
-        P3[统计推断<br/>MLE/MAP<br/>贝叶斯推断<br/>style fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff]
-        P4[信息论<br/>熵/KL散度<br/>交叉熵<br/>style fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#ffffff]
+        P1[概率基础]
+        P2[概率分布]
+        P3[统计推断]
+        P4[信息论]
     end
 
     subgraph 机器学习应用
-        ML1[监督学习<br/>逻辑回归<br/>线性回归<br/>style fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff]
-        ML2[深度学习<br/>神经网络<br/>损失函数<br/>style fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff]
-        ML3[贝叶斯方法<br/>高斯过程<br/>变分推断<br/>style fill:#34C759,stroke:#34C759,stroke-width:2px,color:#ffffff]
+        ML1[监督学习]
+        ML2[深度学习]
+        ML3[贝叶斯方法]
     end
 
     P1 --> ML1
@@ -573,6 +585,14 @@ flowchart LR
     P3 --> ML1
     P3 --> ML3
     P4 --> ML2
+
+    style P1 fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
+    style P2 fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
+    style P3 fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
+    style P4 fill:#007AFF,stroke:#007AFF,stroke-width:3px,color:#fff
+    style ML1 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
+    style ML2 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
+    style ML3 fill:#34C759,stroke:#34C759,stroke-width:2px,color:#fff
 ```
 
 **未来的方向**：
