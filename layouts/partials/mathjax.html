@@ -1,12 +1,12 @@
 {{ if or .Params.math .Params.mathjax .Site.Params.math .Site.Params.mathjax }}
 <script>
-// 修复 Goldmark 导致的双重转义问题，然后加载 MathJax
+// 修复 Hugo Goldmark 破坏的数学公式，然后加载 MathJax
 (function() {
   'use strict';
 
-  // 在页面加载前修复双重转义
-  function fixDoubleEscapes() {
-    var elements = document.querySelectorAll('p, li, td, div, span, h1, h2, h3, h4, h5, h6');
+  // 修复所有被Goldmark破坏的公式格式
+  function fixGoldmarkFormulas() {
+    var elements = document.querySelectorAll('p, li, td, div, span, h1, h2, h3, h4, h5, h6, ol, ul');
     elements.forEach(function(el) {
       // 跳过名言组件元素，避免干扰
       if (el.classList.contains('classical-quote-container') ||
@@ -17,8 +17,7 @@
       var html = el.innerHTML;
       var fixed = false;
 
-      // 修复下划线问题: $h_<em>t</em>$ -> $h_t$
-      // Case 1: 完整的 <em>...</em> 在公式内
+      // Case 1: 修复 $h_<em>t</em>$ -> $h_t$ (下标斜体问题)
       if (html.indexOf('<em>') !== -1) {
         var newHtml = html.replace(
           /\$([^$]*?)<em>([^<]+?)<\/em>([^$]*?)\$/g,
@@ -41,8 +40,7 @@
         }
       }
 
-      // Case 2: 处理跨边界的 <em> 标签
-      // 修复: $...\sum</em>{i=1}$ -> $...\sum_{i=1}$
+      // Case 2: 修复 $...\sum</em>{i=1}$ -> $...\sum_{i=1}$ (跨边界em标签)
       if (html.indexOf('</em>') !== -1) {
         var newHtml = html.replace(
           /\$([^$]*?)<\/em>([^$]*?)\$/g,
@@ -62,23 +60,65 @@
         }
       }
 
-      // Case 3: 修复公式开头的 <em> 标签
-      // 修复: <em>$...$ -> $...$
+      // Case 3: 修复 <em>$...$ -> $...$ (开头的em标签)
       if (html.indexOf('<em>$') !== -1) {
-        var newHtml = html.replace(
-          /<em>\$/g,
-          '$'
-        );
+        var newHtml = html.replace(/<em>\$/g, '$');
         if (newHtml !== html) {
           html = newHtml;
           fixed = true;
         }
       }
 
-      // 修复双重转义: \\ -> \
-      // 只在数学公式内修复，避免破坏LaTeX命令
+      // Case 4: 修复 </em>$... -> </em>$ (结尾的em标签)
+      if (html.indexOf('</em>$') !== -1) {
+        var newHtml = html.replace(/<\/em>\$/g, '$');
+        if (newHtml !== html) {
+          html = newHtml;
+          fixed = true;
+        }
+      }
+
+      // Case 5: 修复 $a_<em>b</em>$ -> $a_b$ (任何位置)
+      while (html.indexOf('<em>') !== -1 && html.indexOf('</em>') !== -1) {
+        var newHtml = html.replace(/\$([^$]*?)<em>([^<]+?)<\/em>([^$]*?)\$/g,
+          function(match, before, sub, after) {
+            if (/^[\d.,]+$/.test((before + sub + after).replace(/[.,]/g, ''))) {
+              return match; // 跳过货币
+            }
+            return '$' + before + '_' + sub + after + '$';
+          }
+        );
+        newHtml = newHtml.replace(/\$\$([^$]*?)<em>([^<]+?)<\/em>([^$]*?)\$\$/g,
+          function(match, before, sub, after) {
+            return '$$' + before + '_' + sub + after + '$$';
+          }
+        );
+        if (newHtml === html) break; // 没有更多替换了
+        html = newHtml;
+        fixed = true;
+      }
+
+      // Case 6: 修复 _{ (未闭合的下标开始) -> {_{
+      // 这是最关键的问题：_被解析为<em>
+      if (html.indexOf('_{') !== -1) {
+        var newHtml = html.replace(/_{/g, '_{');
+        if (newHtml !== html) {
+          html = newHtml;
+          fixed = true;
+        }
+      }
+
+      // Case 7: 修复 }_ (未闭合的下标结束) -> }}
+      if (html.indexOf('}_') !== -1) {
+        var newHtml = html.replace(/}_/g, '}');
+        if (newHtml !== html) {
+          html = newHtml;
+          fixed = true;
+        }
+      }
+
+      // Case 8: 修复双重转义: \\ -> \
       if (html.indexOf('\\\\') !== -1) {
-        // 只在 $...$ 或 $$...$$ 内部替换 \\...\
         var newHtml = html.replace(
           /(\$\{1,2\})([^$]*?)(\$\{1,2\})/g,
           function(match, open, content, close) {
@@ -101,7 +141,7 @@
     });
   }
 
-  // 配置 MathJax（在fixDoubleEscapes函数之后定义）
+  // 配置 MathJax
   window.MathJax = {
     tex: {
       inlineMath: [['$', '$']],
@@ -110,7 +150,6 @@
       processEnvironments: true,
       tags: 'ams',
       macros: {
-        // 定义双重闭合积分符号（使用Unicode字符，包裹在\mathop中以获得正确的大小和字体）
         oiint: '\\mathop{∯}',
         oiiint: '\\mathop{∰}'
       }
@@ -120,8 +159,8 @@
     },
     startup: {
       pageReady: function() {
-        // 在渲染前修复公式
-        fixDoubleEscapes();
+        // 在渲染前修复所有被Goldmark破坏的公式
+        fixGoldmarkFormulas();
         return MathJax.startup.defaultPageReady().then(function() {
           console.log('MathJax formulas rendered successfully');
         });
