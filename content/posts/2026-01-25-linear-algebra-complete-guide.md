@@ -116,7 +116,9 @@ $$
 
 **关键洞察**:矩阵的列向量就是基向量变换后的位置。对于 $A = [\mathbf{a}_1, \mathbf{a}_2]$,$\mathbf{a}_1$ 就是 $\mathbf{e}_1$ 变换后的位置, $\mathbf{a}_2$ 是 $\mathbf{e}_2$ 变换后的位置。
 
-{{< figure src="images/math/linear-transformation.png" alt="线性变换的几何效果" caption="图1：矩阵作为线性变换，展示了基向量的变换效果。蓝色和绿色是原始基向量，紫色和深蓝色是变换后的基向量。" >}}
+![线性变换的几何效果](/images/math/linear-transformation.png)
+
+*图1：矩阵作为线性变换，展示了基向量的变换效果。蓝色和绿色是原始基向量，紫色和深蓝色是变换后的基向量。*
 
 #### 2.2 特征值与特征向量
 
@@ -157,7 +159,9 @@ $$
 
 其中 $a+d = \operatorname{tr}(A)$ 是迹,$ad-bc = \det(A)$ 是行列式。
 
-{{< figure src="images/math/eigenvalues-vectors.png" alt="特征向量的方向保持特性" caption="图2：特征向量是保持方向不变的变换方向。图中展示了变换前后的网格点以及特征向量（蓝色和橙色箭头）。" >}}
+![特征向量的方向保持特性](/images/math/eigenvalues-vectors.png)
+
+*图2：特征向量是保持方向不变的变换方向。图中展示了变换前后的网格点以及特征向量（蓝色和橙色箭头）。*
 
 **几何应用**:如果一个 $3 \times 3$ 矩阵有三个线性无关的特征向量,那么我们可以沿这些特征向量的方向理解变换。例如,应力张量的特征向量表示主应力方向。
 
@@ -295,7 +299,9 @@ $$
 2. 沿坐标轴拉伸/压缩($\Sigma$)
 3. 再旋转/反射($U$)
 
-{{< figure src="images/math/svd-geometry.png" alt="SVD 分解的几何步骤" caption="图3：奇异值分解的几何步骤：原始单位圆（绿色）→ 旋转（橙色）→ 拉伸成椭圆（蓝色）→ 再旋转（紫色）。" >}}
+![SVD 分解的几何步骤](/images/math/svd-geometry.png)
+
+*图3：奇异值分解的几何步骤：原始单位圆（绿色）→ 旋转（橙色）→ 拉伸成椭圆（蓝色）→ 再旋转（紫色）。*
 
 **与特征值分解的关系**:
 - 对于方阵 $A$,奇异值是特征值的平方根: $\sigma_i = \sqrt{\lambda_i(A^	op A)}$
@@ -405,7 +411,7 @@ $$
 
 这就是**正规方程**,解为:
 $$
-\mathbf{w}^* = (X^	op X)^{-1} X^	op \mathbf{y}
+\mathbf{w}^{*} = (X^	op X)^{-1} X^	op \mathbf{y}
 $$
 
 **几何解释**: $X\mathbf{w}$ 是 $X$ 列空间中的向量,正规方程确保 $\mathbf{y} - X\mathbf{w}$ 与列空间正交。
@@ -419,7 +425,7 @@ $$
 
 推导得到:
 $$
-\mathbf{w}^* = (X^	op X + \lambda I)^{-1} X^	op \mathbf{y}
+\mathbf{w}^{*} = (X^	op X + \lambda I)^{-1} X^	op \mathbf{y}
 $$
 
 **几何意义**: $\lambda I$ 确保矩阵正定,等价于:
@@ -488,7 +494,9 @@ $$
 - 避免显式计算协方差矩阵(数值更稳定)
 - 同时得到方向、得分、方差
 
-{{< figure src="images/math/pca-dimensionality-reduction.png" alt="PCA 降维演示" caption="图4：主成分分析找到方差最大的投影方向。灰色点是原始数据，蓝色箭头是第一主成分（方差最大），橙色箭头是第二主成分，绿色点是投影到第一主成分的结果。" >}}
+![PCA 降维演示](/images/math/pca-dimensionality-reduction.png)
+
+*图4：主成分分析找到方差最大的投影方向。灰色点是原始数据，蓝色箭头是第一主成分（方差最大），橙色箭头是第二主成分，绿色点是投影到第一主成分的结果。*
 
 **降维**:保留前 $k$ 个主成分:
 $$
@@ -1026,7 +1034,7 @@ $$
 
 **强凸情况**:假设 $f$ 是 $L$-光滑且 $\mu$-强凸的,则:
 $$
-\|\mathbf{x}^{(t)} - \mathbf{x}^*\|^2 \leq \left(1 - \frac{\mu}{L}\right)^{t} \|\mathbf{x}^{(0)} - \mathbf{x}^*\|^2
+\|\mathbf{x}^{(t)} - \mathbf{x}^{*}\|^2 \leq \left(1 - \frac{\mu}{L}\right)^{t} \|\mathbf{x}^{(0)} - \mathbf{x}^{*}\|^2
 $$
 
 收敛速度依赖于**条件数** $\kappa = L/\mu$:
