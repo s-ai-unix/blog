@@ -99,7 +99,7 @@ $$ + \frac{1}{2}\left[\frac{\partial^2 f}{\partial x^2}\bigg|_{(a,b)}(x-a)^2 + 2
 
 我们可以用更简洁的矩阵形式表示：
 
-$$ f(\mathbf{x}) \approx f(\mathbf{a}) + \nabla f(\mathbf{a})^T(\mathbf{x} - \mathbf{a}) + \frac{1}{2}(\mathbf{x} - \mathbf{a})^T H(\mathbf{a})(\mathbf{x} - \mathbf{a}) $$
+$$ f(\mathbf{x}) \approx f(\mathbf{a}) + \nabla f(\mathbf{a})^{\top}(\mathbf{x} - \mathbf{a}) + \frac{1}{2}(\mathbf{x} - \mathbf{a})^{\top} H(\mathbf{a})(\mathbf{x} - \mathbf{a}) $$
 
 其中：
 - $\nabla f(\mathbf{a})$ 是梯度向量
@@ -222,24 +222,25 @@ $$ |R_1(x)| = \left|\frac{e^\xi}{2!}x^2\right| \leq \frac{e^{0.1}}{2} \times 0.0
 
 ### 最优性条件
 
-对于无约束优化问题 $\min f(\mathbf{x})$，一阶必要条件是：
+对于无约束优化问题 $\min_{\mathbf{x}} f(\mathbf{x})$，一阶必要条件是：
 
-$$ \nabla f(\mathbf{x}^*) = \mathbf{0} $$
+$$ \nabla f(\mathbf{x}^{*}) = \mathbf{0} $$
 
-这个条件的直观理解可以从泰勒展开中看出。设 $\mathbf{x}^*$ 是局部极小值点，考虑 $f(\mathbf{x}^* + \mathbf{h})$ 的一阶泰勒展开：
+这个条件的直观理解可以从泰勒展开中看出。设 $\mathbf{x}^{*}$ 是局部极小值点，考虑 $f(\mathbf{x}^{*} + \mathbf{h})$ 的一阶泰勒展开：
 
-$$ f(\mathbf{x}^* + \mathbf{h}) \approx f(\mathbf{x}^*) + \nabla f(\mathbf{x}^*)^T \mathbf{h} $$
+$$ f(\mathbf{x}^{*} + \mathbf{h}) \approx f(\mathbf{x}^{*}) + \nabla f(\mathbf{x}^{*})^{\top} \mathbf{h} $$
 
-如果 $\nabla f(\mathbf{x}^*) \neq \mathbf{0}$，我们可以选择 $\mathbf{h} = -\alpha \nabla f(\mathbf{x}^*)$（$\alpha > 0$ 很小），使得 $f(\mathbf{x}^* + \mathbf{h}) < f(\mathbf{x}^*)$，这与 $\mathbf{x}^*$ 是局部极小值矛盾。因此，$\nabla f(\mathbf{x}^*)$ 必须为零。
+如果 $\nabla f(\mathbf{x}^{*}) \neq \mathbf{0}$，我们可以选择 $\mathbf{h} = -\alpha \nabla f(\mathbf{x}^{*})$（$\alpha > 0$ 很小），使得 $f(\mathbf{x}^{*} + \mathbf{h}) < f(\mathbf{x}^{*})$，这与 $\mathbf{x}^{*}$ 是局部极小值矛盾。因此，$\nabla f(\mathbf{x}^{*})$ 必须为零。
 
 ### 二阶充分条件
 
-如果 $\nabla f(\mathbf{x}^*) = \mathbf{0}$ 且海森矩阵 $H(\mathbf{x}^*)$ 是正定的（所有特征值大于零），则 $\mathbf{x}^*$ 是严格局部极小值点。
+如果 $\nabla f(\mathbf{x}^{*}) = \mathbf{0}$ 且海森矩阵 $H(\mathbf{x}^{*})$ 是正定的（所有特征值大于零），则 $\mathbf{x}^{*}$ 是严格局部极小值点。
 
 从二阶泰勒展开：
-$$ f(\mathbf{x}^* + \mathbf{h}) \approx f(\mathbf{x}^*) + \frac{1}{2} \mathbf{h}^T H(\mathbf{x}^*) \mathbf{h} $$
 
-如果 $H$ 正定，则 $\mathbf{h}^T H \mathbf{h} > 0$ 对所有非零 $\mathbf{h}$ 成立，因此 $f(\mathbf{x}^* + \mathbf{h}) > f(\mathbf{x}^*)$。
+$$ f(\mathbf{x}^{*} + \mathbf{h}) \approx f(\mathbf{x}^{*}) + \frac{1}{2} \mathbf{h}^{\top} H(\mathbf{x}^{*}) \mathbf{h} $$
+
+如果 $H$ 正定，则 $\mathbf{h}^{\top} H \mathbf{h} > 0$ 对所有非零 $\mathbf{h}$ 成立，因此 $f(\mathbf{x}^{*} + \mathbf{h}) > f(\mathbf{x}^{*})$。
 
 ### 牛顿法
 
@@ -280,7 +281,7 @@ $$ K(\mathbf{x}, \mathbf{y}) \approx 1 - \frac{\|\mathbf{x} - \mathbf{y}\|^2}{2\
 
 考虑目标函数 $f(\mathbf{x})$，在当前点 $\mathbf{x}_k$ 处的一阶泰勒展开：
 
-$$ f(\mathbf{x}_k + \alpha \mathbf{d}_k) \approx f(\mathbf{x}_k) + \alpha \nabla f(\mathbf{x}_k)^T \mathbf{d}_k $$
+$$ f(\mathbf{x}_k + \alpha \mathbf{d}_k) \approx f(\mathbf{x}_k) + \alpha \nabla f(\mathbf{x}_k)^{\top} \mathbf{d}_k $$
 
 其中 $\alpha$ 是步长，$\mathbf{d}_k$ 是搜索方向。对于梯度下降法，$\mathbf{d}_k = -\nabla f(\mathbf{x}_k)$，因此：
 
@@ -343,9 +344,9 @@ $$ H \approx A \otimes G $$
 
 深度神经网络的损失函数景观非常复杂，有大量的鞍点和局部极小值。泰勒展开可以帮助我们分析这些临界点的性质。
 
-在临界点 $\mathbf{W}^*$ 处（$\nabla L(\mathbf{W}^*) = \mathbf{0}$），损失函数的二阶泰勒展开为：
+在临界点 $\mathbf{W}^{*}$ 处（$\nabla L(\mathbf{W}^{*}) = \mathbf{0}$），损失函数的二阶泰勒展开为：
 
-$$ L(\mathbf{W}^* + \mathbf{h}) \approx L(\mathbf{W}^*) + \frac{1}{2} \mathbf{h}^T H(\mathbf{W}^*) \mathbf{h} $$
+$$ L(\mathbf{W}^{*} + \mathbf{h}) \approx L(\mathbf{W}^{*}) + \frac{1}{2} \mathbf{h}^{\top} H(\mathbf{W}^{*}) \mathbf{h} $$
 
 海森矩阵的特征值分布告诉我们临界点的类型：
 - 所有特征值大于零：局部极小值
@@ -360,7 +361,7 @@ $$ L(\mathbf{W}^* + \mathbf{h}) \approx L(\mathbf{W}^*) + \frac{1}{2} \mathbf{h}
 
 设原始输入为 $\mathbf{x}$，扰动后的输入为 $\mathbf{x} + \delta$。网络输出 $f(\mathbf{x})$ 的一阶泰勒展开：
 
-$$ f(\mathbf{x} + \delta) \approx f(\mathbf{x}) + \nabla f(\mathbf{x})^T \delta $$
+$$ f(\mathbf{x} + \delta) \approx f(\mathbf{x}) + \nabla f(\mathbf{x})^{\top} \delta $$
 
 这告诉我们，如果扰动 $\delta$ 的方向与梯度方向一致，输出的变化最大。对抗攻击正是利用了这一点，通过精心设计的微小扰动来最大化输出变化。
 
@@ -382,19 +383,19 @@ $$ \Delta L \approx \frac{1}{2} \frac{\partial^2 L}{\partial w_i^2} w_i^2 $$
 
 在迁移学习中，我们通常预训练一个网络，然后在目标任务上微调。泰勒展开可以帮助我们理解预训练和微调之间的关系。
 
-预训练的目标函数 $L_{\text{pretrain}}(\mathbf{W})$ 和微调的目标函数 $L_{\text{fine}}(\mathbf{W})$ 通常不同。在预训练的最优点 $\mathbf{W}_{\text{pre}}^*$ 附近，$L_{\text{fine}}$ 的泰勒展开为：
+预训练的目标函数 $L_{\text{pretrain}}(\mathbf{W})$ 和微调的目标函数 $L_{\text{fine}}(\mathbf{W})$ 通常不同。在预训练的最优点 $\mathbf{W}_{\text{pre}}^{*}$ 附近，$L_{\text{fine}}$ 的泰勒展开为：
 
-$$ L_{\text{fine}}(\mathbf{W}) \approx L_{\text{fine}}(\mathbf{W}_{\text{pre}}^*) + \nabla L_{\text{fine}}(\mathbf{W}_{\text{pre}}^*)^T(\mathbf{W} - \mathbf{W}_{\text{pre}}^*) + \frac{1}{2}(\mathbf{W} - \mathbf{W}_{\text{pre}}^*)^T H_{\text{fine}}(\mathbf{W}_{\text{pre}}^*)(\mathbf{W} - \mathbf{W}_{\text{pre}}^*) $$
+$$ L_{\text{fine}}(\mathbf{W}) \approx L_{\text{fine}}(\mathbf{W}_{\text{pre}}^{*}) + \nabla L_{\text{fine}}(\mathbf{W}_{\text{pre}}^{*})^{\top}(\mathbf{W} - \mathbf{W}_{\text{pre}}^{*}) + \frac{1}{2}(\mathbf{W} - \mathbf{W}_{\text{pre}}^{*})^{\top} H_{\text{fine}}(\mathbf{W}_{\text{pre}}^{*})(\mathbf{W} - \mathbf{W}_{\text{pre}}^{*}) $$
 
-如果预训练和微调任务相关，$\nabla L_{\text{fine}}(\mathbf{W}_{\text{pre}}^*)$ 会较小，这意味着微调需要的调整较少。这也解释了为什么相关任务之间的迁移学习更有效。
+如果预训练和微调任务相关，$\nabla L_{\text{fine}}(\mathbf{W}_{\text{pre}}^{*})$ 会较小，这意味着微调需要的调整较少。这也解释了为什么相关任务之间的迁移学习更有效。
 
 ### 动量法的理解
 
 动量法通过累积历史梯度来加速收敛。我们可以用泰勒展开来理解其工作原理。
 
-考虑损失函数在最优值附近，假设最优值在 $\mathbf{W}^*$。在 $\mathbf{W}_k$ 处的一阶泰勒展开：
+考虑损失函数在最优值附近，假设最优值在 $\mathbf{W}^{*}$。在 $\mathbf{W}_k$ 处的一阶泰勒展开：
 
-$$ L(\mathbf{W}_k + \Delta \mathbf{W}) \approx L(\mathbf{W}_k) + \nabla L(\mathbf{W}_k)^T \Delta \mathbf{W} $$
+$$ L(\mathbf{W}_k + \Delta \mathbf{W}) \approx L(\mathbf{W}_k) + \nabla L(\mathbf{W}_k)^{\top} \Delta \mathbf{W} $$
 
 如果梯度 $\nabla L(\mathbf{W}_k)$ 的方向变化不大，动量累积会在梯度的"平均"方向上加速移动，就像一个球在坡上滚下时会加速一样。
 
@@ -404,7 +405,7 @@ $$ L(\mathbf{W}_k + \Delta \mathbf{W}) \approx L(\mathbf{W}_k) + \nabla L(\mathb
 
 在训练初期，距离最优值较远，一阶近似可能足够准确，可以使用较大的学习率。在训练后期，接近最优值时，需要更精确的定位，因此需要降低学习率。
 
-从泰勒展开的角度，当 $f(\mathbf{x}) \approx f(\mathbf{x}^*) + \frac{1}{2}(\mathbf{x} - \mathbf{x}^*)^T H (\mathbf{x} - \mathbf{x}^*)$（在最优值附近，$\nabla f(\mathbf{x}^*) = \mathbf{0}$），最优的牛顿步长需要考虑海森矩阵，而固定步长的梯度下降在最优值附近震荡。降低学习率相当于在小范围内"模拟"二阶信息。
+从泰勒展开的角度，当 $f(\mathbf{x}) \approx f(\mathbf{x}^{*}) + \frac{1}{2}(\mathbf{x} - \mathbf{x}^{*})^{\top} H (\mathbf{x} - \mathbf{x}^{*})$（在最优值附近，$\nabla f(\mathbf{x}^{*}) = \mathbf{0}$），最优的牛顿步长需要考虑海森矩阵，而固定步长的梯度下降在最优值附近震荡。降低学习率相当于在小范围内"模拟"二阶信息。
 
 ## 十、泰勒展开的局限性
 
