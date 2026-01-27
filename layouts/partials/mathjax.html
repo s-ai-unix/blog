@@ -117,7 +117,22 @@
         }
       }
 
-      // Case 8: 修复双重转义: \\ -> \
+      // Case 8: 修复被 Goldmark 破坏的下标: {\mathrm{...}} -> _{\mathrm{...}}
+      // 问题: _{\mathrm{pre}} 被解析为 {\mathrm{pre}}，丢失了下划线
+      if (html.includes('{\\mathrm{')) {
+        // 匹配 \mathbf{W}{\mathrm{pre}} 这种模式，在 { 前添加 _
+        var newHtml = html.replace(/\\mathbf\{(W|x|y|z)\}\{\\mathrm\{([a-z]+)\}\}/g, '\\mathbf{$1}_{\\mathrm{$2}}');
+        // 匹配 L{\mathrm{fine}} 这种模式，在 { 前添加 _
+        newHtml = newHtml.replace(/([LHf])\{\\mathrm\{([a-z]+)\}\}/g, '$1_{\\mathrm{$2}}');
+        // 匹配 \nabla L{\mathrm{...}} 这种模式
+        newHtml = newHtml.replace(/\\nabla ([LH])\{\\mathrm\{([a-z]+)\}\}/g, '\\nabla $1_{\\mathrm{$2}}');
+        if (newHtml !== html) {
+          html = newHtml;
+          fixed = true;
+        }
+      }
+
+      // Case 9: 修复双重转义: \\ -> \
       if (html.indexOf('\\\\') !== -1) {
         var newHtml = html.replace(
           /(\$\{1,2\})([^$]*?)(\$\{1,2\})/g,
