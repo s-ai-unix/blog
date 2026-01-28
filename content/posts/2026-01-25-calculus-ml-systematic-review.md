@@ -140,10 +140,10 @@ $$
 
 积分是微分的逆运算，也是累积的工具。从**黎曼和**开始：
 $$
-\int_a^b f(x)dx = \lim_{n \to \infty} \sum_{i=1}^n f(x_i^*)\Delta x_i
+\int_a^b f(x)dx = \lim_{n \to \infty} \sum_{i=1}^n f(x_i^{\ast})\Delta x_i
 $$
 
-其中 $\Delta x_i = x_i - x_{i-1}$，$x_i^* \in [x_{i-1}, x_i]$。
+其中 $\Delta x_i = x_i - x_{i-1}$，$x_i^{\ast} \in [x_{i-1}, x_i]$。
 
 #### 3.2 微积分基本定理
 
@@ -163,7 +163,7 @@ $$
 
 **变量替换公式**（雅可比行列式）：
 $$
-\iint_{D^*} f(x,y)dxdy = \iint_D f(x(u,v), y(u,v)) \left|\frac{\partial(x,y)}{\partial(u,v)}\right| dudv
+\iint_{D^{\ast}} f(x,y)dxdy = \iint_D f(x(u,v), y(u,v)) \left|\frac{\partial(x,y)}{\partial(u,v)}\right| dudv
 $$
 
 其中雅可比行列式：
@@ -209,12 +209,12 @@ $$
 
 **一阶条件**（必要条件）：
 $$
-\nabla f(\mathbf{x}^*) = \mathbf{0}
+\nabla f(\mathbf{x}^{\ast}) = \mathbf{0}
 $$
 
 **二阶条件**（充分条件，对于凸函数）：
 $$
-H(\mathbf{x}^*) \succ 0 \quad (\text{正定})
+H(\mathbf{x}^{\ast}) \succ 0 \quad (\text{正定})
 $$
 
 泰勒展开是理解优化算法（如牛顿法）的数学基础。
@@ -274,7 +274,7 @@ $$
 
 **收敛率**：
 $$
-f(\mathbf{x}^{(t)}) - f(\mathbf{x}^*) \leq \left(1 - \frac{\mu}{L}\right)^{t} [f(\mathbf{x}^{(0)}) - f(\mathbf{x}^*)]
+f(\mathbf{x}^{(t)}) - f(\mathbf{x}^{\ast}) \leq \left(1 - \frac{\mu}{L}\right)^{t} [f(\mathbf{x}^{(0)}) - f(\mathbf{x}^{\ast})]
 $$
 
 这是**线性收敛**（几何收敛）。

@@ -163,6 +163,23 @@ Softmax：$\text{softmax}(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{c} e^{z_j}}$
 - ❌ 错误：`$x_{1-NN}$`
 - ✅ 正确：`$x_{1{-}NN}$` 或 `$x_{1NN}$`
 
+### 星号在上标中
+星号 `*` 在上标位置可能被 MathJax 误解析为 Markdown 强调符号或特殊标记，导致 "Missing open brace for superscript" 错误。
+
+- ❌ 错误：`$x^*$`（在某些 MathJax 配置中会报错）
+- ✅ 正确：`$x^{\ast}$` 或 `$x^{\ast}$`
+
+**示例**：
+```latex
+% ❌ 可能导致错误
+$\mathbf{x}^* = \arg\min f(x)$
+
+% ✅ 推荐写法
+$\mathbf{x}^{\ast} = \arg\min f(x)$
+```
+
+**注意**：这个问题在 Hugo + MathJax 环境中较为常见，建议在技术博客写作中统一使用 `^{	ext{\ast}}` 格式。
+
 ### 表达式中的文本
 在数学模式中包含文本时，使用 `\text{}` 命令：
 
