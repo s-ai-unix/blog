@@ -196,13 +196,13 @@ $\mathfrak{so}(3)$由$3\times3$的反对称矩阵构成：
 
 $$\Omega = \begin{pmatrix} 0 & -\omega_z & \omega_y \\ \omega_z & 0 & -\omega_x \\ -\omega_y & \omega_x & 0 \end{pmatrix}$$
 
-可以用3维向量$\boldsymbol{\omega} = (\omega_x, \omega_y, \omega_z)$表示。
+可以用3维向量$\mathbf{\omega} = (\omega_x, \omega_y, \omega_z)$表示。
 
 **指数映射**：从李代数到李群
 
 $$R = \exp(\Omega) = I + \frac{\sin\theta}{\theta}\Omega + \frac{1-\cos\theta}{\theta^2}\Omega^2$$
 
-其中$\theta = \|\boldsymbol{\omega}\|$是旋转角度。
+其中$\theta = \|\mathbf{\omega}\|$是旋转角度。
 
 **对数映射**：从李群到李代数
 
@@ -346,7 +346,7 @@ IMU测量加速度和角速度，GPS提供位置。在传统方法中，可能�
 
 $$R = \exp(\Omega) = I + \frac{\sin\theta}{\theta}\Omega + \frac{1-\cos\theta}{\theta^2}\Omega^2$$
 
-其中$\theta = \|\boldsymbol{\omega}\|$，$\Omega = [\boldsymbol{\omega}]_\times$是反对称矩阵。
+其中$\theta = \|\mathbf{\omega}\|$，$\Omega = [\mathbf{\omega}]_\times$是反对称矩阵。
 
 **SO(3)的对数映射**：
 
@@ -354,7 +354,7 @@ $$R = \exp(\Omega) = I + \frac{\sin\theta}{\theta}\Omega + \frac{1-\cos\theta}{\
 
 $$\theta = \arccos\left(\frac{\text{tr}(R) - 1}{2}\right)$$
 
-$$\boldsymbol{\omega} = \frac{1}{2\sin\theta} \begin{pmatrix} R_{32} - R_{23} \\ R_{13} - R_{31} \\ R_{21} - R_{12} \end{pmatrix}$$
+$$\mathbf{\omega} = \frac{1}{2\sin\theta} \begin{pmatrix} R_{32} - R_{23} \\ R_{13} - R_{31} \\ R_{21} - R_{12} \end{pmatrix}$$
 
 ### 5.2 流形上的梯度下降
 
@@ -407,13 +407,13 @@ $$R(t) = (1-t)R_1 + tR_2$$
    $$R_{12} = R_1^T R_2$$
 
 2. 取对数：
-   $$\boldsymbol{\omega}_{12} = \log(R_{12})$$
+   $$\mathbf{\omega}_{12} = \log(R_{12})$$
 
 3. 插值：
-   $$\boldsymbol{\omega}(t) = t \boldsymbol{\omega}_{12}$$
+   $$\mathbf{\omega}(t) = t \mathbf{\omega}_{12}$$
 
 4. 指数映射回李群：
-   $$R(t) = R_1 \exp(\boldsymbol{\omega}(t))$$
+   $$R(t) = R_1 \exp(\mathbf{\omega}(t))$$
 
 **结果**：$R(t)$始终是有效的旋转矩阵，且路径是"最短"的（测地线）。
 
@@ -575,11 +575,11 @@ $$R(t) = (1-t)R_1 + tR_2$$
 
 $$R = \exp(\Omega) = I + \frac{\sin\theta}{\theta}\Omega + \frac{1-\cos\theta}{\theta^2}\Omega^2$$
 
-其中$\theta = \|\boldsymbol{\omega}\|$，$\Omega = [\boldsymbol{\omega}]_\times$。
+其中$\theta = \|\mathbf{\omega}\|$，$\Omega = [\mathbf{\omega}]_\times$。
 
 **反对称矩阵**：
 
-$$[\boldsymbol{\omega}]_\times = \begin{pmatrix} 0 & -\omega_z & \omega_y \\ \omega_z & 0 & -\omega_x \\ -\omega_y & \omega_x & 0 \end{pmatrix}$$
+$$[\mathbf{\omega}]_\times = \begin{pmatrix} 0 & -\omega_z & \omega_y \\ \omega_z & 0 & -\omega_x \\ -\omega_y & \omega_x & 0 \end{pmatrix}$$
 
 ### 流形优化
 

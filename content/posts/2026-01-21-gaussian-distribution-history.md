@@ -320,9 +320,9 @@ $$\varphi_X(t) = \mathbb{E}[e^{itX}] = \exp\left(i\mu t - \frac{\sigma^2 t^2}{2}
 
 推广到向量 $\mathbf{X} \in \mathbb{R}^n$，多元正态分布的密度为：
 
-$$f(\mathbf{x}) = \frac{1}{(2\pi)^{n/2}|\boldsymbol{\Sigma}|^{1/2}} \exp\left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^\mathsf{T}\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right]$$
+$$f(\mathbf{x}) = \frac{1}{(2\pi)^{n/2}|\mathbf{\Sigma}|^{1/2}} \exp\left[-\frac{1}{2}(\mathbf{x}-\mathbf{\mu})^\mathsf{T}\mathbf{\Sigma}^{-1}(\mathbf{x}-\mathbf{\mu})\right]$$
 
-其中 $\boldsymbol{\mu}$ 是均值向量，$\boldsymbol{\Sigma}$ 是协方差矩阵。
+其中 $\mathbf{\mu}$ 是均值向量，$\mathbf{\Sigma}$ 是协方差矩阵。
 
 多元正态分布在统计学、机器学习、信号处理等领域有着极其重要的应用。
 

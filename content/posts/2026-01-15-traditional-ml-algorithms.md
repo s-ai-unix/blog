@@ -1363,18 +1363,18 @@ $\mathbf{v}_2$ 是 $\mathbf{C}$ 的第二大特征值对应的特征向量。
 设 $\tilde{\mathbf{X}}$ 的 SVD 为：
 
 $$
-\tilde{\mathbf{X}} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^T
+\tilde{\mathbf{X}} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T
 $$
 
 其中：
 - $\mathbf{U} \in \mathbb{R}^{n \times d}$ 是左奇异矩阵（$\mathbf{U}^T \mathbf{U} = \mathbf{I}$）
-- $\boldsymbol{\Sigma} \in \mathbb{R}^{d \times d}$ 是对角矩阵，对角元素是奇异值 $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_d \geq 0$
+- $\mathbf{\Sigma} \in \mathbb{R}^{d \times d}$ 是对角矩阵，对角元素是奇异值 $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_d \geq 0$
 - $\mathbf{V} \in \mathbb{R}^{d \times d}$ 是右奇异矩阵（$\mathbf{V}^T \mathbf{V} = \mathbf{I}$）
 
 协方差矩阵为：
 
 $$
-\mathbf{C} = \frac{1}{n} \tilde{\mathbf{X}}^T \tilde{\mathbf{X}} = \frac{1}{n} \mathbf{V} \boldsymbol{\Sigma}^T \mathbf{U}^T \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^T = \frac{1}{n} \mathbf{V} \boldsymbol{\Sigma}^2 \mathbf{V}^T
+\mathbf{C} = \frac{1}{n} \tilde{\mathbf{X}}^T \tilde{\mathbf{X}} = \frac{1}{n} \mathbf{V} \mathbf{\Sigma}^T \mathbf{U}^T \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T = \frac{1}{n} \mathbf{V} \mathbf{\Sigma}^2 \mathbf{V}^T
 $$
 
 因此，$\mathbf{C}$ 的特征向量是 $\mathbf{V}$ 的列，特征值是 $\frac{\sigma_i^2}{n}$。

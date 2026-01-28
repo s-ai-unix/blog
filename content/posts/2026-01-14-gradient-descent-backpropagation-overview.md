@@ -771,7 +771,7 @@ $$
 #### 旋度：涡旋与环流
 
 - **磁场**：$\nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}$（安培-麦克斯韦定律）
-- **涡旋流**：$\nabla \times \mathbf{v} = \boldsymbol{\omega}$（涡量）
+- **涡旋流**：$\nabla \times \mathbf{v} = \mathbf{\omega}$（涡量）
 - **保守力**：$\nabla \times \mathbf{F} = 0$
 
 旋度描述旋转和环流，是区分保守场和非保守场的关键。
