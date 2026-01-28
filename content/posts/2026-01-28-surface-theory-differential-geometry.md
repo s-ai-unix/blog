@@ -42,7 +42,7 @@ $$
 
 ![参数化曲面与切平面](/images/plots/surface_parametrization.png)
 
-*图1：鞍面 $z = x^2 - y^2$ 的参数化表示，展示了坐标曲线和切平面。在点 $P$ 处，$u$-曲线（绿色）和 $v$-曲线（蓝色）张成了切平面。*
+图1：鞍面 $z = x^2 - y^2$ 的参数化表示，展示了坐标曲线和切平面。在点 $P$ 处，$u$-曲线（绿色）和 $v$-曲线（蓝色）张成了切平面。
 
 ### 1.2 切向量与切平面
 
@@ -94,13 +94,11 @@ $$
 
 这就是**第一基本型**（First Fundamental Form），其中：
 
-$$
-\begin{aligned}
-E &= \mathbf{r}_u \cdot \mathbf{r}_u = |\mathbf{r}_u|^2 \\
-F &= \mathbf{r}_u \cdot \mathbf{r}_v \\
-G &= \mathbf{r}_v \cdot \mathbf{r}_v = |\mathbf{r}_v|^2
-\end{aligned}
-$$
+$$E = \mathbf{r}_u \cdot \mathbf{r}_u = |\mathbf{r}_u|^2$$
+
+$$F = \mathbf{r}_u \cdot \mathbf{r}_v$$
+
+$$G = \mathbf{r}_v \cdot \mathbf{r}_v = |\mathbf{r}_v|^2$$
 
 用矩阵形式，第一基本型可以写成：
 
@@ -112,7 +110,7 @@ $$
 
 ![第一基本型的度量意义](/images/plots/first_fundamental_form.png)
 
-*图2：球面上的弧长度量。曲面上曲线的长度只能通过第一基本型计算，而不能直接用欧氏空间的距离公式。*
+图2：球面上的弧长度量。曲面上曲线的长度只能通过第一基本型计算，而不能直接用欧氏空间的距离公式。
 
 ### 2.3 第一基本型的几何意义
 
@@ -185,7 +183,7 @@ $$
 
 ![圆柱面上不同方向的法曲率](/images/plots/normal_curvature_cylinder.png)
 
-*图3：圆柱面上不同方向的法曲率。沿母线方向（绿色）曲率为0，沿圆周方向（蓝色）曲率为 $1/R$。*
+图3：圆柱面上不同方向的法曲率。沿母线方向（绿色）曲率为0，沿圆周方向（蓝色）曲率为 $1/R$。
 
 ### 3.3 第二基本型的定义
 
@@ -203,13 +201,11 @@ $$
 
 其中：
 
-$$
-\begin{aligned}
-L &= \mathbf{r}_{uu} \cdot \mathbf{n} = \frac{(\mathbf{r}_u \times \mathbf{r}_v) \cdot \mathbf{r}_{uu}}{|\mathbf{r}_u \times \mathbf{r}_v|} \\
-M &= \mathbf{r}_{uv} \cdot \mathbf{n} = \frac{(\mathbf{r}_u \times \mathbf{r}_v) \cdot \mathbf{r}_{uv}}{|\mathbf{r}_u \times \mathbf{r}_v|} \\
-N &= \mathbf{r}_{vv} \cdot \mathbf{n} = \frac{(\mathbf{r}_u \times \mathbf{r}_v) \cdot \mathbf{r}_{vv}}{|\mathbf{r}_u \times \mathbf{r}_v|}
-\end{aligned}
-$$
+$$L = \mathbf{r}_{uu} \cdot \mathbf{n} = \frac{(\mathbf{r}_u \times \mathbf{r}_v) \cdot \mathbf{r}_{uu}}{|\mathbf{r}_u \times \mathbf{r}_v|}$$
+
+$$M = \mathbf{r}_{uv} \cdot \mathbf{n} = \frac{(\mathbf{r}_u \times \mathbf{r}_v) \cdot \mathbf{r}_{uv}}{|\mathbf{r}_u \times \mathbf{r}_v|}$$
+
+$$N = \mathbf{r}_{vv} \cdot \mathbf{n} = \frac{(\mathbf{r}_u \times \mathbf{r}_v) \cdot \mathbf{r}_{vv}}{|\mathbf{r}_u \times \mathbf{r}_v|}$$
 
 **第二基本型**（Second Fundamental Form）定义为：
 
@@ -241,7 +237,7 @@ $$
 
 ![椭球面的主曲率方向](/images/plots/principal_curvature.png)
 
-*图4：椭球面顶点处的主曲率方向。蓝色曲线方向曲率最大，绿色曲线方向曲率最小。*
+图4：椭球面顶点处的主曲率方向。蓝色曲线方向曲率最大，绿色曲线方向曲率最小。
 
 ### 4.2 高斯曲率与平均曲率
 
@@ -276,7 +272,7 @@ $$
 
 ![高斯曲率分类](/images/plots/gauss_map.png)
 
-*图5：高斯曲率的分类。从左到右：椭圆点（球面）、双曲点（鞍面）、抛物点（圆柱面）。*
+图5：高斯曲率的分类。从左到右：椭圆点（球面）、双曲点（鞍面）、抛物点（圆柱面）。
 
 ## 第五章：高斯绝妙定理
 
@@ -318,7 +314,7 @@ $$
 
 ![可展曲面](/images/plots/developable_surfaces.png)
 
-*图6：可展曲面的例子——圆锥面。它可以被剪开并展平为平面的一部分。*
+图6：可展曲面的例子——圆锥面。它可以被剪开并展平为平面的一部分。
 
 ## 第六章：测地线
 
@@ -350,7 +346,7 @@ $$
 
 ![球面上的测地线](/images/plots/geodesic.png)
 
-*图7：球面上的测地线是大圆。橙色和蓝色曲线都是通过球心的平面与球面的交线。*
+图7：球面上的测地线是大圆。橙色和蓝色曲线都是通过球心的平面与球面的交线。
 
 ### 6.3 测地线的例子
 
