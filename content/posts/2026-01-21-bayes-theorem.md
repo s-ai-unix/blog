@@ -312,7 +312,7 @@ $$
 
 预测分布为：
 $$
-p(y^*|x^*, D) = \int p(y^*|x^*, \beta) \cdot p(\beta|D) \, d\beta
+p(y^{\ast}|x^{\ast}, D) = \int p(y^{\ast}|x^{\ast}, \beta) \cdot p(\beta|D) \, d\beta
 $$
 
 这个积分考虑了参数的所有可能取值，给出了更全面的预测。

@@ -89,6 +89,22 @@ $$
 
 这意味着球面会随着时间均匀收缩。
 
+![球面 Ricci Flow 半径收缩](/images/plots/ricci-flow-sphere-radius.png)
+
+图1：球面在 Ricci Flow 下的半径演化。当 $t \to 0.25$ 时，半径趋于零，形成奇点。
+
+![球面演化序列](/images/plots/ricci-flow-sphere-t0.png)
+
+图2a：$t=0$ 时的初始球面。
+
+![球面演化序列](/images/plots/ricci-flow-sphere-t1.png)
+
+图2b：$t=0.1$ 时球面开始收缩。
+
+![球面演化序列](/images/plots/ricci-flow-sphere-t2.png)
+
+图2c：$t=0.2$ 时球面接近奇点。
+
 **例 2：平坦流形**
 
 对于平坦流形（欧氏空间 $\mathbb{R}^n$），Ricci 曲率 $R_{ij} = 0$，因此：
@@ -138,6 +154,10 @@ $$
 
 这意味着在 Ricci Flow 下，标量曲率不会递减，除非流形是爱因斯坦流形（$Ric = \lambda g$）。
 
+![标量曲率演化](/images/plots/ricci-flow-scalar-curvature.png)
+
+图3：不同类型流形的标量曲率演化。正曲率流形（如球面）的曲率趋于无穷大；负曲率流形的曲率绝对值减小，趋向于平坦。
+
 ### 3.3 单调量
 
 Hamilton 发现了许多在 Ricci Flow 下单调变化的量，这些量在分析几何结构时非常有用。最重要的几个单调量包括：
@@ -157,6 +177,10 @@ $$
 $$
 
 其中 $K$ 是高斯曲率，$\chi(M)$ 是欧拉特征数。在 Ricci Flow 下，这个量保持不变。
+
+![2D高斯曲率演化](/images/plots/ricci-flow-gaussian-curvature.png)
+
+图5：二维流形的高斯曲率演化。正曲率区域曲率增大并趋于奇点；负曲率区域逐渐变得平坦。
 
 ### 3.4 奇点分析
 
@@ -182,6 +206,10 @@ Perelman 的证明思路：
    \mathcal{W}(g,f,\tau) = \int_M \left( \tau(R + |\nabla f|^2) + f(n-1) - n \right) (4\pi \tau)^{-n/2} e^{-f} d\mu
    $$
 3. **收敛性证明**：证明经过有限次手术后，流形收敛到球面
+
+![Perelman 熵单调性](/images/plots/ricci-flow-perelman-entropy.png)
+
+图4：Perelman 熵在 Ricci Flow 下的单调递增性。这一性质是证明庞加莱猜想的关键工具。
 
 ### 4.2 几何化猜想
 
@@ -286,4 +314,4 @@ Ricci Flow 作为连接微分几何、偏微分方程、拓扑学和物理学的
 
 ---
 
-*感谢您阅读本文。Ricci Flow 的世界还有更多值得探索的内容，希望这篇文章能成为您深入学习的起点。*
+感谢您阅读本文。Ricci Flow 的世界还有更多值得探索的内容，希望这篇文章能成为您深入学习的起点。

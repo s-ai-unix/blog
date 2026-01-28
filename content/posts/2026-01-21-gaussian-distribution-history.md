@@ -70,6 +70,10 @@ $$f(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$$
 
 这就是**标准正态分布**的概率密度函数！
 
+![棣莫弗-拉普拉斯极限定理](/images/plots/gaussian-de-moivre-limit.png)
+
+图1：棣莫弗-拉普拉斯极限定理。当二项分布的试验次数 $n$ 增大时，标准化后的分布逐渐逼近标准正态分布（红色曲线）。
+
 ### 历史的遗憾
 
 有趣的是，棣莫弗并不知道自己发现了一个"普适"的分布。他只是把它当作计算二项分布的一个**实用技巧**。他的工作也没有引起当时学术界的广泛关注。
@@ -114,6 +118,10 @@ flowchart LR
 
 高斯证明：如果要求"算术平均值是最大似然估计"，那么误差分布**必须**是正态分布。
 
+![不同误差分布的比较](/images/plots/gaussian-error-distributions.png)
+
+图4：不同误差分布的比较。正态分布（蓝色）是使算术平均值为最大似然估计的唯一分布，拉普拉斯分布（橙色）和均匀分布（绿色）不满足这一性质。
+
 这个结论被称为**高斯证明**（Gauss's Proof），它深刻地揭示了正态分布的特殊地位。
 
 ### 最小二乘法的诞生
@@ -153,6 +161,10 @@ $$S_n = X_1 + X_2 + \cdots + X_n$$
 可以这样理解：要使总和 $S_n$ 等于某个特定值，需要各个 $X_i$ 的结果恰好相互"抵消"或"累加"到那个值。随着 $n$ 的增大，可能的组合方式呈指数增长，而其中大多数组合都会使总和接近某个"中心"值——因为远离中心需要许多变量"恰好"都偏向同一方向，这是一个**小概率事件**。
 
 数学上，正态分布的 $e^{-x^2/2}$ 形式正是这种"指数衰减"特征的体现。
+
+![中心极限定理演示](/images/plots/gaussian-clt-dice.png)
+
+图2：中心极限定理的直观演示。随着骰子数量的增加，总和的分布从均匀分布逐渐演变为正态分布（红色曲线）。
 
 ### 普适性的解释
 
@@ -238,6 +250,10 @@ $$f(x) = e^{-1-\lambda_1-\lambda_2 x^2} = A e^{-kx^2}$$
 
 **物理意义**：在只知道方差（"离散程度"）的情况下，正态分布是"最不确定"的分布——它不包含任何额外的假设或偏置。
 
+![最大熵原理](/images/plots/gaussian-maximum-entropy.png)
+
+图5：最大熵原理的可视化。在相同方差约束下，正态分布（蓝色）具有最大的微分熵，表示它是最"随机"、最"无偏"的分布。双峰分布（橙色）和均匀分布（绿色）都包含额外的结构信息，因此熵较低。
+
 ### 推导四：赫歇尔-麦克斯韦推导
 
 这是一个基于几何对称性的优美推导，由约翰·赫歇尔（John Herschel, 1850）和詹姆斯·麦克斯韦（James Maxwell, 1860）独立给出。
@@ -278,28 +294,9 @@ $$f(x) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\righ
 2. **均值=中位数=众数**：都是 $\mu$
 3. **68-95-99.7 规则**（下图示意）：
 
-```mermaid
-flowchart LR
-    subgraph 正态分布区间
-        direction LR
-        A["-3σ<br/>0.15%"] --> B["-2σ<br/>2.35%"]
-        B --> C["-σ<br/>13.6%"]
-        C --> D["μ<br/>34.1%"]
-        D --> E["+σ<br/>34.1%"]
-        E --> F["+2σ<br/>13.6%"]
-        F --> G["+3σ<br/>2.35%"]
-        G --> H[">3σ<br/>0.15%"]
-    end
+![正态分布的68-95-99.7规则](/images/plots/gaussian-empirical-rule.png)
 
-    style A fill:#FF9500,color:#fff,stroke-width:2px
-    style B fill:#FF9500,color:#fff,stroke-width:2px
-    style C fill:#34C759,color:#fff,stroke-width:2px
-    style D fill:#007AFF,color:#fff,stroke-width:3px
-    style E fill:#007AFF,color:#fff,stroke-width:3px
-    style F fill:#34C759,color:#fff,stroke-width:2px
-    style G fill:#FF9500,color:#fff,stroke-width:2px
-    style H fill:#FF9500,color:#fff,stroke-width:2px
-```
+图3：正态分布的68-95-99.7经验法则。蓝色区域包含约68%的数据，绿色区域包含约95%，而99.7%的数据落在±3σ范围内。
 
    - 约 **68%** 的数据在 $\mu \pm \sigma$ 内（蓝色区域）
    - 约 **95%** 的数据在 $\mu \pm 2\sigma$ 内（蓝色+绿色区域）
