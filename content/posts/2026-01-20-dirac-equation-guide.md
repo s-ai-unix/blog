@@ -85,9 +85,9 @@ $$ \left(-\frac{1}{c^2}\frac{\partial^2}{\partial t^2} + \nabla^2 - \frac{m^2c^2
 
 然而,这个方程有一个严重的问题,几乎使它被物理学家抛弃。
 
-在量子力学中,波函数的模平方 $|\psi|^2$ 代表找到粒子的概率密度,它必须是非负的。但对于克莱因-戈尔登方程,如果我们尝试定义概率密度为:
+在量子力学中,波函数的模平方 $\vert\psi\vert^2$ 代表找到粒子的概率密度,它必须是非负的。但对于克莱因-戈尔登方程,如果我们尝试定义概率密度为:
 
-$$ \rho = \frac{i\hbar}{2mc^2}\left(\psi^*\frac{\partial\psi}{\partial t} - \psi\frac{\partial\psi^*}{\partial t}\right) $$
+$$ \rho = \frac{i\hbar}{2mc^2}\left(\psi^{\ast}\frac{\partial\psi}{\partial t} - \psi\frac{\partial\psi^{\ast}}{\partial t}\right) $$
 
 你会发现这个表达式**在某些情况下会是负的**!这在物理上是无法接受的——概率怎么可能小于零呢?
 
@@ -247,9 +247,9 @@ $$ \gamma^\mu\partial_\mu = \gamma^0\frac{\partial}{\partial t} + \gamma^1\frac{
 
 定义概率密度为:
 
-$$ \rho = \psi^\dagger\psi = |\psi_1|^2 + |\psi_2|^2 + |\psi_3|^2 + |\psi_4|^2 $$
+$$ \rho = \psi^\dagger\psi = \vert\psi_1\vert^2 + \vert\psi_2\vert^2 + \vert\psi_3\vert^2 + \vert\psi_4\vert^2 $$
 
-其中 $\psi^\dagger = (\psi_1^*, \psi_2^*, \psi_3^*, \psi_4^*)$ 是厄米共轭。由于每一项都是模的平方,$\rho$ **必然是非负的**!
+其中 $\psi^\dagger = (\psi_1^{\ast}, \psi_2^{\ast}, \psi_3^{\ast}, \psi_4^{\ast})$ 是厄米共轭。由于每一项都是模的平方,$\rho$ **必然是非负的**!
 
 更重要的是,$\rho$ 满足连续性方程:
 
