@@ -190,7 +190,7 @@ $$
 x^{(t+1)} = x^{(t)} - \eta(Qx^{(t)} - b) = (I - \eta Q)x^{(t)} + \eta b
 $$
 
-如果学习率 $\eta$ 满足 $0 < \eta < \frac{2}{\lambda_{\max}}$（其中 $\lambda_{\max}$ 是 $Q$ 的最大特征值），则迭代收敛到最优解 $x^* = Q^{-1}b$。
+如果学习率 $\eta$ 满足 $0 < \eta < \frac{2}{\lambda_{\max}}$（其中 $\lambda_{\max}$ 是 $Q$ 的最大特征值），则迭代收敛到最优解 $x^{\ast} = Q^{-1}b$。
 
 #### 非凸函数的挑战
 

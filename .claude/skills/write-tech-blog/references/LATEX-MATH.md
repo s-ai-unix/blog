@@ -98,6 +98,74 @@ $$
 - ✅ 正确：`| $x_1$ | $x_2$ | $x_1 + x_2$ |`
 - ❌ 错误：`| x_1 | x_2 | x_1 + x_2 |`（变量未包裹）
 
+## 复杂公式的特殊处理（重要）
+
+### 问题：复杂公式中的下划线被解析为 Markdown 斜体
+
+当公式包含多个下划线（如多重下标、张量指标等）时，Markdown 解析器可能将 `_` 误认为斜体标记。
+
+**症状**：公式中的 `_` 变成 `<em>` 标签，公式显示为源码或渲染错误。
+
+**示例问题公式**：
+```latex
+$$\mathbf{X}_{i_1 i_2 \cdots i_N} = \sum_{\alpha_1, \ldots, \alpha_{N-1}} A^{(1)}_{i_1 \alpha_1} A^{(2)}_{\alpha_1 i_2 \alpha_2} \cdots$$
+```
+
+### 解决方案
+
+#### 方案1：使用 HTML div 包裹（推荐）
+
+对于包含多个下划线的复杂独立公式，使用 `<div class="math">` 包裹：
+
+```markdown
+<div class="math">
+$$\mathbf{X}_{i_1 i_2 \cdots i_N} = \sum_{\alpha_1, \ldots, \alpha_{N-1}} A^{(1)}_{i_1 \alpha_1} A^{(2)}_{\alpha_1 i_2 \alpha_2} \cdots A^{(N)}_{\alpha_{N-1} i_N}$$
+</div>
+```
+
+**优点**：
+- Markdown 解析器跳过 `<div>` 标签内部内容
+- MathJax 正常接收完整的 LaTeX 代码
+- 兼容性最好
+
+#### 方案2：使用 LaTeX 原生语法
+
+使用 `\[` 和 `\]` 替代 `$$`：
+
+```markdown
+\[\mathbf{X}_{i_1 i_2 \cdots i_N} = \sum_{\alpha_1, \ldots, \alpha_{N-1}} \cdots\]
+```
+
+**注意**：需要 Hugo 配置支持 `passthrough` 扩展。
+
+#### 方案3：简化公式（备选）
+
+将复杂公式拆分为多个简单公式，减少单个公式中的下划线数量。
+
+### 需要特殊处理的场景
+
+以下情况建议使用 `<div class="math">` 包裹：
+
+1. **张量指标**：多个带下标的变量相乘
+   ```latex
+   $$A^{(1)}_{i_1 \alpha_1} A^{(2)}_{\alpha_1 i_2 \alpha_2} \cdots A^{(N)}_{\alpha_{N-1} i_N}$$
+   ```
+
+2. **多重求和/积分**：嵌套的求和或积分
+   ```latex
+   $$\sum_{i=1}^n \sum_{j=1}^m \sum_{k=1}^p a_{ijk}$$
+   ```
+
+3. **矩阵元序列**：长串的矩阵元素定义
+   ```latex
+   $$H_{ij} = \langle i | H | j \rangle = \int \psi_i^*(x) H \psi_j(x) dx$$
+   ```
+
+4. **张量网络**：矩阵乘积态、张量分解等
+   ```latex
+   $$\mathbf{X}_{i_1 i_2 \cdots i_N} = \sum_{\alpha_1, \ldots} A^{(1)}_{i_1 \alpha_1} \cdots$$
+   ```
+
 ## 常见错误示例及修复
 
 | 错误写法 | 正确写法 | 原因 |
@@ -125,6 +193,7 @@ $$
 - [ ] 特殊符号（×, →, ∈ 等）是否用 LaTeX 命令？
 - [ ] 花括号在文本中是否转义为 `\{` 和 `\}`？
 - [ ] 向量是否用 `\mathbf{}` 或 `\vec{}` 标记？
+- [ ] 复杂公式（多下划线）是否用 `<div class="math">` 包裹？
 
 ### 2. 常用模板
 ```
@@ -138,10 +207,18 @@ $$
 Softmax：$\text{softmax}(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{c} e^{z_j}}$
 ```
 
-### 3. 测试验证
+### 3. 复杂公式模板
+```markdown
+<div class="math">
+$$\mathbf{X}_{i_1 i_2 \cdots i_N} = \sum_{\alpha_1, \ldots, \alpha_{N-1}} A^{(1)}_{i_1 \alpha_1} A^{(2)}_{\alpha_1 i_2 \alpha_2} \cdots A^{(N)}_{\alpha_{N-1} i_N}$$
+</div>
+```
+
+### 4. 测试验证
 - 在支持 MathJax 的 Markdown 编辑器中预览
 - 检查浏览器控制台是否有 MathJax 错误
 - 确保所有公式正确渲染，没有显示为源代码
+- 复杂公式务必检查下划线是否被正确解析
 
 ## MathJax 解析失败的常见原因
 
@@ -152,6 +229,7 @@ Softmax：$\text{softmax}(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{c} e^{z_j}}$
 2. 在数学模式中使用了未转义的特殊字符（如 `#`, `%`, `&`）
 3. 上标/下标格式错误（`^(...)` 应为 `^{...}`）
 4. 连字符在下标中导致歧义（`1-NN` 应为 `1{-}NN` 或 `1NN`）
+5. Markdown 解析器将复杂公式中的 `_` 解析为 `<em>`（使用 `<div class="math">` 包裹）
 
 **解决**：使用 `hugo --quiet` 测试，检查构建输出
 
@@ -178,13 +256,33 @@ $\mathbf{x}^* = \arg\min f(x)$
 $\mathbf{x}^{\ast} = \arg\min f(x)$
 ```
 
-**注意**：这个问题在 Hugo + MathJax 环境中较为常见，建议在技术博客写作中统一使用 `^{	ext{\ast}}` 格式。
+**注意**：这个问题在 Hugo + MathJax 环境中较为常见，建议在技术博客写作中统一使用 `^{\ast}` 格式。
 
 ### 表达式中的文本
 在数学模式中包含文本时，使用 `\text{}` 命令：
 
 - ✅ 正确：`$\text{对于所有 } x \in \mathbb{R}$`
 - ❌ 错误：`对于所有 $x \in \mathbb{R}$`（中英文混排）
+
+### 特殊字符 `#` 在数学模式中
+
+`#` 在 LaTeX 中是特殊字符（用于宏参数），即使在数学模式中也不能直接使用 `\#`。
+
+**错误示例**（表示"数据量"或"特征数"）：
+- ❌ 错误：`$O(\#data \times \#features)$`
+- ❌ 错误：`$O(\#samples)$`
+
+这些写法会导致 MathJax 报错："You can't use 'macro parameter character #' in math mode"
+
+**正确替代方案**：
+- ✅ 使用下标变量：`$O(n_{samples} \times n_{features})$`
+- ✅ 使用普通文本：`$\text{样本数} \times \text{特征数}$`
+- ✅ 使用其他符号：`$O(N \times D)$`
+
+**常见场景**：
+- 算法复杂度：`$O(n^2)$` 而非 `$O(\#data^2)$`
+- 张量维度：`$n_{channels}$` 而非 `$\#channels$`
+- 统计量：`$n_{samples}$` 而非 `$\#samples$`
 
 ### 多行公式推导
 使用 `align` 环境对齐多行公式：
@@ -232,6 +330,7 @@ $$
 测试2：$x^2$ （上标）
 测试3：$\alpha$ （希腊字母）
 测试4：$\frac{a}{b}$ （分数）
+测试5：复杂公式（多下划线，用 <div class="math"> 包裹）
 ```
 
 ### 2. 浏览器控制台
@@ -239,3 +338,6 @@ $$
 
 ### 3. 隔离问题
 将有问题的公式单独放到一个测试文件中，验证是否能正确渲染
+
+### 4. 检查 HTML 源码
+在浏览器中查看页面源码，搜索 `<em>` 标签，确认是否被错误插入到公式中

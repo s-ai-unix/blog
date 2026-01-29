@@ -118,22 +118,22 @@ $$ Q^\pi(s,a) = \sum_{s'} P(s'|s,a) [R(s,a,s') + \gamma \sum_{a'} \pi(a'|s') Q^\
 
 ### 2.5 最优价值函数
 
-我们的目标是找到最优策略 $\pi^*$，即最大化累积奖励的策略。对应地，我们定义**最优状态价值函数**和**最优动作价值函数**：
+我们的目标是找到最优策略 $\pi^{\ast}$，即最大化累积奖励的策略。对应地，我们定义**最优状态价值函数**和**最优动作价值函数**：
 
-$$ V^*(s) = \max_\pi V^\pi(s) $$
-$$ Q^*(s,a) = \max_\pi Q^\pi(s,a) $$
+$$ V^{\ast}(s) = \max_\pi V^\pi(s) $$
+$$ Q^{\ast}(s,a) = \max_\pi Q^\pi(s,a) $$
 
 这两个函数满足**贝尔曼最优方程**（Bellman Optimality Equation）：
 
-$$ V^*(s) = \max_a \sum_{s'} P(s'|s,a) [R(s,a,s') + \gamma V^*(s')] $$
+$$ V^{\ast}(s) = \max_a \sum_{s'} P(s'|s,a) [R(s,a,s') + \gamma V^{\ast}(s')] $$
 
-$$ Q^*(s,a) = \sum_{s'} P(s'|s,a) [R(s,a,s') + \gamma \max_{a'} Q^*(s',a')] $$
+$$ Q^{\ast}(s,a) = \sum_{s'} P(s'|s,a) [R(s,a,s') + \gamma \max_{a'} Q^{\ast}(s',a')] $$
 
 注意与期望方程的区别：这里我们用了 $\max_a$ 而不是 $\sum_a \pi(a|s)$，因为我们不再是对策略求期望，而是直接选择最优动作。
 
 从最优价值函数，我们可以直接得到最优策略：
 
-$$ \pi^*(s) = \arg\max_a Q^*(s,a) $$
+$$ \pi^{\ast}(s) = \arg\max_a Q^{\ast}(s,a) $$
 
 也就是说，最优策略在每个状态下都选择价值最大的动作。
 
@@ -161,14 +161,14 @@ TD 误差可以理解为"我们期望得到的"与"我们当前估计的"之间�
 
 ### 3.3 Q-learning 的收敛性证明
 
-Q-learning 的一个重要性质是：在满足一定条件下，Q 值会收敛到最优 Q 函数 $Q^*(s,a)$。
+Q-learning 的一个重要性质是：在满足一定条件下，Q 值会收敛到最优 Q 函数 $Q^{\ast}(s,a)$。
 
 **定理**：如果满足以下条件：
 1. 所有状态-动作对 $(s,a)$ 都被无限次访问
 2. 学习率 $\alpha_t$ 满足 $\sum_t \alpha_t = \infty$ 且 $\sum_t \alpha_t^2 < \infty$
 3. 折扣因子 $\gamma < 1$（或者问题是有限折扣的）
 
-那么 Q-learning 的 Q 值以概率 1 收敛到 $Q^*$。
+那么 Q-learning 的 Q 值以概率 1 收敛到 $Q^{\ast}$。
 
 **证明思路**：
 1. 定义 $Q_t$ 为第 t 步的 Q 值估计
@@ -186,7 +186,7 @@ Q-learning 需要为每个状态-动作对存储一个 Q 值，这意味着空�
 
 这就是著名的**维数灾难**（Curse of Dimensionality）。解决这个问题的方法是使用函数近似（function approximation），即用一个函数来表示 Q 值：
 
-$$ Q(s,a;\theta) \approx Q^*(s,a) $$
+$$ Q(s,a;\theta) \approx Q^{\ast}(s,a) $$
 
 其中 $\theta$ 是函数的参数。在深度强化学习中，我们用神经网络作为函数近似器，这就是 DQN（Deep Q-Network）的核心思想。
 
@@ -209,7 +209,7 @@ $$ J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}[R(\tau)] $$
 
 其中 $\tau = (s_0, a_0, s_1, a_1, \ldots, s_T)$ 是一条轨迹，$R(\tau) = \sum_{t=0}^{T-1} \gamma^t r_t$ 是轨迹的累积奖励。
 
-我们的目标是找到 $\theta^* = \arg\max_\theta J(\theta)$。
+我们的目标是找到 $\theta^{\ast} = \arg\max_\theta J(\theta)$。
 
 ### 4.3 策略梯度定理
 

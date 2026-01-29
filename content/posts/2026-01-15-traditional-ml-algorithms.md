@@ -152,7 +152,7 @@ $$
 这就是著名的**正规方程**（Normal Equation）。如果 $\mathbf{X}^T \mathbf{X}$ 可逆，解为：
 
 $$
-\mathbf{w}^* = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}
+\mathbf{w}^{\ast} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}
 $$
 
 ### 几何直观
@@ -160,7 +160,7 @@ $$
 从几何上看，$\mathbf{y}$ 在列空间 $\mathcal{C}(\mathbf{X})$ 上的投影是：
 
 $$
-\hat{\mathbf{y}} = \mathbf{X} \mathbf{w}^* = \mathbf{X} (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y} = \mathbf{H} \mathbf{y}
+\hat{\mathbf{y}} = \mathbf{X} \mathbf{w}^{\ast} = \mathbf{X} (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y} = \mathbf{H} \mathbf{y}
 $$
 
 其中 $\mathbf{H} = \mathbf{X} (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T$ 是**帽子矩阵**（hat matrix）。它把 $\mathbf{y}$ "戴上了帽子"。
@@ -457,18 +457,18 @@ $$
 贝叶斯最优分类器的错误率是：
 
 $$
-R^* = 1 - \sum_{x} P(x) \max_c P(y=c|x)
+R^{\ast} = 1 - \sum_{x} P(x) \max_c P(y=c|x)
 $$
 
 1-NN 的渐近错误率是：
 
 $$
-R_{\text{1NN}} = 2 \sum_{x} P(x) P(y=\hat{y}_{}^*|x) (1 - P(y=\hat{y}_{}^*|x))
+R_{\text{1NN}} = 2 \sum_{x} P(x) P(y=\hat{y}_{}^{\ast}|x) (1 - P(y=\hat{y}_{}^{\ast}|x))
 $$
 
-其中 $\hat{y}_{}^*$ 是贝叶斯最优预测。
+其中 $\hat{y}_{}^{\ast}$ 是贝叶斯最优预测。
 
-可以证明：$R^* \leq R_{\text{1NN}} \leq 2R^*$。因此，1-NN 的错误率最多是贝叶斯最优的两倍。
+可以证明：$R^{\ast} \leq R_{\text{1NN}} \leq 2R^{\ast}$。因此，1-NN 的错误率最多是贝叶斯最优的两倍。
 
 **第三步：K 近邻的决策**
 
@@ -950,9 +950,9 @@ $$
 $$
 
 其中：
-- $\text{Bias}^2 = (\mathbb{E}[\hat{f}(\mathbf{x})] - f^*(\mathbf{x}))^2$（模型平均与真实值的差距）
+- $\text{Bias}^2 = (\mathbb{E}[\hat{f}(\mathbf{x})] - f^{\ast}(\mathbf{x}))^2$（模型平均与真实值的差距）
 - $\text{Variance} = \mathbb{E}[(\hat{f}(\mathbf{x}) - \mathbb{E}[\hat{f}(\mathbf{x})])^2]$（模型预测的不稳定性）
-- $\text{Noise} = \mathbb{E}[(y - f^*(\mathbf{x}))^2]$（不可约误差）
+- $\text{Noise} = \mathbb{E}[(y - f^{\ast}(\mathbf{x}))^2]$（不可约误差）
 
 Bagging 减少方差的推导：
 
@@ -1033,7 +1033,7 @@ OOB 误差是无偏的交叉验证估计，无需额外的验证集。
 我们想学习函数 $F: \mathcal{X} \to \mathbb{R}$，使得期望损失最小：
 
 $$
-F^* = \arg\min_{F} \mathbb{E}_{\mathbf{x}, y}[L(y, F(\mathbf{x}))]
+F^{\ast} = \arg\min_{F} \mathbb{E}_{\mathbf{x}, y}[L(y, F(\mathbf{x}))]
 $$
 
 GBM 采用**前向分步算法**（Forward Stagewise Algorithm）。假设我们已经构建了 $m-1$ 轮模型 $F_{m-1}(\mathbf{x})$，第 $m$ 轮的目标是找到一个新模型 $h(\mathbf{x})$ 和步长 $\rho$：
@@ -1215,7 +1215,7 @@ $$
 通过推导，叶子节点 $j$ 的最优值为：
 
 $$
-w_j^* = -\frac{\sum_{i \in I_j} g_i}{\sum_{i \in I_j} h_i + \lambda}
+w_j^{\ast} = -\frac{\sum_{i \in I_j} g_i}{\sum_{i \in I_j} h_i + \lambda}
 $$
 
 其中 $I_j$ 是叶子节点 $j$ 中的样本集合。

@@ -32,6 +32,10 @@ $$ \mathbf{F}(x, y) = P(x, y)\mathbf{i} + Q(x, y)\mathbf{j} $$
 - 电磁场的电场或磁场
 - 引力场
 
+![向量场](/images/plots/vector_field_rotation.png)
+
+*图 1：向量场 F = (-y, x) 的可视化。这是一个旋转场，向量围绕原点旋转，形成同心圆的流线。*
+
 ### 1.2 梯度、散度与旋度
 
 假设 $f(x, y, z)$ 是一个标量函数，$\mathbf{F} = (P, Q, R)$ 是一个向量场，我们有三个关键的微分算子：
@@ -45,6 +49,10 @@ $$ \nabla f = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}
 $$ \nabla \cdot \mathbf{F} = \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z} $$
 
 物理上，散度为正表示该点有"源"（source），为负表示有"汇"（sink）。
+
+![散度](/images/plots/divergence_source_sink.png)
+
+*图 2：散度的物理意义。左图展示散度大于 0 的"源"，向量从中心向外发散；右图展示散度小于 0 的"汇"，向量向中心汇聚。*
 
 **旋度**：向量场的旋度是一个向量，衡量向量场在某点的"旋转"程度。
 
@@ -89,6 +97,10 @@ $$ \oint_{\partial D} P\,dx + Q\,dy = \iint_D \left(\frac{\partial Q}{\partial x
 而 $\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}$ 正是二维情况下的旋度。所以格林公式告诉我们：
 
 > **边界上的总环流量 = 内部旋度（旋转强度）的总和**
+
+![格林公式](/images/plots/greens_formula.png)
+
+*图 3：格林公式的几何直观。蓝色区域表示积分区域 D，红色箭头表示边界的正方向（逆时针），灰色小箭头表示内部的向量场。*
 
 物理上，这意味着：如果在一个闭合路径内部有旋转的源，那么沿着这个路径会感受到净的环流量。
 
@@ -182,6 +194,10 @@ $$ \oiint \mathbf{E} \cdot d\mathbf{S} = \iiint \frac{q}{\varepsilon_0} \delta(\
 
 这正是静电学中高斯定律的数学表达。
 
+![高斯公式](/images/plots/gauss_formula.png)
+
+*图 4：高斯公式的几何示意。蓝色半透明球面表示闭合曲面，红色箭头表示向外的法向量。曲面上的通量等于体积内所有源的总和。*
+
 ## 四、斯托克斯公式：三维的旋转与曲面
 
 ### 4.1 公式的陈述
@@ -203,6 +219,10 @@ $$ \oint_{\partial S} P\,dx + Q\,dy + R\,dz = \iint_S \left(\frac{\partial R}{\p
 - 如果你测量沿某个闭合路径的环流量，这等价于测量路径内部所有微小轮子旋转的总和
 
 右手定则很重要：如果你沿着边界行进的方向弯曲你的右手手指，大拇指指向的方向就是曲面的法向量方向。
+
+![斯托克斯公式](/images/plots/stokes_formula.png)
+
+*图 5：斯托克斯公式的几何示意。绿色曲面 S 以红色边界曲线为界，橙色箭头表示边界的正方向。沿边界的环流量等于曲面上旋度的通量。*
 
 ### 4.3 一个具体例子
 
@@ -252,6 +272,10 @@ $$ \nabla \times \mathbf{B} = \mu_0 \mathbf{J} $$
 - **格林公式**：二维平面，曲线包围区域
 - **斯托克斯公式**：三维空间，曲线包围曲面
 - **高斯公式**：三维空间，曲面包围区域
+
+![三大公式关系](/images/plots/three_formulas_relation.png)
+
+*图 6：三大公式的层次关系图。格林公式是二维平面的基础，斯托克斯公式和高斯公式分别推广到三维空间的曲线和曲面情形，最终统一于高维斯托克斯定理。*
 
 模式清晰可见：**$k$ 维边界的积分 = $(k+1)$ 维内部微分形式的外微分积分**
 

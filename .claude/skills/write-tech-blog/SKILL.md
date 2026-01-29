@@ -104,7 +104,89 @@ def plot_ricci_flow_evolution():
 - 辅助色：绿色 `#34C759`、橙色 `#FF9500`
 - 字体：Arial, sans-serif，字号 14
 - 添加适当的标签和标题
-- 导出为 HTML 文件放在 `static/images/plots/` 目录
+- 导出为 PNG 文件放在 `static/images/plots/` 目录（`fig.write_image('path.png', scale=2)`）
+
+**Plotly 作图核心原则**：
+
+1. **文字与图形尺寸匹配**
+   - 节点/圆圈大小必须与文字长度匹配
+   - ❌ 错误：小圆圈 + 长文字（如 "特征A<阈值" 放在 size=40 的圆圈里会溢出）
+   - ✅ 正确：大圆圈 + 短文字 或 小圆圈 + 极简文字
+   - 建议：节点大小 50-60px 配合 2-4 个字符的中文，或 8-12 个英文字符
+
+2. **文字简洁性**
+   - 图形中的文字必须精简，避免完整句子
+   - ❌ 错误："特征A小于阈值"
+   - ✅ 正确："A<阈值" 或 "左分支"
+   - 原则：用符号和缩写代替完整词汇
+
+3. **避免视觉重叠**
+   - 节点间距 ≥ 节点直径的 1.5 倍
+   - 文字与图形边缘留出 20% 边距
+   - 多节点时考虑分层布局（树状、网格、力导向）
+
+4. **分离 marker 和 text**
+   - 复杂标签建议分开绘制 marker 和 text
+   ```python
+   # 先绘制圆圈
+   fig.add_trace(go.Scatter(x=[x], y=[y], mode='markers', 
+                            marker=dict(size=55, color=color)))
+   # 再绘制文字
+   fig.add_trace(go.Scatter(x=[x], y=[y], mode='text',
+                            text=[label], textposition='middle center'))
+   ```
+
+5. **高对比度配色**
+   - 深色背景（节点）配白色文字
+   - 浅色背景配深色文字
+   - 避免黄色文字在白色背景上
+
+6. **导出分辨率**
+   - 使用 `scale=2` 导出高清图（适合 Retina 屏幕）
+   - 推荐尺寸：800x600 或 900x450（scale=2 后为 1600x1200 或 1800x900）
+
+**正误对比示例**（决策树节点）：
+
+```python
+# ❌ 错误：文字太长，圆圈太小，文字溢出
+fig.add_trace(go.Scatter(
+    x=[x], y=[y],
+    mode='markers+text',
+    marker=dict(size=40, color=color),  # 太小！
+    text=['特征A<阈值'],  # 太长！
+    textposition='middle center',
+    textfont=dict(size=10, color='white')
+))
+
+# ✅ 正确：简短文字 + 大圆圈，或分离绘制
+# 方案1：简化文字
+fig.add_trace(go.Scatter(
+    x=[x], y=[y],
+    mode='markers+text',
+    marker=dict(size=55, color=color),  # 更大
+    text=['A<阈值'],  # 简化
+    textposition='middle center',
+    textfont=dict(size=11, color='white')
+))
+
+# 方案2：分离 marker 和 text（更灵活）
+fig.add_trace(go.Scatter(x=[x], y=[y], mode='markers',
+                         marker=dict(size=55, color=color)))
+fig.add_trace(go.Scatter(x=[x], y=[y], mode='text',
+                         text=['A<阈值'],
+                         textposition='middle center',
+                         textfont=dict(size=11, color='white')))
+```
+
+**常见图形类型的尺寸参考**：
+
+| 图形类型 | 节点大小 | 字体大小 | 文字长度建议 | 示例 |
+|---------|---------|---------|------------|------|
+| 决策树节点 | 50-60 | 11 | 2-4字中文 | "根节点", "A<阈值" |
+| 流程图节点 | 40-50 | 10-12 | 2-5字中文 | "开始", "处理数据" |
+| 网络图节点 | 30-40 | 9-10 | 1-3字中文 | "A", "B1" |
+| 散点图标注 | - | 10 | 极短标签 | 数字、符号 |
+| 热力图标签 | - | 12-14 | 数字或缩写 | "准确率", "Loss" |
 
 **流程图（使用 Mermaid）**：
 对于概念流程、结构关系等非数理图形，使用 Mermaid 图表：

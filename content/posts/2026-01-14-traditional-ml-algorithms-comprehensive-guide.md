@@ -44,7 +44,7 @@ $$\hat{R}(f) = \frac{1}{n}\sum_{i=1}^n L(y_i, f(x_i))$$
 $$\mathbb{E}[(y - \hat{f}(x))^2] = \text{Bias}[\hat{f}(x)]^2 + \text{Var}[\hat{f}(x)] + \sigma^2$$
 
 其中：
-- $\text{Bias}[\hat{f}(x)] = \mathbb{E}[\hat{f}(x)] - f^*(x)$：模型预测的期望与真实值的差距
+- $\text{Bias}[\hat{f}(x)] = \mathbb{E}[\hat{f}(x)] - f^{\ast}(x)$：模型预测的期望与真实值的差距
 - $\text{Var}[\hat{f}(x)] = \mathbb{E}[(\hat{f}(x) - \mathbb{E}[\hat{f}(x)])^2]$：模型预测的方差
 - $\sigma^2$：不可约误差（数据本身的噪声）
 
@@ -76,7 +76,7 @@ L1正则化倾向于产生稀疏解（很多权重为零），相当于对权重
 
 一个关键问题是：经验风险最小化是否能保证泛化能力？PAC（Probably Approximately Correct）学习框架给出了理论保证。
 
-设 $\mathcal{F}$ 是一个假设类，如果对于任意 $\epsilon, \delta > 0$，存在样本量 $n(\epsilon, \delta)$，使得当 $n \geq n(\epsilon, \delta)$ 时，经验风险最小化算法以至少 $1-\delta$ 的概率找到一个假设 $f$，满足 $R(f) - R(f^*) \leq \epsilon$，则称 $\mathcal{F}$ 是PAC可学习的。
+设 $\mathcal{F}$ 是一个假设类，如果对于任意 $\epsilon, \delta > 0$，存在样本量 $n(\epsilon, \delta)$，使得当 $n \geq n(\epsilon, \delta)$ 时，经验风险最小化算法以至少 $1-\delta$ 的概率找到一个假设 $f$，满足 $R(f) - R(f^{\ast}) \leq \epsilon$，则称 $\mathcal{F}$ 是PAC可学习的。
 
 根据VC维理论，经验风险与期望风险的差距有如下界限：
 
