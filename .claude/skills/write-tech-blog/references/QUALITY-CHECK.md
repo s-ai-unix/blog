@@ -76,12 +76,24 @@ EOF
 - [ ] 希腊字母使用 LaTeX 命令（`\alpha`）而非 Unicode
 - [ ] 特殊符号（×, →, ∈）在数学模式中
 - [ ] 向量用 `\mathbf{}` 或 `\vec{}` 标记
+- [ ] **图注中不使用 LaTeX 公式**（避免 Markdown 冲突）
+- [ ] **没有双重上标**（如 `v'^T` 必须改为 `(v')^T`）
+- [ ] **没有 MathJax 不支持命令**（`\llbracket`, `\dfrac`, `\boldsymbol`）
 
 #### 快速验证命令
 
 ```bash
 # 检查是否有未包裹的 Unicode 数学符号
 grep -n 'α\|β\|γ\|×\|→\|∈' content/posts/[文章文件].md
+
+# 检查 MathJax 不支持的命令
+grep -n '\\llbracket\|\\rrbracket\|\\dfrac\|\\boldsymbol' content/posts/[文章文件].md
+
+# 检查双重上标（可能被 MathJax 报错）
+grep -n "'\^\|\^T" content/posts/[文章文件].md | grep -v "()'"
+
+# 检查图注中是否有 $ 包裹的公式（应改为纯文本或 <p class="caption">）
+grep -n '^\*图：.*\$' content/posts/[文章文件].md
 ```
 
 ### 3. 图表检查

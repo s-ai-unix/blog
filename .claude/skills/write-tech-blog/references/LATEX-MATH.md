@@ -182,6 +182,10 @@ $$\mathbf{X}_{i_1 i_2 \cdots i_N} = \sum_{\alpha_1, \ldots, \alpha_{N-1}} A^{(1)
 | `1-NN 算法` | `1{-}NN 算法` 或 `1NN 算法` | 连字符在下标中导致歧义 |
 | `\\[8pt]` | `\\` | cases 环境中方括号被误解析，导致换行失败 |
 | `\boldsymbol{\lambda}` | `\mathbf{\lambda}` | `\boldsymbol` 需要额外宏包支持，可能显示为源码 |
+| `\mathbf{v}'_{w}^T` | `(\mathbf{v}'_{w})^T` | 双重上标必须用括号明确，否则报错 "Double exponent" |
+| `50,000` | `50{,}000` | 数字中的逗号会被误解析为下标分隔符 |
+| `\llbracket` `\rrbracket` | `[\![` `]\!]` | MathJax 不支持，需要 `stmaryrd` 宏包 |
+| `\dfrac{a}{b}` | `\frac{a}{b}` | MathJax 有限支持，建议用标准 `\frac` |
 
 ## 最佳实践
 
@@ -194,6 +198,8 @@ $$\mathbf{X}_{i_1 i_2 \cdots i_N} = \sum_{\alpha_1, \ldots, \alpha_{N-1}} A^{(1)
 - [ ] 花括号在文本中是否转义为 `\{` 和 `\}`？
 - [ ] 向量是否用 `\mathbf{}` 或 `\vec{}` 标记？
 - [ ] 复杂公式（多下划线）是否用 `<div class="math">` 包裹？
+- [ ] 是否有双重上标（如 `v'^T`）？必须用括号：`(v')^T`
+- [ ] 是否使用了 MathJax 不支持的命令（`\llbracket`, `\dfrac`, `\boldsymbol`）？
 
 ### 2. 常用模板
 ```
@@ -341,3 +347,42 @@ $$
 
 ### 4. 检查 HTML 源码
 在浏览器中查看页面源码，搜索 `<em>` 标签，确认是否被错误插入到公式中
+
+## 图注/图片标题中的公式特殊处理
+
+### 问题：Markdown 与 MathJax 的冲突
+
+图注通常使用 `*图：描述*` 或 `_图：描述_` 格式，这会与公式中的 `*` 和 `_` 冲突：
+
+```markdown
+❌ *图：词向量关系 $\mathbf{v}_{king} - \mathbf{v}_{man}$*  
+   ↑ 这里的 _ 会被 Markdown 解析为斜体结束符
+
+❌ <em>图：词向量关系 $\mathbf{v}_{king} - \mathbf{v}_{man}$</em>  
+   ↑ 即使使用 HTML 标签，内部的 _ 仍可能被解析
+```
+
+### 解决方案
+
+**方案1：图注不用 LaTeX，用纯文本描述（推荐）**
+```markdown
+![图片描述](path.png)
+<p class="caption">图：词向量关系，king - man + woman ≈ queen</p>
+```
+
+**方案2：使用 HTML 实体转义**
+```markdown
+<p class="caption">图：词向量关系 $\mathbf{v}\_{\text{king}}$</p>
+   ↑ 使用 \_ 转义下划线
+```
+
+**方案3：避免在图注中使用复杂公式**
+将复杂公式放在图注上方的正文中，图注只保留简单文字说明。
+
+### 其他 Markdown 冲突场景
+
+| 场景 | 问题 | 解决方案 |
+|------|------|----------|
+| 列表项中的公式 | `- $x_i$` 的 `_` 可能被解析 | 使用 `* $x_i$` 或加空格 `-  $x_i$` |
+| 加粗文本中的公式 | `**$x_i$**` 的 `_` 冲突 | 改用 HTML `<strong>$x_i$</strong>` |
+| 斜体文本中的公式 | `*$x_i$*` 的 `_` 冲突 | 改用 HTML `<em>$x_i$</em>` 或避免 |
