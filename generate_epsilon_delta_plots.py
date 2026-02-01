@@ -142,51 +142,106 @@ def plot_limit_concept_evolution():
             '无穷小方法："无限接近"', 
             'Epsilon-Delta："任意接近"'
         ),
-        horizontal_spacing=0.1
+        horizontal_spacing=0.12
     )
     
     # 子图1: 直观理解
     fig.add_trace(go.Scatter(
         x=x[x != 0], y=y[x != 0],
         mode='lines',
-        line=dict(color='#007AFF', width=2),
-        name='$\\frac{\\sin x}{x}$',
+        line=dict(color='#007AFF', width=2.5),
         showlegend=False
     ), row=1, col=1)
     
-    # 添加 "趋近" 箭头
-    fig.add_annotation(x=-1.5, y=0.9, text='趋近于', showarrow=True,
-                       arrowhead=2, arrowcolor='#FF3B30',
-                       ax=1.5, ay=0, row=1, col=1)
-    fig.add_annotation(x=0, y=1, text='目标值 1', showarrow=True,
-                       arrowhead=2, arrowcolor='#34C759',
-                       ax=0, ay=-30, row=1, col=1)
+    # 添加 "趋近" 箭头 - 从左侧指向原点
+    fig.add_annotation(
+        x=-0.8, y=0.85, 
+        text='趋近',
+        showarrow=True,
+        arrowhead=2, 
+        arrowcolor='#FF3B30',
+        arrowsize=1.5,
+        arrowwidth=2,
+        ax=40,  # 箭头指向右侧
+        ay=0,
+        font=dict(size=12, color='#FF3B30'),
+        row=1, col=1
+    )
+    
+    # 目标值标注
+    fig.add_trace(go.Scatter(
+        x=[0], y=[1],
+        mode='markers+text',
+        marker=dict(color='#34C759', size=10, symbol='diamond'),
+        text=['极限 = 1'],
+        textposition='top center',
+        textfont=dict(size=11, color='#34C759'),
+        showlegend=False
+    ), row=1, col=1)
     
     # 子图2: 无穷小方法
     fig.add_trace(go.Scatter(
         x=x[x != 0], y=y[x != 0],
         mode='lines',
-        line=dict(color='#007AFF', width=2),
+        line=dict(color='#007AFF', width=2.5),
         showlegend=False
     ), row=1, col=2)
     
-    # 添加无穷小标记
-    fig.add_annotation(x=0.5, y=0.96, text='$dx$ 是无穷小', showarrow=False,
-                       font=dict(size=11, color='#AF52DE'), row=1, col=2)
-    fig.add_annotation(x=-0.5, y=0.96, text='$\\frac{\\sin dx}{dx} \\approx 1$', 
-                       showarrow=False, font=dict(size=11, color='#AF52DE'), row=1, col=2)
+    # 无穷小标记 - 在原点附近添加 dx 标记
+    dx_pos = 0.3
+    dy_val = np.sinc(dx_pos / np.pi)
+    
+    # 绘制 dx 区间
+    fig.add_vrect(
+        x0=-dx_pos, x1=dx_pos,
+        fillcolor='rgba(175, 82, 222, 0.15)',
+        line_width=0,
+        row=1, col=2
+    )
+    
+    # 无穷小标注
+    fig.add_annotation(
+        x=0, y=0.7,
+        text='$dx$ 为无穷小量',
+        showarrow=False,
+        font=dict(size=12, color='#AF52DE'),
+        row=1, col=2
+    )
+    fig.add_annotation(
+        x=0, y=0.62,
+        text='$\\frac{\\sin(dx)}{dx} \\approx 1$',
+        showarrow=False,
+        font=dict(size=12, color='#AF52DE'),
+        row=1, col=2
+    )
+    
+    # 在 dx 位置画标记点
+    fig.add_trace(go.Scatter(
+        x=[dx_pos], y=[dy_val],
+        mode='markers',
+        marker=dict(color='#AF52DE', size=8, symbol='circle'),
+        showlegend=False
+    ), row=1, col=2)
+    fig.add_annotation(
+        x=dx_pos + 0.15, y=dy_val + 0.02,
+        text='$dx$',
+        showarrow=False,
+        font=dict(size=10, color='#AF52DE'),
+        row=1, col=2
+    )
     
     # 子图3: Epsilon-Delta
     fig.add_trace(go.Scatter(
         x=x[x != 0], y=y[x != 0],
         mode='lines',
-        line=dict(color='#007AFF', width=2),
+        line=dict(color='#007AFF', width=2.5),
         showlegend=False
     ), row=1, col=3)
     
     # 添加 epsilon 带状区域
-    epsilon = 0.1
-    x_band = np.linspace(-0.5, 0.5, 50)
+    epsilon = 0.08
+    delta = 0.5
+    x_band = np.linspace(-delta, delta, 50)
     y_upper = np.full_like(x_band, 1 + epsilon)
     y_lower = np.full_like(x_band, 1 - epsilon)
     
@@ -194,26 +249,48 @@ def plot_limit_concept_evolution():
         x=np.concatenate([x_band, x_band[::-1]]),
         y=np.concatenate([y_upper, y_lower[::-1]]),
         fill='toself',
-        fillcolor='rgba(255, 149, 0, 0.2)',
+        fillcolor='rgba(255, 149, 0, 0.25)',
         line=dict(color='rgba(0,0,0,0)'),
         showlegend=False
     ), row=1, col=3)
     
+    # epsilon 水平线
+    fig.add_hline(y=1 + epsilon, line=dict(color='#FF9500', width=1.5, dash='dot'), row=1, col=3)
+    fig.add_hline(y=1 - epsilon, line=dict(color='#FF9500', width=1.5, dash='dot'), row=1, col=3)
     fig.add_hline(y=1, line=dict(color='#8E8E93', width=1, dash='dash'), row=1, col=3)
-    fig.add_annotation(x=1.5, y=1.05, text='$\\epsilon$ 误差带', showarrow=False,
-                       font=dict(size=10, color='#FF9500'), row=1, col=3)
+    
+    # delta 垂直线
+    fig.add_vline(x=delta, line=dict(color='#34C759', width=1.5, dash='dot'), row=1, col=3)
+    fig.add_vline(x=-delta, line=dict(color='#34C759', width=1.5, dash='dot'), row=1, col=3)
+    
+    # 标注
+    fig.add_annotation(
+        x=1.8, y=1 + epsilon/2,
+        text='$\\epsilon$ 误差带',
+        showarrow=False,
+        font=dict(size=11, color='#FF9500'),
+        row=1, col=3
+    )
+    fig.add_annotation(
+        x=delta + 0.3, y=0.65,
+        text='$\\delta$ 邻域',
+        showarrow=False,
+        font=dict(size=11, color='#34C759'),
+        row=1, col=3
+    )
     
     fig.update_layout(
-        title=dict(text='极限概念的三种理解方式', font=dict(size=16)),
+        title=dict(text='极限概念的三种理解方式', font=dict(size=18)),
         template='plotly_white',
         font=dict(family='Arial, sans-serif', size=12),
         width=1200,
-        height=450
+        height=500,
+        margin=dict(t=80, b=60, l=60, r=60)
     )
     
     for i in range(1, 4):
-        fig.update_xaxes(range=[-3, 3], row=1, col=i)
-        fig.update_yaxes(range=[0.5, 1.2], row=1, col=i)
+        fig.update_xaxes(range=[-3, 3], row=1, col=i, title_text='$x$')
+        fig.update_yaxes(range=[0.5, 1.25], row=1, col=i, title_text='$y$')
     
     save_and_compress(fig, 'static/images/plots/limit_concept_evolution.png')
     return fig
