@@ -68,7 +68,7 @@ $$
 
 让我们通过一张图来理解这种直观与严格之间的差距：
 
-![极限概念的三种理解方式](images/plots/limit_concept_evolution.png)
+![极限概念的三种理解方式](/images/plots/limit_concept_evolution.png)
 
 <p class="caption">图：极限概念的三种理解方式——从直观到严格的演进</p>
 
@@ -115,7 +115,7 @@ $$
 
 这个函数有一个惊人的性质：**它在每一点都连续，但在每一点都不可导**。
 
-![魏尔斯特拉斯函数](images/plots/weierstrass_function.png)
+![魏尔斯特拉斯函数](/images/plots/weierstrass_function.png)
 
 <p class="caption">图：魏尔斯特拉斯函数——处处连续但处处不可导的怪物</p>
 
@@ -166,7 +166,7 @@ $$\forall \epsilon > 0, \exists \delta > 0 \text{ 使得 } 0 < |x - a| < \delta 
 
 让我们用一张图来理解这个定义：
 
-![Epsilon-Delta 定义可视化](images/plots/epsilon_delta_illustration.png)
+![Epsilon-Delta 定义可视化](/images/plots/epsilon_delta_illustration.png)
 
 <p class="caption">图：Epsilon-Delta 定义的可视化——函数 $f(x) = x^2$ 在 $x = 2$ 处的连续性</p>
 
@@ -197,7 +197,7 @@ $$\forall \epsilon > 0, \exists \delta > 0 \text{ 使得 } |x - a| < \delta \Rig
 
 严格定义的价值在于，它能够精确区分不同类型的连续性"破坏"。
 
-![连续性的分类与间断点类型](images/plots/continuity_types.png)
+![连续性的分类与间断点类型](/images/plots/continuity_types.png)
 
 <p class="caption">图：连续性的分类——可去间断点、跳跃间断点、本质间断点</p>
 
@@ -313,7 +313,7 @@ Epsilon-delta 语言还揭示了一个更精细的概念：**一致连续性**�
 
 **一致连续性**：给定 $\epsilon > 0$，存在 $\delta > 0$（仅依赖于 $\epsilon$，适用于所有点）...
 
-![一致连续性](images/plots/uniform_continuity.png)
+![一致连续性](/images/plots/uniform_continuity.png)
 
 <p class="caption">图：一致连续性——$\delta$ 是否与位置无关</p>
 
