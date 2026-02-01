@@ -70,30 +70,70 @@ EOF
 
 使用 [LATEX-MATH.md](LATEX-MATH.md) 中的检查清单：
 
+#### 基础检查
 - [ ] 所有数学变量都用 `$...$` 或 `$$...$$` 包裹
 - [ ] 上标使用 `^{...}` 而非 `^(...)`
 - [ ] 下标使用 `_{...}` 而非 `_(...)`
 - [ ] 希腊字母使用 LaTeX 命令（`\alpha`）而非 Unicode
 - [ ] 特殊符号（×, →, ∈）在数学模式中
 - [ ] 向量用 `\mathbf{}` 或 `\vec{}` 标记
-- [ ] **图注中不使用 LaTeX 公式**（避免 Markdown 冲突）
-- [ ] **没有双重上标**（如 `v'^T` 必须改为 `(v')^T`）
-- [ ] **没有 MathJax 不支持命令**（`\llbracket`, `\dfrac`, `\boldsymbol`）
+
+#### Hugo + MathJax 特殊检查 ⚠️
+
+**重要**：这些检查项针对 Hugo 博客的特殊要求。
+
+- [ ] **无 `^*` 复共轭**：检查是否有 `\psi^*`，必须改为 `\psi^{\ast}`
+- [ ] **无 `|` 绝对值**：检查是否有 `$|x|$`，应改为 `$\vert x \vert$`
+- [ ] **无 `\|` 范数**：检查是否有 `$\|x\|$`，应改为 `$\lVert x\rVert$`
+- [ ] **无 `\bm{}` ���令**：检查是否有 `\bm{}`，改为 `$\alpha$` 或 `$\mathbf{p}$`
+- [ ] **无 `\boldsymbol{}` 命令**：检查是否有 `\boldsymbol{}`，改为标准格式
+- [ ] **数学模式无中文标点**：检查 `$...$` 中是否有中文逗号、句号
+- [ ] **无 `\\\\` 换行符**：矩阵中使用 `\\` 而非 `\\\\`
+
+**检查命令**：
+```bash
+# 检查 ^* 复共轭
+grep -n '\\\^\*' 文章.md
+
+# 检查 | 绝对值
+grep -n '\$.*\|.*\|.*\$' 文章.md
+
+# 检查 \bm 命令
+grep -n '\\bm{' 文章.md
+
+# 检查 \boldsymbol 命令
+grep -n '\\boldsymbol{' 文章.md
+```
+
+**6. 花括号配对检查** ⚠️
+
+**重要**：花括号必须正确配对，特别是在下标和上标嵌套时。
+
+**常见错误模式**：
+```latex
+❌ u_{i,j-1}}^{(k)}     # 多余的 }
+❌ u^{(k)}_{new}        # 顺序错误
+```
+
+**检查命令**：
+```bash
+# 检查 }{ 模式（多余的花括号）
+grep -n '\}{' 文章.md
+
+# 检查 }} 模式（连续的右花括号）
+grep -n '\}\}' 文章.md
+```
+
+**预防措施**：
+- 写完公式立即用编辑器的括号匹配功能检查
+- 复杂公式在单独文件中测试
+- 发布前运行 Hugo 构建验证
 
 #### 快速验证命令
 
 ```bash
 # 检查是否有未包裹的 Unicode 数学符号
 grep -n 'α\|β\|γ\|×\|→\|∈' content/posts/[文章文件].md
-
-# 检查 MathJax 不支持的命令
-grep -n '\\llbracket\|\\rrbracket\|\\dfrac\|\\boldsymbol' content/posts/[文章文件].md
-
-# 检查双重上标（可能被 MathJax 报错）
-grep -n "'\^\|\^T" content/posts/[文章文件].md | grep -v "()'"
-
-# 检查图注中是否有 $ 包裹的公式（应改为纯文本或 <p class="caption">）
-grep -n '^\*图：.*\$' content/posts/[文章文件].md
 ```
 
 ### 3. 图表检查
@@ -112,6 +152,50 @@ grep -n '^\*图：.*\$' content/posts/[文章文件].md
     <iframe src="/images/plots/图形文件.html" width="100%" height="500" frameborder="0"></iframe>
   </div>
   ```
+
+#### 3.2 对比图可视化检查（多子图时）
+
+当使用多子图展示对比概念时，必须检查：
+
+**视觉区分度检查**：
+- [ ] **每个子图有独特视觉特征**（不仅是标题不同）
+- [ ] **关键概念有对应视觉元素**：
+  - 动态过程 → 箭头
+  - 区间/范围 → 背景色块或填充
+  - 边界线 → 虚线或点线
+  - 关键点 → 特殊标记（菱形、星形等）
+- [ ] **标注清晰可见**：
+  - 不与曲线重叠
+  - 字体大小适中（≥10pt）
+  - 颜色与背景有足够对比度
+
+**快速验证方法**：
+```bash
+# 生成图片后，目视检查
+# 1. 遮挡标题，能否区分三图？
+# 2. 每个子图是否有独特的颜色/线型/标记？
+# 3. 关键概念（如 dx, ε, δ）是否有对应的视觉元素？
+```
+
+**常见错误**：
+```python
+# ❌ 错误：三图几乎相同
+fig.add_trace(go.Scatter(x=x, y=y), row=1, col=1)
+fig.add_trace(go.Scatter(x=x, y=y), row=1, col=2)  # 完全一样的曲线
+fig.add_trace(go.Scatter(x=x, y=y), row=1, col=3)  # 完全一样的曲线
+
+# ✅ 正确：每图有独特元素
+# 左图：箭头 + 特殊标记
+fig.add_annotation(x=-0.8, y=0.85, text='趋近', arrowcolor='#FF3B30', ...)
+fig.add_trace(go.Scatter(x=[0], y=[1], marker=dict(symbol='diamond', color='#34C759')), ...)
+
+# 中图：背景区间
+fig.add_vrect(x0=-dx, x1=dx, fillcolor='rgba(175, 82, 222, 0.15)', ...)
+
+# 右图：填充区域 + 虚线
+fig.add_trace(go.Scatter(fill='toself', fillcolor='rgba(255, 149, 0, 0.25)', ...))
+fig.add_hline(y=1+epsilon, line=dict(dash='dot', color='#FF9500'), ...)
+```
 
 #### 3.2 Mermaid 流程图检查
 
@@ -167,12 +251,9 @@ math: true
 
 检查要点：
 - ✅ 三个短横线 `---` 正确
-- ✅ date 格式包含时区（必须是当前真实日期）
-- ✅ 文件名与日期匹配（YYYY-MM-DD-slug.md）
+- ✅ date 格式包含时区
 - ✅ categories 和 tags 是数组
 - ✅ cover 字段缩进正确（2 空格）
-
-**重要**：确保日期是当前真实日期，不是过去的日期或未来的日期。
 
 ### 6. 内容完整性检查
 
